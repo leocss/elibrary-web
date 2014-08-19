@@ -1,0 +1,26 @@
+{% extends 'layout-main.twig' %}
+
+{% block content %}
+    <div id="book-index">
+        <div class="row">
+        {% for book in books %}
+            <div class="col-md-4">
+                <div class="box book-item">
+                    <div class="book-item-preview">
+
+                    </div>
+                    <div class="text-center">
+                        <a href="/books/{{ book.id }}"> {{ book.title }}</a>
+                        <div class="clearfix"></div>
+                        <small class="text-center">
+                            <i class="fa fa-clock-o"></i>
+                            The Category
+                        </small>
+                    </div>
+
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}
