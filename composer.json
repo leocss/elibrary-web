@@ -1,10 +1,19 @@
 {
-  "name": "leocss/elibrary-web",
-  "description": "Elibrary Web.",
-  "keywords": ["framework", "laravel"],
-  "require": {
-    "guzzlehttp/guzzle": "4.*",
-    "twig/twig": "1.*",
-    "silex/silex": "1.*"
-  }
+    "name": "leocss/elibrary-web",
+    "description": "Elibrary Web.",
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "4.*",
+        "twig/twig": "1.*",
+        "silex/silex": "1.*",
+        "nesbot/carbon": "1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Elibrary\\": ["app"]
+        }
+    }
 }
