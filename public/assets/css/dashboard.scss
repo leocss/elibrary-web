@@ -1,70 +1,128 @@
-@import "mixins";
-@import "fonts";
+@import "modules/mixins";
+@import "modules/fonts";
+@import "modules/variables";
 
 body, html {
-    margin: 0;
-    padding: 0;
-    @include font-family("RobotoLight");
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  @include font-family("RobotoLight");
+}
+
+#wrapper {
+  height: 100%;
+  width: 100%;
 }
 
 #header {
-    border-radius: 0;
-    border: 0;
-    background-color: #434343;
+  height: $header_height;
+  border-radius: 0;
+  border: 0;
+  background-color: $header_bg_color;
+
+  &.navbar {
+    margin-bottom: 0;
+    min-height: $header_height;
+  }
+
+  #logo {
+    display: block;
+    width: $sidebar_width;
+    height: $header_height;
+    background-color: $sidebar_logo_bg_color;
+    text-align: center;
+    text-decoration: none;
+    @include font-family("RobotoBold");
+
+    h2 {
+      margin: 0;
+      padding: 0;
+      font-size: 28px;
+      color: $sidebar_logo_color;
+      line-height: $header_height;
+    }
+  }
 }
 
-#main-panel {
+#main {
+  width: 100%;
+  padding-left: $sidebar_width;
+  padding-top: $header_height;
+}
 
+#sidebar {
+  height: 100%;
+  width: $sidebar_width;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  overflow-y: hidden;
+  background-color: $sidebar_bg_color;
 }
 
 .box {
-    margin: 0px auto 15px;
-    position: relative;
-    border: 1px solid #EFEFEF;
+  margin: 0px auto 15px;
+  position: relative;
+  border: 1px solid #EFEFEF;
 }
 
 .box-white {
-    background: #FFFFFF;
+  background: #FFFFFF;
 }
 
+.page-header {
+  margin: 0;
+  padding: 10px 20px;
+
+  h2 {
+    text-transform: uppercase;
+    @include font-family("RobotoBold");
+    padding: 0;
+    margin: 0;
+  }
+}
 // -- Books
 // ----------------------------
 
 #book-index {
-    .book-item {
-        .book-item-preview {
-            border-bottom: 1px solid #EFEFEF !important;
-            text-align: center !important;
-            padding: 15px;
-            position: relative;
-        }
+  .book-item {
+    .book-item-preview {
+      border-bottom: 1px solid #EFEFEF !important;
+      text-align: center !important;
+      padding: 15px;
+      position: relative;
     }
+  }
 }
 
 #book-view {
-    .book-header {
-        background: none repeat scroll 0% 0% #FFFFFF;
-        margin: 0px auto 15px;
-        position: relative;
-        border: 1px solid #EFEFEF;
-        padding: 10px 20px;
-        padding-top: 20px;
+  .book-header {
+    background: none repeat scroll 0% 0% #FFFFFF;
+    margin: 0px auto 15px;
+    position: relative;
+    border: 1px solid #EFEFEF;
+    padding: 10px 20px;
+    padding-top: 20px;
 
-        .book-summary-thumb {
-
-        }
-
-        .book-summary-author {
-            margin-bottom: 20px;
-            font-size: 16px;
-            font-weight: 200;
-            line-height: 1.4;
-        }
-    }
-
-    .book-viewer {
+    .book-summary-thumb {
 
     }
+
+    .book-summary-author {
+      margin-bottom: 20px;
+      font-size: 16px;
+      font-weight: 200;
+      line-height: 1.4;
+    }
+  }
+
+  .book-viewer {
+
+  }
 }
 
 #printjob-index {

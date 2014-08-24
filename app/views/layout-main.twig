@@ -8,16 +8,19 @@
 <body>
 
 <div id="wrapper">
-    <div id="header" class="navbar navbar-default">
+    {% block before_header %}{% endblock %}
+    <div id="header" class="navbar navbar-default navbar-fixed-top">
+        <a href="/dashboard" id="logo">
+            <h2>E</h2>
+        </a>
     </div>
-    <div id="main-panel">
-        <div class="container">
-            <div class="col-md-12">
-                {% block content %} {% endblock %}
-            </div>
-        </div>
+    {% block after_header %}{% endblock %}
 
+    {% block before_content %}{% endblock %}
+    <div id="main">
+        {% block content %} {% endblock %}
     </div>
+    {% block after_content %}{% endblock %}
 </div>
 
 </body>

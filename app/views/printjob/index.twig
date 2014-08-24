@@ -1,14 +1,21 @@
-{% extends 'layout-main.twig' %}
+{% extends 'layout-sidebar.twig' %}
 
 {% block content %}
     <div id="printjob-index">
-        <div class="row">
-            <h1>You do not have any documents queued for printing.</h1>
+        <div class="page-header">
+            <h2>Print Jobs</h2>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>You do not have any documents queued for printing.</h1>
 
-            <a href="/printjobs/create">Create A Print Job.</a>
+                    <a href="/printjobs/create">Create A Print Job.</a>
 
-            <p>What are print jobs?</p>
-            <p>Okay! I taught you may ask. A print job is a blah blah blah.... Put explanation here.</p>
+                    <p>What are print jobs?</p>
+                    <p>Okay! I taught you may ask. A print job is a blah blah blah.... Put explanation here.</p>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

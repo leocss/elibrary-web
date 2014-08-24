@@ -16,13 +16,7 @@ $app->get('/dashboard', function () use ($app) {
     return $app['twig']->render('user/dashboard.twig');
 });
 
-$app->get('/books', function () use ($app) {
-    $books = json_decode(file_get_contents('http://127.0.0.1:4000/books'), true);
-
-    return $app['twig']->render('book/index.twig', [
-        'books' => $books
-    ]);
-});
+$app->get('/books', 'Elibrary\BookCtrl');
 
 $app->get('/books/{id}', function ($id) use ($app) {
         $book = json_decode(file_get_contents(sprintf('http://127.0.0.1:4000/books/%d', $id)), true);
