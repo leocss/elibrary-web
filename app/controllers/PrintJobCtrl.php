@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * @author Laju Morrison <morrelinko@gmail.com>
  */
-class PrintJobCtrl
+class PrintJobCtrl extends BaseCtrl
 {
     public function index()
     {

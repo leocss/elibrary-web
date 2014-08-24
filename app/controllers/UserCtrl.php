@@ -1,8 +1,7 @@
 <?php
 
-namespace Elibrary\controllers;
+namespace Elibrary\Controllers;
 
-use Elibrary\Lib\Api\ElibraryClient;
 use Silex\Application;
 
 /**
@@ -10,11 +9,17 @@ use Silex\Application;
  */
 class UserCtrl extends BaseCtrl
 {
+    /**
+     * @return string
+     */
     public function main()
     {
         return $this->view->render('user/main.twig');
     }
 
+    /**
+     * @return string
+     */
     public function dashboard()
     {
         return $this->view->render('user/dashboard.twig');

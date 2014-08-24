@@ -2,7 +2,8 @@
 
 namespace Elibrary\controllers;
 
-use Elibrary\Lib\Api\ElibraryClient;
+use Elibrary\Lib\Api\ElibraryApiClient;
+use Silex\Application;
 use Twig_Environment;
 
 /**
@@ -12,7 +13,12 @@ class BaseCtrl
 {
 
     /**
-     * @var ElibraryClient
+     * @var Application
+     */
+    protected $app;
+
+    /**
+     * @var ElibraryApiClient
      */
     protected $client;
 
@@ -21,9 +27,10 @@ class BaseCtrl
      */
     protected $view;
 
-    public function __construct($controllerServiceCollection)
+    public function __construct($controllerDependencies)
     {
-        $this->view = $controllerServiceCollection['view'];
-        $this->client = $controllerServiceCollection['client'];
+        $this->app = $controllerDependencies['app'];
+        $this->view = $controllerDependencies['view'];
+        $this->client = $controllerDependencies['client'];
     }
 }
