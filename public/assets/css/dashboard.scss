@@ -1,6 +1,6 @@
 @import "modules/mixins";
 @import "modules/fonts";
-@import "modules/variables";
+@import "modules/layout";
 
 body, html {
   margin: 0;
@@ -48,22 +48,6 @@ body {
   }
 }
 
-#main {
-  width: 100%;
-  padding-left: $sidebar_width;
-  padding-top: $header_height;
-}
-
-#sidebar {
-  height: 100%;
-  width: $sidebar_width;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  overflow-y: hidden;
-  background-color: $sidebar_bg_color;
-}
-
 .box {
   margin: 0px auto 15px;
   position: relative;
@@ -74,17 +58,7 @@ body {
   background: #FFFFFF;
 }
 
-.page-header {
-  margin: 0;
-  padding: 10px 20px;
 
-  h2 {
-    text-transform: uppercase;
-    @include font-family("RobotoBold");
-    padding: 0;
-    margin: 0;
-  }
-}
 // -- Books
 // ----------------------------
 
