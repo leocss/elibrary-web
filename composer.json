@@ -13,7 +13,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Elibrary\\": ["app"]
+            "Elibrary\\Controllers\\": ["app/controllers"],
+            "Elibrary\\Lib\\": ["app/library"]
         }
     }
 }
