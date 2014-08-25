@@ -1,5 +1,9 @@
 {% extends 'layout-main.twig' %}
 
+{% block title %}
+    Lock Screen | {{ parent() }}
+{% endblock %}
+
 {% block content %}
     <div id="user-dashboard">
         <h2>Lock Screen - Require user to login here.</h2>

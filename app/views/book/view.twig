@@ -1,31 +1,36 @@
-{% extends 'layout-main.twig' %}
+{% extends 'layout-sidebar.twig' %}
+
+{% block title %}
+    Viewing {{ book.title }} | {{ parent() }}
+{% endblock %}
 
 {% block content %}
-
     <div id="book-view">
-        <div class="book-header media">
-            <div class="book-header-thumb">
-                <div class="text-center">
-                    {# Preview Image will be placed here #}
-                    <i class="fa-5x fa fa-fw"></i>
+        <div class="container-fluid">
+            <div class="book-header media">
+                <div class="book-header-thumb">
+                    <div class="text-center">
+                        {# Preview Image will be placed here #}
+                        <i class="fa-5x fa fa-fw"></i>
+                    </div>
+                </div>
+                <div class="media-body">
+                    <h2 class="media-heading margin-none">
+                        {{ book.title }}
+                    </h2>
+                    <p class="book-summary-author">by {{ book.author }}</p>
                 </div>
             </div>
-            <div class="media-body">
-                <h2 class="media-heading margin-none">
-                    {{ book.title }}
-                </h2>
-                <p class="book-summary-author">by {{ book.author }}</p>
-            </div>
         </div>
+
 
         <div class="box book-viewer">
             {# Place the book here... Using ViewerJS or whatever #}
-            {% for property, value in book %}
+            {% for property in ['author', 'title'] %}
                 <div>
-                    <b>{{ property }}:</b> {{ value }}
+                    <b>{{ property }}:</b> {{ book[property] }}
                 </div>
             {% endfor %}
         </div>
-
     </div>
 {% endblock %}

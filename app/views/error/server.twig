@@ -6,11 +6,11 @@
 
 {% block error_content %}
     <h3>
-        Error communicating with our API server. <br/>
-        Please, try again.
+        Our server encountered an unexpected error. <br/>
+        Sorry for any inconveniences
     </h3>
 
     <p>
-        {{ exception.getMessage() }}
+        <b>Error Message: </b>{{ exception.getMessage() }}
     </p>
 {% endblock %}

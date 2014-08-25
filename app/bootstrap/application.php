@@ -1,5 +1,9 @@
 <?php
 
+use Elibrary\Lib\Exception\ApiException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Elibrary\Controllers;
+
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 $app = new Silex\Application();
@@ -8,6 +12,7 @@ $app = new Silex\Application();
  * Define App Config
  */
 $app['debug'] = true;
+$app['app.lib.api.elibrary_mode'] = 'mock'; // 'mock' || 'live'
 $app['app.lib.api.elibrary_client_id'] = 'xxx';
 $app['app.lib.api.elibrary_client_secret'] = 'xxx';
 
@@ -23,17 +28,41 @@ $app->register(new \Silex\Provider\TwigServiceProvider(), [
 /**
  * Register Error Handlers
  */
-$app->error(function (\Elibrary\Lib\Exception\ApiException $exception) use ($app) {
-    return $app['twig']->render('error/api.twig');
+
+// When an Api error occurs
+$app->error(function (ApiException $exception) use ($app) {
+    return $app['twig']->render('error/api.twig', [
+        'exception' => $exception
+    ]);
+});
+
+// When a route does not exists
+$app->error(function (NotFoundHttpException $exception) use ($app) {
+    return $app['twig']->render('error/not-found.twig');
+});
+
+// All other exceptions
+$app->error(function (Exception $exception) use ($app) {
+    return $app['twig']->render('error/server.twig', [
+        'exception' => $exception
+    ]);
 });
 
 /**
  * Register App Services
  */
 $app['app.lib.ElibraryApiClient'] = $app->share(function () use ($app) {
-    $client = new \Elibrary\Lib\Api\ElibraryApiClient($app['session']);
-    $client->setClientId($app['app.lib.api.elibrary_client_id']);
-    $client->setClientSecret($app['app.lib.api.elibrary_client_secret']);
+    $client = null;
+    switch ($app['app.lib.api.elibrary_mode']) {
+        case 'mock':
+            $client = new \Elibrary\Lib\Api\ElibraryMockClient(__DIR__ . '/../storage/data');
+            $client->setClientId($app['app.lib.api.elibrary_client_id']);
+            $client->setClientSecret($app['app.lib.api.elibrary_client_secret']);
+            break;
+        case 'live':
+            $client = new \Elibrary\Lib\Api\ElibraryApiClient($app['session']);
+            break;
+    }
 
     return $client;
 });
@@ -50,15 +79,15 @@ $app['app.GlobalCtrlDependencies'] = $app->share(function () use ($app) {
  * Register Controllers
  */
 $app['app.controllers.PrintJob'] = $app->share(function () use ($app) {
-    return new \Elibrary\Controllers\PrintJobCtrl($app['app.GlobalCtrlDependencies']);
+    return new Controllers\PrintJobCtrl($app['app.GlobalCtrlDependencies']);
 });
 
 $app['app.controllers.Book'] = $app->share(function () use ($app) {
-    return new Elibrary\Controllers\BookCtrl($app['app.GlobalCtrlDependencies']);
+    return new Controllers\BookCtrl($app['app.GlobalCtrlDependencies']);
 });
 
 $app['app.controllers.User'] = $app->share(function () use ($app) {
-    return new \Elibrary\Controllers\UserCtrl($app['app.GlobalCtrlDependencies']);
+    return new Controllers\UserCtrl($app['app.GlobalCtrlDependencies']);
 });
 
 // Application Routes

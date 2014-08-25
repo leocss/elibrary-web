@@ -1,0 +1,44 @@
+// -- Books Index
+// ----------------------------
+
+#book-index {
+  padding-top: 20px;
+  .book-item {
+    .book-item-preview {
+      border-bottom: 1px solid #EFEFEF !important;
+      text-align: center !important;
+      padding: 15px;
+      position: relative;
+    }
+  }
+}
+
+// -- Books Index
+// ----------------------------
+#book-view {
+  padding-top: 20px;
+
+  .book-header {
+    background: none repeat scroll 0% 0% #FFFFFF;
+    margin: 0px auto 15px;
+    position: relative;
+    border: 1px solid #EFEFEF;
+    padding: 10px 20px;
+    padding-top: 20px;
+
+    .book-summary-thumb {
+
+    }
+
+    .book-summary-author {
+      margin-bottom: 20px;
+      font-size: 16px;
+      font-weight: 200;
+      line-height: 1.4;
+    }
+  }
+
+  .book-viewer {
+
+  }
+}

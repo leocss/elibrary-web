@@ -1,5 +1,9 @@
 {% extends 'layout-sidebar.twig' %}
 
+{% block title %}
+    Dashboard | {{ parent() }}
+{% endblock %}
+
 {% block content %}
     <div id="user-dashboard">
         <div class="page-header">

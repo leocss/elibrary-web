@@ -2,8 +2,6 @@
 
 namespace Elibrary\Controllers;
 
-use Elibrary\Lib\Exception\ApiException;
-use Elibrary\Lib\Exception\AppException;
 use Silex\Application;
 
 /**
