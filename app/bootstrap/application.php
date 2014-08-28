@@ -21,6 +21,7 @@ $app['app.lib.api.elibrary_client_secret'] = 'xxx';
  */
 $app->register(new \Silex\Provider\ServiceControllerServiceProvider());
 $app->register(new \Silex\Provider\SessionServiceProvider());
+$app->register(new \Silex\Provider\UrlGeneratorServiceProvider());
 $app->register(new \Silex\Provider\TwigServiceProvider(), [
     'twig.path' => __DIR__ . '/../views'
 ]);
@@ -91,12 +92,12 @@ $app['app.controllers.User'] = $app->share(function () use ($app) {
 });
 
 // Application Routes
-$app->get('/', 'app.controllers.User:main');
+$app->match('/', 'app.controllers.User:main')->method('GET|POST');
 $app->get('/dashboard', 'app.controllers.User:dashboard');
-$app->get('/books', 'app.controllers.Book:index');
-$app->get('/books/{id}', 'app.controllers.Book:view');
-$app->get('/print-jobs', 'app.controllers.PrintJob:index');
-$app->get('/print-jobs/{id}', 'app.controllers.PrintJob:view');
-$app->match('/print-jobs/create', 'app.controllers.PrintJob:create');
+$app->get('/books', 'app.controllers.Book:index')->bind('books.index');
+$app->get('/books/{id}', 'app.controllers.Book:view')->bind('books.view');
+$app->get('/print-jobs', 'app.controllers.PrintJob:index')->bind('printJobs.index');
+$app->match('/print-jobs/create', 'app.controllers.PrintJob:create')->bind('printJobs.create')->method('GET|POST');
+$app->get('/print-jobs/{id}', 'app.controllers.PrintJob:view')->bind('printJobs.view');
 
 return $app;

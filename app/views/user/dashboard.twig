@@ -11,9 +11,9 @@
         </div>
         <div class="container-fluid">
             <div class="col-md-12">
-                <a href="/books">View All Books</a>
+                <a href="{{ app.url_generator.generate('books.index') }}">View All Books</a>
                 <br/>
-                <a href="/printjobs">View your PrintJobs</a>
+                <a href="{{ app.url_generator.generate('printJobs.index') }}">View your PrintJobs</a>
             </div>
         </div>
     </div>

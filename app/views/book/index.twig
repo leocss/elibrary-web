@@ -6,7 +6,11 @@
 
 {% block content %}
     <div id="book-index">
-        <div class="container-fluid">
+        <div class="page-header">
+            <h2>Browse Books</h2>
+        </div>
+
+        <div class="container-fluid margin-top-lg">
             <div class="row">
                 {% for book in books %}
                     <div class="col-md-4">
@@ -15,7 +19,7 @@
 
                             </div>
                             <div class="text-center">
-                                <a href="/books/{{ book.id }}"> {{ book.title }}</a>
+                                <a href="{{ app.url_generator.generate('books.view', {id: book.id}) }}"> {{ book.title }}</a>
 
                                 <div class="clearfix"></div>
                                 <small class="text-center">

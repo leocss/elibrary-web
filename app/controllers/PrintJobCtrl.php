@@ -12,7 +12,7 @@ class PrintJobCtrl extends BaseCtrl
 {
     public function index()
     {
-        return $this->view->render('print-job/create.twig');
+        return $this->view->render('print-job/index.twig');
     }
 
     public function create(Request $request)

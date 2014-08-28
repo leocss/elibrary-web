@@ -6,31 +6,39 @@
 
 {% block content %}
     <div id="book-view">
-        <div class="container-fluid">
-            <div class="book-header media">
-                <div class="book-header-thumb">
-                    <div class="text-center">
-                        {# Preview Image will be placed here #}
-                        <i class="fa-5x fa fa-fw"></i>
+        <div class="container-fluid margin-top-lg">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="book-header media">
+                        <div class="book-header-thumb">
+                            <div class="text-center">
+                                {# Preview Image will be placed here #}
+                                <i class="fa-5x fa fa-fw"></i>
+                            </div>
+                        </div>
+
+                        <div class="media-body">
+                            <h2 class="media-heading margin-none">
+                                {{ book.title }}
+                            </h2>
+
+                            <p class="book-summary-author">by {{ book.author }}</p>
+                        </div>
+                    </div>
+
+                    <div class="box book-view-container">
+                        {# Place the book here... Using ViewerJS or whatever #}
+                        <img src="/assets/img/sample-ebook-preview.png"/>
                     </div>
                 </div>
-                <div class="media-body">
-                    <h2 class="media-heading margin-none">
-                        {{ book.title }}
-                    </h2>
-                    <p class="book-summary-author">by {{ book.author }}</p>
+                <div class="col-md-3">
+                    {% for property in ['author', 'title'] %}
+                        <div>
+                            <b>{{ property }}:</b> {{ book[property] }}
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
-        </div>
-
-
-        <div class="box book-viewer">
-            {# Place the book here... Using ViewerJS or whatever #}
-            {% for property in ['author', 'title'] %}
-                <div>
-                    <b>{{ property }}:</b> {{ book[property] }}
-                </div>
-            {% endfor %}
         </div>
     </div>
 {% endblock %}
