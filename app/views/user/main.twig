@@ -8,17 +8,20 @@
     <div id="user-dashboard">
         <div class="login-form">
             <div class="login-form-title"><h2>Login Form</h2></div>
-            <form action="/" method="post" class="form-horizontal" role="form">
+            <form action="{{ app.url_generator.generate('user.dashboard') }}" method="post" class="form-horizontal" role="form">
                 <div class="form-group">
                     <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+
                     <div class="col-md-5">
                         <input type="email" name="val[email]" class="form-control" id="inputEmail" placeholder="Email">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+
                     <div class="col-md-5">
-                        <input type="password" name="val[password]" class="form-control" id="inputPassword" placeholder="Password">
+                        <input type="password" name="val[password]" class="form-control" id="inputPassword"
+                               placeholder="Password">
                     </div>
                 </div>
                 <div class="form-group">
@@ -27,7 +30,7 @@
                     </div>
                 </div>
             </form>
-         </div>
+        </div>
         <!--
         <h2>Lock Screen - Require user to login here.</h2>
 

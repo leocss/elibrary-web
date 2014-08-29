@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
+{{ app.base_url }}
 <head>
     <title>{% block title %}Elibrary{% endblock %}</title>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css"/>
-    <link href="/assets/css/authentication.css" rel="stylesheet" type="text/css"/>
+    <link href="{{ app.base_url }}assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="{{ app.base_url }}assets/css/dashboard.css" rel="stylesheet" type="text/css"/>
+    <link href="{{ app.base_url }}assets/css/authentication.css" rel="stylesheet" type="text/css"/>
 </head>
 <body class="{% block body_class %}{% endblock %}">
 
 <div id="wrapper">
     {% block before_header %}{% endblock %}
     <div id="header" class="navbar navbar-default navbar-fixed-top">
-        <a href="/dashboard" id="logo">
+        <a href="{{ app.url_generator.generate('user.dashboard') }}" id="logo">
             <h2>E</h2>
         </a>
     </div>

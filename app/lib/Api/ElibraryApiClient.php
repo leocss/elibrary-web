@@ -69,26 +69,38 @@ class ElibraryApiClient extends Client
      */
     public function authenticate($studentId, $password)
     {
-        $accessTokenData = $this->send($this->buildRequest('GET', '/oauth2/token', [
-            'body' => [
-                'student_id' => $studentId,
-                'password' => $password,
-                'client_id' => $this->clientId,
-                'client_secret' => $this->clientSecret
-            ]
-        ]));
+        $accessTokenData = $this->send(
+            $this->buildRequest(
+                'GET',
+                '/oauth2/token',
+                [
+                    'body' => [
+                        'student_id' => $studentId,
+                        'password' => $password,
+                        'client_id' => $this->clientId,
+                        'client_secret' => $this->clientSecret
+                    ]
+                ]
+            )
+        );
 
-        $this->session->set('api.token', [
-            'access_token' => $accessTokenData['access_token'],
-            'expire_time' => $accessTokenData['expire_time'],
-        ]);
+        $this->session->set(
+            'api.token',
+            [
+                'access_token' => $accessTokenData['access_token'],
+                'expire_time' => $accessTokenData['expire_time'],
+            ]
+        );
 
         $user = $this->getUser('me');
 
-        $this->session->set('api.user', [
-            'id' => $user['id'],
-            'email' => $user['email']
-        ]);
+        $this->session->set(
+            'api.user',
+            [
+                'id' => $user['id'],
+                'email' => $user['email']
+            ]
+        );
 
         return $user;
     }
