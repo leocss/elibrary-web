@@ -1,8 +1,9 @@
+@import "variables";
+
 // -- Books Index
 // ----------------------------
 
 #book-index {
-  padding-top: 20px;
   .book-item {
     .book-item-preview {
       border-bottom: 1px solid #EFEFEF !important;
@@ -16,8 +17,6 @@
 // -- Books Index
 // ----------------------------
 #book-view {
-  padding-top: 20px;
-
   .book-header {
     background: none repeat scroll 0% 0% #FFFFFF;
     margin: 0px auto 15px;
@@ -38,7 +37,18 @@
     }
   }
 
-  .book-viewer {
+  .book-view-container {
+    height: 400px;
+    overflow-y: auto;
 
+    @media (max-width: $device_small_width_max) {
+      min-height: auto;
+      height: 100%;
+    }
+
+    img {
+      width: 100%;
+      box-sizing: border-box;
+    }
   }
 }

@@ -7,13 +7,48 @@
 {% block content %}
     <div id="user-dashboard">
         <div class="page-header">
-            <h2>Dashboard</h2>
+            <h2>Student Dashboard</h2>
         </div>
         <div class="container-fluid">
             <div class="col-md-12">
-                <a href="/books">View All Books</a>
-                <br/>
-                <a href="/printjobs">View your PrintJobs</a>
+                <div class="col-md-8">
+                    <a href="{{ app.url_generator.generate('books.index') }}">View All Books</a>
+                    <br/>
+                    <a href="{{ app.url_generator.generate('printJobs.index') }}">View your PrintJobs</a>
+                    <br />
+                    <a href="{{ app.url_generator.generate('exam.index') }}">Practise E-exam</a>
+                    <br />
+                    <a href="{{ app.url_generator.generate('user.bill') }}">Your bill</a>
+                </div>
+                <div class="col-md-4">
+                    <div class="title">News and Article</div>
+                    <div class="scrollContent">
+                        <ul>
+                            <li><a href="{{ app.url_generator.generate('user.bill') }}">Welcome</a></li>
+                            <li><a href="#">Welcome</a></li>
+                            <li><a href="#">Welcome</a></li>
+                            <li><a href="#">Welcome</a></li>
+                            <li><a href="#">Welcome</a></li>
+                            <li><a href="#">Welcome</a></li>
+                            <li><a href="#">Welcome</a></li>
+                            <li><a href="#">Welcome</a></li>
+                            <li><a href="#">Welcome</a></li>
+                            <li><a href="#">Welcome</a></li>
+                            <li><a href="#">Welcome</a></li>
+                            <li><a href="#">Welcome</a></li>
+                            <li><a href="#">Welcome</a></li>
+                            <li><a href="#">Welcome</a></li>
+                            <li><a href="#">Welcome</a></li>
+                            <li><a href="#">Welcome</a></li>
+                            <li><a href="#">Welcome</a></li>
+                            <li><a href="#">Welcome</a></li>
+                            <li><a href="#">Welcome</a></li>
+                            <li><a href="#">Welcome</a></li>
+                            <li><a href="#">Welcome</a></li>
+                            <li><a href="#">Welcome</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

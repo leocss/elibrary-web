@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form action="/printjobs/create" method="post">
+                    <form action="{{ app.url_generator.generate('printJobs.create') }}" method="post">
                         <b>Give this print job a name so you can remember it later:</b>
                         <input type="text" name="job[name]" placeholder="Print Job Name" />
 

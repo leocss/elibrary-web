@@ -6,6 +6,29 @@
 
 {% block content %}
     <div id="user-dashboard">
+        <div class="login-form">
+            <div class="login-form-title"><h2>Login Form</h2></div>
+            <form action="/" method="post" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="inputEmail" class="col-sm-2 control-label">Registration id</label>
+                    <div class="col-md-5">
+                        <input type="text" name="val[regid]" class="form-control" id="inputEmail" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+                    <div class="col-md-5">
+                        <input type="password" name="val[password]" class="form-control" id="inputPassword" placeholder="Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Sign in</button>
+                    </div>
+                </div>
+            </form>
+         </div>
+        <!--
         <h2>Lock Screen - Require user to login here.</h2>
 
         <p>
@@ -27,5 +50,6 @@
 
 
         <h3>Enjoy Coding!!</h3>
+        -->
     </div>
 {% endblock %}
