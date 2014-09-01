@@ -134,7 +134,7 @@ $app['app.controllers.Exam'] = $app->share(function () use ($app) {
 
 // Application Routes
 
-$app->match('/', 'app.controllers.User:main')->method('GET|POST');
+$app->match('/', 'app.controllers.User:main')->method('GET|POST')->bind('user.main');
 $app->get('/dashboard', 'app.controllers.User:dashboard')->bind('user.dashboard');
 $app->get('/e-exam', 'app.controllers.Exam:index')->bind('exam.index');
 $app->get('/examination', 'app.controllers.Exam:main')->bind('exam.main');

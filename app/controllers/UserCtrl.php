@@ -18,8 +18,8 @@ class UserCtrl extends BaseCtrl
     {
         if ($request->isMethod('post')) {
             if ($post = $request->request->all()) {
-                if ($this->client->authenticate($post['val']['regid'], $post['val']['password'])) {
-                    $this->view->render('user/dashboard.twig');
+                if (!$this->client->authenticate($post['val']['regid'], $post['val']['password'])) {
+                    return $this->app->redirect($this->app['url_generator']->generate('user.dashboard'));
                 }
             }
         }
