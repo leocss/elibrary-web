@@ -16,13 +16,14 @@ class UserCtrl extends BaseCtrl
      */
     public function main(Request $request)
     {
-        if($request->isMethod('post')){
-            if($post = $request->request->all()){
-             if($this->client->authenticate($post['val']['regid'], $post['val']['password'])){
-                 $this->view->render('user/dashboard.twig');
-             }
+        if ($request->isMethod('post')) {
+            if ($post = $request->request->all()) {
+                if ($this->client->authenticate($post['val']['regid'], $post['val']['password'])) {
+                    $this->view->render('user/dashboard.twig');
+                }
             }
         }
+
         return $this->view->render('user/main.twig');
     }
 
