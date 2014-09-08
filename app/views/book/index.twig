@@ -13,13 +13,15 @@
         <div class="container-fluid margin-top-lg">
             <div class="row">
                 {% for book in books %}
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="box book-item">
                             <div class="book-item-preview">
                                 <img src="{{ app.base_url }}assets/img/sample-book-preview.png" width="200"/>
                             </div>
                             <div class="text-center">
-                                <a href="{{ app.url_generator.generate('books.view', {id: book.id}) }}"> {{ book.title }}</a>
+                                <a class="book-item-title" href="{{ app.url_generator.generate('books.view', {id: book.id}) }}">
+                                    <strong>{{ book.title }}</strong>
+                                </a>
 
                                 <div class="clearfix"></div>
                                 <small class="text-center">

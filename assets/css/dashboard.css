@@ -145,6 +145,9 @@
   text-align: center !important;
   padding: 15px;
   position: relative; }
+#book-index .book-item .book-item-title {
+  font-size: 16px;
+  font-family: "RobotoBold", Arial, san-serif; }
 
 #book-view .book-header {
   background: none repeat scroll 0% 0% #FFFFFF;

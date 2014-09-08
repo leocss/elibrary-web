@@ -10,25 +10,6 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 $app = new Silex\Application();
 
 /**
- * Register Handlers
- */
-$app->before(
-    function (Request $request) use ($app) {
-        $app['base_url'] = $request->getUriForPath('/');
-    },
-    Silex\Application::EARLY_EVENT
-);
-
-$app->before(
-    function (Request $request) use ($app) {
-        // Register a global 'errors' variable that will be available in all
-        // views of this library application...
-        $app['twig']->addGlobal('errors', $app['session']->getFlashBag()->get('errors'));
-    },
-    Silex\Application::LATE_EVENT
-);
-
-/**
  * Define App Config
  */
 $app['debug'] = true;
@@ -107,6 +88,33 @@ $app['app.GlobalCtrlDependencies'] = $app->share(
             'client' => $app['app.lib.ElibraryApiClient']
         ];
     }
+);
+
+/**
+ * Register Handlers
+ */
+$app->before(
+    function (Request $request) use ($app) {
+        $app['base_url'] = $request->getUriForPath('/');
+
+        $elibraryClient = $app['app.lib.ElibraryApiClient'];
+        // Ensure that the user is logged in...
+        if ($request->getPathInfo() != '/') { // Prevent from auth check if on main page
+            if (!$elibraryClient->getSessionUser()) {
+                return $app->redirect($app['url_generator']->generate('user.main'));
+            }
+        }
+    },
+    Silex\Application::LATE_EVENT
+);
+
+$app->before(
+    function (Request $request) use ($app) {
+        // Register a global 'errors' variable that will be available in all
+        // views of this library application...
+        $app['twig']->addGlobal('errors', $app['session']->getFlashBag()->get('errors'));
+    },
+    Silex\Application::LATE_EVENT
 );
 
 /**
