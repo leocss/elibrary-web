@@ -19,13 +19,21 @@ $app->before(
     Silex\Application::EARLY_EVENT
 );
 
+$app->before(
+    function (Request $request) use ($app) {
+        // Register a global 'errors' variable that will be available in all
+        // views of this library application...
+        $app['twig']->addGlobal('errors', $app['session']->getFlashBag()->get('errors'));
+    },
+    Silex\Application::LATE_EVENT
+);
+
 /**
  * Define App Config
  */
 $app['debug'] = true;
-$app['app.lib.api.elibrary_mode'] = 'mock'; // 'mock' || 'live'
-$app['app.lib.api.elibrary_client_id'] = 'xxx';
-$app['app.lib.api.elibrary_client_secret'] = 'xxx';
+$app['app.lib.api.elibrary_client_id'] = 'testclient';
+$app['app.lib.api.elibrary_client_secret'] = 'testsecret';
 
 /**
  * Register Services
@@ -81,17 +89,11 @@ $app->error(
  */
 $app['app.lib.ElibraryApiClient'] = $app->share(
     function () use ($app) {
-        $client = null;
-        switch ($app['app.lib.api.elibrary_mode']) {
-            case 'mock':
-                $client = new \Elibrary\Lib\Api\ElibraryMockClient(__DIR__ . '/../storage/data');
-                $client->setClientId($app['app.lib.api.elibrary_client_id']);
-                $client->setClientSecret($app['app.lib.api.elibrary_client_secret']);
-                break;
-            case 'live':
-                $client = new \Elibrary\Lib\Api\ElibraryApiClient($app['session']);
-                break;
-        }
+        $client = new \Elibrary\Lib\Api\ElibraryApiClient($app['session'], [
+            'endpoint' => 'http://127.0.0.1:4000'
+        ]);
+        $client->setClientId($app['app.lib.api.elibrary_client_id']);
+        $client->setClientSecret($app['app.lib.api.elibrary_client_secret']);
 
         return $client;
     }
@@ -128,9 +130,11 @@ $app['app.controllers.User'] = $app->share(
     }
 );
 
-$app['app.controllers.Exam'] = $app->share(function () use ($app) {
-    return new Controllers\ExamCtrl($app['app.GlobalCtrlDependencies']);
-});
+$app['app.controllers.Exam'] = $app->share(
+    function () use ($app) {
+        return new Controllers\ExamCtrl($app['app.GlobalCtrlDependencies']);
+    }
+);
 
 // Application Routes
 

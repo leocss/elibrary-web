@@ -4,6 +4,7 @@ namespace Elibrary\controllers;
 
 use Elibrary\Lib\Api\ElibraryApiClient;
 use Silex\Application;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Twig_Environment;
 
 /**
@@ -27,10 +28,23 @@ class BaseCtrl
      */
     protected $view;
 
+    /**
+     * @var Session
+     */
+    protected $session;
+
+    /**
+     * @var \Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface
+     */
+    protected $alerts;
+
     public function __construct($controllerDependencies)
     {
         $this->app = $controllerDependencies['app'];
         $this->view = $controllerDependencies['view'];
         $this->client = $controllerDependencies['client'];
+
+        $this->session = $this->app['session'];
+        $this->alerts = $this->session->getFlashBag();
     }
 }
