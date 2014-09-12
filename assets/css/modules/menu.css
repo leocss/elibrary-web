@@ -1,0 +1,15 @@
+.navbar {
+    border-radius: 0;
+    border: 0;
+}
+
+.navbar-default .navbar-nav a {
+    font-size: 18px;
+    text-transform: uppercase;
+    min-width: 150px;
+    text-align: center;
+}
+
+.navbar-default .navbar-nav > .active > a {
+
+}
