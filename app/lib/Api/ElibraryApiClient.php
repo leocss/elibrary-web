@@ -4,6 +4,8 @@ namespace Elibrary\Lib\Api;
 
 use Elibrary\Lib\Exception\ApiException;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\TransferException;
 use GuzzleHttp\Message\RequestInterface;
 use GuzzleHttp\Message\ResponseInterface;
@@ -22,12 +24,12 @@ use Symfony\Component\HttpFoundation\Session\Session;
  */
 class ElibraryApiClient extends Client
 {
-    const API_URL = 'https://api.elibrary.app';
-
     /**
      * @var Session
      */
     protected $session;
+
+    protected $apiEndpoint;
 
     protected $clientId = null;
 
@@ -35,11 +37,15 @@ class ElibraryApiClient extends Client
 
     protected $accessToken = null;
 
-    public function __construct(Session $session)
+    public function __construct(Session $session, $options)
     {
         $this->session = $session;
+        parent::__construct(['base_url' => $options['endpoint']]);
+    }
 
-        parent::__construct(['base_url' => static::API_URL]);
+    public function setApiEndpoint($url)
+    {
+        $this->apiUrl = $url;
     }
 
     public function setClientId($clientId)
@@ -63,20 +69,21 @@ class ElibraryApiClient extends Client
     }
 
     /**
-     * @param $studentId
+     * @param $uniqueId
      * @param $password
      * @return mixed
      */
-    public function authenticate($studentId, $password)
+    public function authenticate($uniqueId, $password)
     {
         $accessTokenData = $this->send(
             $this->buildRequest(
-                'GET',
+                'POST',
                 '/oauth2/token',
                 [
                     'body' => [
-                        'student_id' => $studentId,
-                        'password' => $password,
+                        'grant_type' => 'password',
+                        'user_unique_id' => $uniqueId,
+                        'user_password' => $password,
                         'client_id' => $this->clientId,
                         'client_secret' => $this->clientSecret
                     ]
@@ -92,26 +99,11 @@ class ElibraryApiClient extends Client
             ]
         );
 
-        $user = $this->getUser('me');
+        $user = $this->getUser($accessTokenData['user_id']);
 
-        $this->session->set(
-            'api.user',
-            [
-                'id' => $user['id'],
-                'email' => $user['email']
-            ]
-        );
+        $this->session->set('api.user', $user);
 
         return $user;
-    }
-
-    public function getSessionUser()
-    {
-        if ($this->session->has('api.user')) {
-            return $this->session->get('api.user');
-        }
-
-        return false;
     }
 
     /**
@@ -130,9 +122,7 @@ class ElibraryApiClient extends Client
      */
     public function getBooks()
     {
-        $response = $this->send($this->buildRequest('GET', '/books'));
-
-        return [];
+        return $this->send($this->buildRequest('GET', '/books'));
     }
 
     /**
@@ -141,7 +131,48 @@ class ElibraryApiClient extends Client
      */
     public function getBook($bookId)
     {
-        return [];
+        return $this->send($this->buildRequest('GET', sprintf('/books/%d', $bookId)));
+    }
+
+    public function invalidateToken()
+    {
+        $accessToken = $this->getAccessToken();
+        if ($accessToken == null) {
+            return true;
+        }
+
+        return $this->send(
+            $this->buildRequest('POST', sprintf('/oauth2/invalidate-token?access_token=%s', $accessToken))
+        );
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getAccessToken()
+    {
+        if (($accessTokenData = $this->session->get('api.token')) != null) {
+            return $accessTokenData['access_token'];
+        }
+
+        return null;
+    }
+
+    public function clearSessionUser()
+    {
+        if (($response = $this->invalidateToken()) && ((bool)$response['invalidated'])) {
+            $this->session->remove('api.token');
+            $this->session->remove('api.user');
+        }
+    }
+
+    public function getSessionUser()
+    {
+        if ($this->session->has('api.user')) {
+            return $this->session->get('api.user');
+        }
+
+        return false;
     }
 
     /**
@@ -170,6 +201,7 @@ class ElibraryApiClient extends Client
 
     /**
      * @param RequestInterface $request
+     * @throws \Elibrary\Lib\Exception\ApiException
      * @returns ResponseInterface
      */
     public function send(RequestInterface $request)
@@ -185,7 +217,15 @@ class ElibraryApiClient extends Client
             // Catch all exceptions thrown by the guzzle http client library
             // converting the exception to our own ApiException for easier
             // error handling
-            throw new ApiException($e->getMessage());
+            $message = $e->getMessage();
+            if ($e instanceof RequestException && ($e->getResponse() instanceof ResponseInterface)) {
+                $responseData = $e->getResponse()->json();
+                if (isset($responseData['error']['message'])) {
+                    $message = $responseData['error']['message'];
+                }
+            }
+
+            throw new ApiException($message);
         }
 
         return $response['data'];

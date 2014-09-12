@@ -3,6 +3,7 @@
 namespace Elibrary\Controllers;
 
 use Elibrary\Lib\Api\ElibraryApiClient;
+use Elibrary\Lib\Exception\ApiException;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -12,15 +13,20 @@ use Symfony\Component\HttpFoundation\Request;
 class UserCtrl extends BaseCtrl
 {
     /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @return string
      */
     public function main(Request $request)
     {
         if ($request->isMethod('post')) {
-            if ($post = $request->request->all()) {
-                if (!$this->client->authenticate($post['val']['regid'], $post['val']['password'])) {
-                    return $this->app->redirect($this->app['url_generator']->generate('user.dashboard'));
-                }
+            $postData = $request->request->all();
+            try {
+                $this->client->authenticate($postData['unique_id'], $postData['password']);
+
+                return $this->app->redirect($this->app['url_generator']->generate('user.dashboard'));
+            } catch (ApiException $e) {
+                $this->alerts->set('errors', $e->getMessage());
+                return $this->app->redirect($this->app['url_generator']->generate('user.main'));
             }
         }
 
