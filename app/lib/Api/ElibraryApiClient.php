@@ -9,6 +9,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\TransferException;
 use GuzzleHttp\Message\RequestInterface;
 use GuzzleHttp\Message\ResponseInterface;
+use Silex\Application;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
@@ -29,6 +30,8 @@ class ElibraryApiClient extends Client
      */
     protected $session;
 
+    protected $app;
+
     protected $apiEndpoint;
 
     protected $clientId = null;
@@ -37,9 +40,10 @@ class ElibraryApiClient extends Client
 
     protected $accessToken = null;
 
-    public function __construct(Session $session, $options)
+    public function __construct(Application $app, Session $session, $options)
     {
         $this->session = $session;
+        $this->app = $app;
         parent::__construct(['base_url' => $options['endpoint']]);
     }
 
@@ -122,7 +126,13 @@ class ElibraryApiClient extends Client
      */
     public function getBooks()
     {
-        return $this->send($this->buildRequest('GET', '/books'));
+        $books = $this->send($this->buildRequest('GET', '/books'));
+
+        foreach ($books as $index => $book) {
+            $books[$index] = $this->prepareBook($book);
+        }
+
+        return $books;
     }
 
     /**
@@ -131,7 +141,15 @@ class ElibraryApiClient extends Client
      */
     public function getBook($bookId)
     {
-        return $this->send($this->buildRequest('GET', sprintf('/books/%d', $bookId)));
+        return $this->prepareBook($this->send($this->buildRequest('GET', sprintf('/books/%d', $bookId))));
+    }
+
+    /**
+     * @return ResponseInterface
+     */
+    public function getRandomBook()
+    {
+        return $this->prepareBook($this->send($this->buildRequest('GET', '/books/random')));
     }
 
     public function invalidateToken()
@@ -218,16 +236,27 @@ class ElibraryApiClient extends Client
             // converting the exception to our own ApiException for easier
             // error handling
             $message = $e->getMessage();
+            $code = $e->getCode();
             if ($e instanceof RequestException && ($e->getResponse() instanceof ResponseInterface)) {
                 $responseData = $e->getResponse()->json();
                 if (isset($responseData['error']['message'])) {
                     $message = $responseData['error']['message'];
+                    $code = $responseData['error']['code'];
                 }
             }
 
-            throw new ApiException($message);
+            throw new ApiException($message, $code);
         }
 
         return $response['data'];
+    }
+
+    protected function prepareBook($book)
+    {
+        if ($book['preview_image'] == null) {
+            $book['preview_image'] = $this->app['base_url'] . 'assets/img/sample-book-preview.png';
+        }
+
+        return $book;
     }
 }

@@ -7,47 +7,47 @@
 {% block content %}
     <div id="user-dashboard">
         <div class="page-header">
-            <h2>Student Dashboard</h2>
+            <h2>Dashboard</h2>
         </div>
-        <div class="container-fluid">
+        <div class="container-fluid margin-top-lg">
             <div class="col-md-12">
                 <div class="col-md-8">
-                    <a href="{{ app.url_generator.generate('books.index') }}">View All Books</a>
-                    <br/>
-                    <a href="{{ app.url_generator.generate('printJobs.index') }}">View your PrintJobs</a>
-                    <br />
-                    <a href="{{ app.url_generator.generate('exam.index') }}">Practise E-exam</a>
-                    <br />
-                    <a href="{{ app.url_generator.generate('user.bill') }}">Your bill</a>
+                    {# Start -> Display Random Book #}
+                    <div id="random-book" class="media">
+                        <div class="pull-left book-image">
+                            <img class="media-object"
+                                 src="{{ randomBook.preview_image }}"
+                                 alt=""
+                                 width="205"
+                                 height="305">
+                        </div>
+                        <div class="book-data media-body">
+                            <div class="book-title media-heading">
+                                <h2>
+                                    <a href="{{ randomBook.title }}">
+                                        {{ randomBook.title }}
+                                    </a>
+                                </h2>
+                                By
+                                <span class="book-author">{{ randomBook.author }}</span>
+                            </div>
+                            <div class="book-description">
+                                <h3>Description</h3>
+
+                                <p>
+                                    {{ randomBook.overview }}
+                                </p>
+                            </div>
+                            <div class="book-actions clearfix">
+                                <a href="{{ app.url_generator.generate('books.view', {id: randomBook.id}) }}"
+                                   class="btn btn-success btn-no-rounded pull-right">View Book</a>
+                            </div>
+                        </div>
+                    </div>
+                    {# End -> Display Random Book #}
                 </div>
                 <div class="col-md-4">
-                    <div class="title">News and Article</div>
-                    <div class="scrollContent">
-                        <ul>
-                            <li><a href="{{ app.url_generator.generate('user.bill') }}">Welcome</a></li>
-                            <li><a href="#">Welcome</a></li>
-                            <li><a href="#">Welcome</a></li>
-                            <li><a href="#">Welcome</a></li>
-                            <li><a href="#">Welcome</a></li>
-                            <li><a href="#">Welcome</a></li>
-                            <li><a href="#">Welcome</a></li>
-                            <li><a href="#">Welcome</a></li>
-                            <li><a href="#">Welcome</a></li>
-                            <li><a href="#">Welcome</a></li>
-                            <li><a href="#">Welcome</a></li>
-                            <li><a href="#">Welcome</a></li>
-                            <li><a href="#">Welcome</a></li>
-                            <li><a href="#">Welcome</a></li>
-                            <li><a href="#">Welcome</a></li>
-                            <li><a href="#">Welcome</a></li>
-                            <li><a href="#">Welcome</a></li>
-                            <li><a href="#">Welcome</a></li>
-                            <li><a href="#">Welcome</a></li>
-                            <li><a href="#">Welcome</a></li>
-                            <li><a href="#">Welcome</a></li>
-                            <li><a href="#">Welcome</a></li>
-                        </ul>
-                    </div>
+
                 </div>
             </div>
         </div>

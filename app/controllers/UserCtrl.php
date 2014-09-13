@@ -26,6 +26,7 @@ class UserCtrl extends BaseCtrl
                 return $this->app->redirect($this->app['url_generator']->generate('user.dashboard'));
             } catch (ApiException $e) {
                 $this->alerts->set('errors', $e->getMessage());
+
                 return $this->app->redirect($this->app['url_generator']->generate('user.main'));
             }
         }
@@ -38,7 +39,14 @@ class UserCtrl extends BaseCtrl
      */
     public function dashboard()
     {
-        return $this->view->render('user/dashboard.twig');
+        $randomBook = $this->client->getRandomBook();
+
+        return $this->view->render(
+            'user/dashboard.twig',
+            [
+                'randomBook' => $randomBook
+            ]
+        );
     }
 
     public function bill()

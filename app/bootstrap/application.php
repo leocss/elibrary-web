@@ -37,6 +37,12 @@ $app->register(
 // When an Api error occurs
 $app->error(
     function (ApiException $exception) use ($app) {
+        if ($exception->getErrorCode() == 'invalid_token') {
+            // If the api erro is an 'invalid_token' response, then the user
+            // needs to be logged out so we can generate another valid token.
+            return $app->redirect($app['url_generator']->generate('user.main'));
+        }
+
         return $app['twig']->render(
             'error/api.twig',
             [
@@ -70,7 +76,7 @@ $app->error(
  */
 $app['app.lib.ElibraryApiClient'] = $app->share(
     function () use ($app) {
-        $client = new \Elibrary\Lib\Api\ElibraryApiClient($app['session'], [
+        $client = new \Elibrary\Lib\Api\ElibraryApiClient($app, $app['session'], [
             'endpoint' => 'http://127.0.0.1:4000'
         ]);
         $client->setClientId($app['app.lib.api.elibrary_client_id']);

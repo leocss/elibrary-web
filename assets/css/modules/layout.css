@@ -26,7 +26,6 @@ body {
     height: 50px;
     border-radius: 0;
     border: 0;
-    background-color: #434343;
 }
 
 #header.navbar {
@@ -110,6 +109,10 @@ body {
 .centralize {
     margin-top: 10%;
     text-align: center;
+}
+
+.btn-no-rounded {
+    border-radius: 0 !important;
 }
 
 .centralize h4 {
