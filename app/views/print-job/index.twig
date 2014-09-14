@@ -5,19 +5,35 @@
 {% endblock %}
 
 {% block content %}
-    <div id="printjob-index">
+    <div id="print-job-index">
         <div class="page-header">
             <h2>Print Jobs</h2>
         </div>
-        <div class="container-fluid">
+        <div class="container-fluid margin-top-lg">
             <div class="row">
-                <div class="col-md-12">
-                    <h1>You do not have any documents queued for printing.</h1>
+                <div class="col-md-9">
+                    {% for printJob in printJobs %}
+                        <div class="box media print-job-item">
+                            <a class="pull-left padding-md text-center text-white" href="#">
+                                <i class="fa fa-fw fa-5x"></i>
+                            </a>
 
-                    <a href="{{ app.url_generator.generate('printJobs.create') }}">Create A Print Job.</a>
+                            <div class="media-body padding-md">
+                                <h4 class="media-heading">
+                                    <a href="{{ app.url_generator.generate('printJobs.view', {id: printJob.id}) }}"
+                                       class="text-inverse">
+                                        {{ printJob.name|default('No name') }}
+                                    </a>
+                                </h4>
+                            </div>
+                        </div>
+                    {% else %}
+                        <h1>You do not have any documents queued for printing.</h1>
+                        <a href="{{ app.url_generator.generate('printJobs.create') }}">Create A Print Job.</a>
+                        <p>What are print jobs?</p>
+                        <p>Okay! I taught you may ask. A print job is a blah blah blah.... Put explanation here.</p>
+                    {% endfor %}
 
-                    <p>What are print jobs?</p>
-                    <p>Okay! I taught you may ask. A print job is a blah blah blah.... Put explanation here.</p>
                 </div>
             </div>
         </div>

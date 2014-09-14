@@ -1,0 +1,8 @@
+#print-job-index .print-job-item {
+    color: #434343;
+}
+
+#print-job-index .print-job-item .media-heading a {
+    color: #434343;
+    font-family: "RobotoBold", arial, san-serif;
+}

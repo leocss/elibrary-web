@@ -61,7 +61,6 @@ body {
     background: #FFFFFF;
 }
 
-
 #main {
     width: 100%;
     padding-left: 0;
@@ -111,7 +110,7 @@ body {
     text-align: center;
 }
 
-.btn-no-rounded {
+.no-rounded {
     border-radius: 0 !important;
 }
 
@@ -127,4 +126,12 @@ body {
 
 .margin-top-lg {
     margin-top: 20px;
+}
+
+.padding-md {
+    padding: 15px;
+}
+
+.padding-lg {
+    padding: 20px;
 }

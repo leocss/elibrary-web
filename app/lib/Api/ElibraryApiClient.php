@@ -9,6 +9,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\TransferException;
 use GuzzleHttp\Message\RequestInterface;
 use GuzzleHttp\Message\ResponseInterface;
+use GuzzleHttp\Post\PostFile;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -180,6 +181,62 @@ class ElibraryApiClient extends Client
                         ]
                     )
                 ]
+            )
+        );
+    }
+
+    /**
+     * Returns a list of the print jobs the
+     * current authenticated user has created.
+     *
+     * @return ResponseInterface
+     */
+    public function getPrintJobs()
+    {
+        $user = $this->getSessionUser();
+
+        return $this->send($this->buildRequest('GET', sprintf('/users/%s/print-jobs', $user['id'])));
+    }
+
+    /**
+     * @param $jobId Print Job ID
+     * @return ResponseInterface
+     */
+    public function getPrintJob($jobId)
+    {
+        $user = $this->getSessionUser();
+
+        return $this->send($this->buildRequest('GET', sprintf('/users/%s/print-jobs/%s', $user['id'], $jobId)));
+    }
+
+    /**
+     * @param int $jobId
+     * @param \Symfony\Component\HttpFoundation\File\UploadedFile $document
+     */
+    public function uploadPrintJobDocument($jobId, $document)
+    {
+        $user = $this->getSessionUser();
+
+        $request = $this->buildRequest('POST', sprintf('/users/%s/print-jobs/%s/documents', $user['id'], $jobId));
+        $request->getBody()->setField('name', $document->getClientOriginalName());
+        $request->getBody()->addFile(new PostFile('document', fopen($document->getRealPath(), 'r')));
+
+        return $this->send($request);
+    }
+
+    public function deletePrintJobDocument($jobId, $documentId)
+    {
+        $user = $this->getSessionUser();
+
+        return $this->send(
+            $this->buildRequest(
+                'DELETE',
+                sprintf(
+                    '/users/%s/print-jobs/%s/documents/%s',
+                    $user['id'],
+                    $jobId,
+                    $documentId
+                )
             )
         );
     }

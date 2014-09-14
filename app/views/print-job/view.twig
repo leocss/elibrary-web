@@ -1,0 +1,55 @@
+{% extends 'layout-sidebar.twig' %}
+
+{% block title %}
+    Print Jobs | {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div id="print-job-index">
+        <div class="page-header">
+            <h2>Print Documents
+                <small> / {{ printJob.name }}</small>
+            </h2>
+        </div>
+        <div class="container-fluid margin-top-lg">
+            <div class="row">
+                <div class="col-md-9">
+                    {% for document in printJob.documents %}
+                        <div class="col-md-4">
+                            <div class="box thumbnail">
+                                <span class="fa fa-file-text fa-5x"></span>
+                                {{ document.file_name }}
+
+                                <form action="" method="post">
+                                    <input type="hidden" name="document_id" value="{{ document.id }}"/>
+                                    <button type="submit" name="action[delete_document]">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    {% else %}
+                    {% endfor %}
+                </div>
+                <div class="col-md-3">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div class="panel panel-default no-rounded">
+                            <div class="panel-heading no-rounded">
+                                <h3 class="panel-title"><span class="fa fa-upload"></span> Upload Document</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="padding-lg">
+                                    <input type="file" name="document"/>
+                                </div>
+                            </div>
+                            <div class="panel-footer no-rounded">
+                                <button type="submit" name="action[upload_document]"
+                                        class="btn btn-primary btn-block no-rounded">
+                                    Upload
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,5 +1,7 @@
+@import "font-awesome.css";
 @import "fonts.css";
 @import "modules/layout.css";
 @import "modules/menu.css";
 @import "modules/books.css";
+@import "modules/printjobs.css";
 @import "modules/authentication.css";
