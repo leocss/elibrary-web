@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <div id="print-job-index">
+    <div id="print-job-view">
         <div class="page-header">
             <h2>Print Documents
                 <small> / {{ printJob.name }}</small>
@@ -16,14 +16,22 @@
                 <div class="col-md-9">
                     {% for document in printJob.documents %}
                         <div class="col-md-4">
-                            <div class="box thumbnail">
-                                <span class="fa fa-file-text fa-5x"></span>
-                                {{ document.file_name }}
+                            <div class="box thumbnail no-rounded">
+                                <div class="thumbnail-image">
+                                    <span class="file-ext">
+                                        {{ document.file_extension|default('Doc') }}
+                                        / {{ document.file_size }}
+                                    </span>
+                                    <span class="fa fa-file-text fa-5x"></span>
+                                </div>
+                                <div class="caption">
+                                    <h3>{{ document.file_name }}</h3>
 
-                                <form action="" method="post">
-                                    <input type="hidden" name="document_id" value="{{ document.id }}"/>
-                                    <button type="submit" name="action[delete_document]">Delete</button>
-                                </form>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="document_id" value="{{ document.id }}"/>
+                                        <button class="btn btn-danger btn-block no-rounded" type="submit" name="action[delete_document]">Delete</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     {% else %}

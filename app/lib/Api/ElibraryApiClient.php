@@ -176,8 +176,8 @@ class ElibraryApiClient extends Client
                 [
                     'body' => json_encode(
                         [
-                            'name' => $data['name'],
-                            'user_id' => $data['user_id']
+                            'name' => $param['name'],
+                            'user_id' => $param['user_id']
                         ]
                     )
                 ]

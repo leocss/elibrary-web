@@ -159,7 +159,7 @@ $app->get('/examination', 'app.controllers.Exam:main')->bind('exam.main');
 $app->get('/bill', 'app.controllers.User:bill')->bind('user.bill');
 $app->get('/books', 'app.controllers.Book:index')->bind('books.index');
 $app->get('/books/{id}', 'app.controllers.Book:view')->bind('books.view');
-$app->get('/print-jobs', 'app.controllers.PrintJob:index')->bind('printJobs.index');
+$app->match('/print-jobs', 'app.controllers.PrintJob:index')->bind('printJobs.index')->method('GET|POST');
 $app->match('/print-jobs/create', 'app.controllers.PrintJob:create')->bind('printJobs.create')->method('GET|POST');
 $app->match('/print-jobs/{id}', 'app.controllers.PrintJob:view')->bind('printJobs.view')->method('GET|POST');
 

@@ -12,10 +12,13 @@
         <div class="container-fluid margin-top-lg">
             <div class="row">
                 <div class="col-md-9">
+
+                    {% include 'partials/errors.twig' %}
+
                     {% for printJob in printJobs %}
                         <div class="box media print-job-item">
                             <a class="pull-left padding-md text-center text-white" href="#">
-                                <i class="fa fa-fw fa-5x"></i>
+                                <span class="fa fa-file fa-5x"></span>
                             </a>
 
                             <div class="media-body padding-md">
@@ -33,7 +36,30 @@
                         <p>What are print jobs?</p>
                         <p>Okay! I taught you may ask. A print job is a blah blah blah.... Put explanation here.</p>
                     {% endfor %}
+                </div>
 
+                <div class="col-md-3">
+                    <form action="" method="post">
+                        <div class="panel panel-default box no-rounded">
+                            <div class="panel-heading no-rounded">
+                                <h3 class="panel-title">
+                                    <span class="fa fa-plus"></span>
+                                    Create Print Job
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="name" placeholder="Job Name..."/>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <button class="btn btn-primary btn-block no-rounded" type="submit"
+                                        name="action[create_job]">
+                                    Create New Print Job &raquo;
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

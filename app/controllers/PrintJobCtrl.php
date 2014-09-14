@@ -11,9 +11,29 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class PrintJobCtrl extends BaseCtrl
 {
-    public function index()
+    public function index(Request $request)
     {
         $printJobs = $this->client->getPrintJobs();
+
+        if ($request->isMethod('post')) {
+            switch (key($request->request->get('action'))) {
+                case 'create_job':
+                    try {
+                        $response = $this->client->createPrintJob($request->request->all());
+
+                        return $this->app->redirect(
+                            $this->app['url_generator']->generate('printJobs.view', ['id' => $response['id']])
+                        );
+                    } catch (ApiException $e) {
+                        $this->alerts->set('errors', $e->getMessage());
+
+                        return $this->app->redirect(
+                            $this->app['url_generator']->generate('printJobs.index')
+                        );
+                    }
+                    break;
+            }
+        }
 
         return $this->view->render('print-job/index.twig', compact('printJobs'));
     }
