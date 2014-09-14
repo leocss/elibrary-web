@@ -152,6 +152,40 @@ class ElibraryApiClient extends Client
         return $this->prepareBook($this->send($this->buildRequest('GET', '/books/random')));
     }
 
+    /**
+     * @param $param
+     *  - user_id: ID of user creating the print job
+     *  - name: Job name
+     *
+     * @return object
+     */
+    public function createPrintJob($param)
+    {
+        if (!isset($param['user_id'])) {
+            // If the user_id param is not passed along with the parameters,
+            // try to use the currently authenticated user;
+            $user = $this->getSessionUser();
+            $param['user_id'] = $user['id'];
+        }
+
+        return $this->send(
+            $this->buildRequest(
+                'POST',
+                '/print-jobs',
+                [
+                    'body' => json_encode(
+                        [
+                            'name' => $data['name'],
+                            'user_id' => $data['user_id']
+                        ]
+                    )
+                ]
+            )
+        );
+    }
+
+    /**
+     */
     public function invalidateToken()
     {
         $accessToken = $this->getAccessToken();

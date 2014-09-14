@@ -18,7 +18,9 @@ class PrintJobCtrl extends BaseCtrl
     public function create(Request $request)
     {
         if ($request->isMethod('post')) {
-            var_dump($request->request->all());
+            if ($this->client->createPrintJob($request->)) {
+
+            }
         }
 
         return $this->view->render('print-job/create.twig');
