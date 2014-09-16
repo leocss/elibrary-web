@@ -6,10 +6,14 @@
 
 {% block content %}
     <div id="print-job-view">
-        <div class="page-header">
-            <h2>Print Documents
+        <div class="page-header clearfix">
+            <h2 class="pull-left">Print Documents
                 <small> / {{ printJob.name }}</small>
             </h2>
+
+            <div class="pull-right page-header-extras">
+                Job ID: {{ printJob.id }}
+            </div>
         </div>
         <div class="container-fluid margin-top-lg">
             <div class="row">
@@ -38,6 +42,7 @@
                     {% endfor %}
                 </div>
                 <div class="col-md-3">
+
                     <form action="" method="post" enctype="multipart/form-data">
                         <div class="panel panel-default no-rounded">
                             <div class="panel-heading no-rounded">
@@ -56,6 +61,8 @@
                             </div>
                         </div>
                     </form>
+
+                    {% include 'print-job/partials-sidebar.twig' %}
                 </div>
             </div>
         </div>

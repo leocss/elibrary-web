@@ -1,0 +1,43 @@
+<div class="panel panel-default no-rounded">
+    <div class="panel-heading no-rounded">
+        <h3 class="panel-title">
+            <span class="fa fa-list-ol"></span>
+            {% if app.url_segments.1 is defined %}
+                Print Documents
+            {% else %}
+                Print Job
+            {% endif %}
+            Instructions
+        </h3>
+    </div>
+    <div class="panel-body">
+
+        {% if app.url_segments.1 is defined %}
+            <p>After you are done uploading documents that you want to print here.
+                Take a short trip down to the SICT library and visit the "Print Desk".</p>
+
+            <p>You should see a computer looking at you waiting to be commanded. Just
+                enter the "JOB ID" in the text box that it shows to you (Oh! did i say
+                it was waiting to be commanded or waiting to command you ^_^ ). You should now
+                see all your documents that you uploaded here... Just click the BIG print button
+                to start your print...</p>
+        {% else %}
+            <p>
+                Print Jobs are a way for you to group your print documents.
+            </p>
+
+            <p>
+                Use the form above to create a print job. Give the job a name that
+                you can use to identify it later.
+            </p>
+            <p>
+                For example, if you want to print your final year project, you can name
+                the Job, "Final Year Project"... Pretty obvious.
+            </p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="alert-danger padding-lg">
+    Note: You should delete print jobs you are no longer insterested in...
+</div>

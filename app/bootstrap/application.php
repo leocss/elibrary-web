@@ -116,6 +116,8 @@ $app->before(
 
 $app->before(
     function (Request $request) use ($app) {
+        $app['url_segments'] = array_filter(explode('/', trim($request->getPathInfo(), '/ ')));
+
         // Register a global 'errors' variable that will be available in all
         // views of this library application...
         $app['twig']->addGlobal('errors', $app['session']->getFlashBag()->get('errors'));
