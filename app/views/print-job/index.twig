@@ -5,19 +5,63 @@
 {% endblock %}
 
 {% block content %}
-    <div id="printjob-index">
+    <div id="print-job-index">
         <div class="page-header">
             <h2>Print Jobs</h2>
         </div>
-        <div class="container-fluid">
+        <div class="container-fluid margin-top-lg">
             <div class="row">
-                <div class="col-md-12">
-                    <h1>You do not have any documents queued for printing.</h1>
+                <div class="col-md-9">
 
-                    <a href="{{ app.url_generator.generate('printJobs.create') }}">Create A Print Job.</a>
+                    {% include 'partials/errors.twig' %}
 
-                    <p>What are print jobs?</p>
-                    <p>Okay! I taught you may ask. A print job is a blah blah blah.... Put explanation here.</p>
+                    {% for printJob in printJobs %}
+                        <div class="box media print-job-item">
+                            <a class="pull-left padding-md text-center text-white" href="#">
+                                <span class="fa fa-file fa-5x"></span>
+                            </a>
+
+                            <div class="media-body padding-md">
+                                <h4 class="media-heading">
+                                    <a href="{{ app.url_generator.generate('printJobs.view', {id: printJob.id}) }}"
+                                       class="text-inverse">
+                                        {{ printJob.name|default('No name') }}
+                                    </a>
+                                </h4>
+                            </div>
+                        </div>
+                    {% else %}
+                        <h1>You do not have any documents queued for printing.</h1>
+                        <a href="{{ app.url_generator.generate('printJobs.create') }}">Create A Print Job.</a>
+                        <p>What are print jobs?</p>
+                        <p>Okay! I taught you may ask. A print job is a blah blah blah.... Put explanation here.</p>
+                    {% endfor %}
+                </div>
+
+                <div class="col-md-3">
+                    <form action="" method="post">
+                        <div class="panel panel-default box no-rounded">
+                            <div class="panel-heading no-rounded">
+                                <h3 class="panel-title">
+                                    <span class="fa fa-plus"></span>
+                                    Create Print Job
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="name" placeholder="Job Name..."/>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <button class="btn btn-primary btn-block no-rounded" type="submit"
+                                        name="action[create_job]">
+                                    Create New Print Job &raquo;
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    {% include 'print-job/partials-sidebar.twig' %}
                 </div>
             </div>
         </div>

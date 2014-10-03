@@ -9,6 +9,8 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\TransferException;
 use GuzzleHttp\Message\RequestInterface;
 use GuzzleHttp\Message\ResponseInterface;
+use GuzzleHttp\Post\PostFile;
+use Silex\Application;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
@@ -29,6 +31,8 @@ class ElibraryApiClient extends Client
      */
     protected $session;
 
+    protected $app;
+
     protected $apiEndpoint;
 
     protected $clientId = null;
@@ -37,9 +41,10 @@ class ElibraryApiClient extends Client
 
     protected $accessToken = null;
 
-    public function __construct(Session $session, $options)
+    public function __construct(Application $app, Session $session, $options)
     {
         $this->session = $session;
+        $this->app = $app;
         parent::__construct(['base_url' => $options['endpoint']]);
     }
 
@@ -122,7 +127,13 @@ class ElibraryApiClient extends Client
      */
     public function getBooks()
     {
-        return $this->send($this->buildRequest('GET', '/books'));
+        $books = $this->send($this->buildRequest('GET', '/books'));
+
+        foreach ($books as $index => $book) {
+            $books[$index] = $this->prepareBook($book);
+        }
+
+        return $books;
     }
 
     /**
@@ -131,9 +142,107 @@ class ElibraryApiClient extends Client
      */
     public function getBook($bookId)
     {
-        return $this->send($this->buildRequest('GET', sprintf('/books/%d', $bookId)));
+        return $this->prepareBook($this->send($this->buildRequest('GET', sprintf('/books/%d', $bookId))));
     }
 
+    /**
+     * @return ResponseInterface
+     */
+    public function getRandomBook()
+    {
+        return $this->prepareBook($this->send($this->buildRequest('GET', '/books/random')));
+    }
+
+    /**
+     * @param $param
+     *  - user_id: ID of user creating the print job
+     *  - name: Job name
+     *
+     * @return object
+     */
+    public function createPrintJob($param)
+    {
+        if (!isset($param['user_id'])) {
+            // If the user_id param is not passed along with the parameters,
+            // try to use the currently authenticated user;
+            $user = $this->getSessionUser();
+            $param['user_id'] = $user['id'];
+        }
+
+        return $this->send(
+            $this->buildRequest(
+                'POST',
+                '/print-jobs',
+                [
+                    'body' => json_encode(
+                        [
+                            'name' => $param['name'],
+                            'user_id' => $param['user_id']
+                        ]
+                    )
+                ]
+            )
+        );
+    }
+
+    /**
+     * Returns a list of the print jobs the
+     * current authenticated user has created.
+     *
+     * @return ResponseInterface
+     */
+    public function getPrintJobs()
+    {
+        $user = $this->getSessionUser();
+
+        return $this->send($this->buildRequest('GET', sprintf('/users/%s/print-jobs', $user['id'])));
+    }
+
+    /**
+     * @param $jobId Print Job ID
+     * @return ResponseInterface
+     */
+    public function getPrintJob($jobId)
+    {
+        $user = $this->getSessionUser();
+
+        return $this->send($this->buildRequest('GET', sprintf('/users/%s/print-jobs/%s', $user['id'], $jobId)));
+    }
+
+    /**
+     * @param int $jobId
+     * @param \Symfony\Component\HttpFoundation\File\UploadedFile $document
+     */
+    public function uploadPrintJobDocument($jobId, $document)
+    {
+        $user = $this->getSessionUser();
+
+        $request = $this->buildRequest('POST', sprintf('/users/%s/print-jobs/%s/documents', $user['id'], $jobId));
+        $request->getBody()->setField('name', $document->getClientOriginalName());
+        $request->getBody()->addFile(new PostFile('document', fopen($document->getRealPath(), 'r')));
+
+        return $this->send($request);
+    }
+
+    public function deletePrintJobDocument($jobId, $documentId)
+    {
+        $user = $this->getSessionUser();
+
+        return $this->send(
+            $this->buildRequest(
+                'DELETE',
+                sprintf(
+                    '/users/%s/print-jobs/%s/documents/%s',
+                    $user['id'],
+                    $jobId,
+                    $documentId
+                )
+            )
+        );
+    }
+
+    /**
+     */
     public function invalidateToken()
     {
         $accessToken = $this->getAccessToken();
@@ -218,16 +327,27 @@ class ElibraryApiClient extends Client
             // converting the exception to our own ApiException for easier
             // error handling
             $message = $e->getMessage();
+            $code = $e->getCode();
             if ($e instanceof RequestException && ($e->getResponse() instanceof ResponseInterface)) {
                 $responseData = $e->getResponse()->json();
                 if (isset($responseData['error']['message'])) {
                     $message = $responseData['error']['message'];
+                    $code = $responseData['error']['code'];
                 }
             }
 
-            throw new ApiException($message);
+            throw new ApiException($message, $code);
         }
 
         return $response['data'];
+    }
+
+    protected function prepareBook($book)
+    {
+        if ($book['preview_image'] == null) {
+            $book['preview_image'] = $this->app['base_url'] . 'assets/img/sample-book-preview.png';
+        }
+
+        return $book;
     }
 }

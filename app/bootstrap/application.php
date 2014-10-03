@@ -10,25 +10,6 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 $app = new Silex\Application();
 
 /**
- * Register Handlers
- */
-$app->before(
-    function (Request $request) use ($app) {
-        $app['base_url'] = $request->getUriForPath('/');
-    },
-    Silex\Application::EARLY_EVENT
-);
-
-$app->before(
-    function (Request $request) use ($app) {
-        // Register a global 'errors' variable that will be available in all
-        // views of this library application...
-        $app['twig']->addGlobal('errors', $app['session']->getFlashBag()->get('errors'));
-    },
-    Silex\Application::LATE_EVENT
-);
-
-/**
  * Define App Config
  */
 $app['debug'] = true;
@@ -56,6 +37,12 @@ $app->register(
 // When an Api error occurs
 $app->error(
     function (ApiException $exception) use ($app) {
+        if ($exception->getErrorCode() == 'invalid_token') {
+            // If the api erro is an 'invalid_token' response, then the user
+            // needs to be logged out so we can generate another valid token.
+            return $app->redirect($app['url_generator']->generate('user.main'));
+        }
+
         return $app['twig']->render(
             'error/api.twig',
             [
@@ -89,7 +76,7 @@ $app->error(
  */
 $app['app.lib.ElibraryApiClient'] = $app->share(
     function () use ($app) {
-        $client = new \Elibrary\Lib\Api\ElibraryApiClient($app['session'], [
+        $client = new \Elibrary\Lib\Api\ElibraryApiClient($app, $app['session'], [
             'endpoint' => 'http://127.0.0.1:4000'
         ]);
         $client->setClientId($app['app.lib.api.elibrary_client_id']);
@@ -107,6 +94,35 @@ $app['app.GlobalCtrlDependencies'] = $app->share(
             'client' => $app['app.lib.ElibraryApiClient']
         ];
     }
+);
+
+/**
+ * Register Handlers
+ */
+$app->before(
+    function (Request $request) use ($app) {
+        $app['base_url'] = $request->getUriForPath('/');
+
+        $elibraryClient = $app['app.lib.ElibraryApiClient'];
+        // Ensure that the user is logged in...
+        if ($request->getPathInfo() != '/') { // Prevent from auth check if on main page
+            if (!$elibraryClient->getSessionUser()) {
+                return $app->redirect($app['url_generator']->generate('user.main'));
+            }
+        }
+    },
+    Silex\Application::LATE_EVENT
+);
+
+$app->before(
+    function (Request $request) use ($app) {
+        $app['url_segments'] = array_filter(explode('/', trim($request->getPathInfo(), '/ ')));
+
+        // Register a global 'errors' variable that will be available in all
+        // views of this library application...
+        $app['twig']->addGlobal('errors', $app['session']->getFlashBag()->get('errors'));
+    },
+    Silex\Application::LATE_EVENT
 );
 
 /**
@@ -145,8 +161,8 @@ $app->get('/examination', 'app.controllers.Exam:main')->bind('exam.main');
 $app->get('/bill', 'app.controllers.User:bill')->bind('user.bill');
 $app->get('/books', 'app.controllers.Book:index')->bind('books.index');
 $app->get('/books/{id}', 'app.controllers.Book:view')->bind('books.view');
-$app->get('/print-jobs', 'app.controllers.PrintJob:index')->bind('printJobs.index');
+$app->match('/print-jobs', 'app.controllers.PrintJob:index')->bind('printJobs.index')->method('GET|POST');
 $app->match('/print-jobs/create', 'app.controllers.PrintJob:create')->bind('printJobs.create')->method('GET|POST');
-$app->get('/print-jobs/{id}', 'app.controllers.PrintJob:view')->bind('printJobs.view');
+$app->match('/print-jobs/{id}', 'app.controllers.PrintJob:view')->bind('printJobs.view')->method('GET|POST');
 
 return $app;
