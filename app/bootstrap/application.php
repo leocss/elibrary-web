@@ -32,8 +32,8 @@ $app->before(
  * Define App Config
  */
 $app['debug'] = true;
-$app['app.lib.api.elibrary_client_id'] = 'testclient';
-$app['app.lib.api.elibrary_client_secret'] = 'testsecret';
+$app['app.lib.api.elibrary_client_id'] = 'test_client';
+$app['app.lib.api.elibrary_client_secret'] = 'test_secret';
 
 /**
  * Register Services
