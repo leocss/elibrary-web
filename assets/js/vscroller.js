@@ -1,6 +1,5 @@
 $(function(){
     $(window).load(function(){
-
         var content=$(".scrollContent"),autoScrollTimer=8000,autoScrollTimerAdjust,autoScroll;
         $(".scrollContent").mCustomScrollbar({
             theme:"dark"

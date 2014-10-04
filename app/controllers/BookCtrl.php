@@ -18,10 +18,14 @@ class BookCtrl extends BaseCtrl
     {
         $books = $this->client->getBooks();
 
-        return $this->view->render('book/index-new.twig', [
+        return $this->view->render('book/index.twig', [
             'books' => $books,
-            'user' => "dickson",
         ]);
+    }
+
+    public function search()
+    {
+        return $this->view->render('book/search.twig');
     }
 
     /**
