@@ -9,12 +9,17 @@
         <div class="page-header">
             <h3>Books{{ "/category_name/" }}</h3>
         </div>
-
+{{ name }}
         <div class="container-fluid margin-top-lg">
             <div class="row">
+
+
                 <div class="col-md-9">
                     <div class="container-fluid margin-top-lg">
                         <div class="row">
+
+
+
                             {% for book in books %}
                                 <div class="col-md-4">
                                     <div id="book-hold">
@@ -57,9 +62,14 @@
                                 </div>
                             {% endfor %}
 
+
+
                         </div>
                     </div>
                 </div>
+
+
+
 
                 <div class="col-md-3" style="padding-top: 20px;">
                     {% include 'book/sidebar.twig' %}

@@ -10,11 +10,22 @@
             <h3>Books{{ "/All Categories" }}</h3>
         </div>
         <div class="container-fluid margin-top-lg">
-            <div class="row">
+            <div class="row book_main" >
                 <div class="col-md-9">
-                    {% for book in books %}
-                        {{ book.category.title }}
-                    {% endfor %}
+                    <div class="container-fluid margin-top-lg">
+                        <div class="row">
+                        {% for category in categories %}
+                            <div id="cat_head">
+                                {{ category.title }}
+                            </div>
+                            <div class="body-subcontainer">
+                            {% for book in category.books %}
+                                {{ book.title }} <hr />
+                            {% endfor %}
+                            </div>
+                        {% endfor %}
+                         </div>
+                     </div>
                 </div>
 
                 <div class="col-md-3" style="padding-top: 20px;">

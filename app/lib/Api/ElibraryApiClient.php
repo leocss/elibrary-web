@@ -136,15 +136,18 @@ class ElibraryApiClient extends Client
         return $books;
     }
 
-    public function getCategories()
+    public function getCategories($params = array())
     {
-        $categories = $this->send($this->buildRequest('GET', '/books/categories'));
+        $params = http_build_query($params);
+        $categories = $this->send($this->buildRequest('GET', '/books/categories' . ($params == true ? '?' . $params : '')));
 
-        foreach ($categories as $index => $category) {
-            $categories[$index] = $this->prepareBook($category);
-        }
+        return $categories;
+    }
 
-        return $category;
+    public function getCategoriesLimit()
+    {
+        $categoriesLimit = $this->send($this->buildRequest('GET', '/books/categories?include=books&books_limit=12'));
+        return $categoriesLimit;
     }
 
     /**
@@ -361,4 +364,5 @@ class ElibraryApiClient extends Client
 
         return $book;
     }
+
 }

@@ -13,8 +13,8 @@ $app = new Silex\Application();
  * Define App Config
  */
 $app['debug'] = true;
-$app['app.lib.api.elibrary_client_id'] = 'testclient';
-$app['app.lib.api.elibrary_client_secret'] = 'testsecret';
+$app['app.lib.api.elibrary_client_id'] = '9d81c76533b0407d7c52e0ebd5ba2dcf';
+$app['app.lib.api.elibrary_client_secret'] = 'ebe661a508c4fc56a69643cb8087b005';
 
 /**
  * Register Services
@@ -161,7 +161,7 @@ $app->get('/examination', 'app.controllers.Exam:main')->bind('exam.main');
 $app->get('/bill', 'app.controllers.User:bill')->bind('user.bill');
 $app->get('/books', 'app.controllers.Book:index')->bind('books.index');
 $app->get('/books/search', 'app.controllers.Book:search')->bind('books.search');
-$app->get('/books/category', 'app.controllers.Book:category')->bind('books.category');
+$app->get('/books/categories', 'app.controllers.Book:categories')->bind('books.categories');
 $app->get('/books/template', 'app.controllers.Book:template')->bind('books.template');
 $app->get('/books/{id}', 'app.controllers.Book:view')->bind('books.view');
 $app->match('/print-jobs', 'app.controllers.PrintJob:index')->bind('printJobs.index')->method('GET|POST');

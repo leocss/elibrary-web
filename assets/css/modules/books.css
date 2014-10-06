@@ -1,5 +1,6 @@
-#wrapper{
-    background-color:#E9E9E9 ;
+#book-index{
+    background-color:#f2f2f2 !important;
+    min-height: 1000px !important;
 }
 #book-hold{
     background-color: #245269;
@@ -14,8 +15,8 @@
     text-align: center !important;
     padding: 12px;
     position: relative;
-    /* background-color: #222222;*/
     background-color: #fafafa;
+
 }
 
 #book-index #book-hold .book-item .book-item-title {
@@ -42,13 +43,19 @@
 .nav-tabs > li.active > a:focus {
     color: #555;
     cursor: default;
-    background-color: #E9E9E9 !important;
+    background-color: #f2f2f2 !important;
     border: 1px solid #ddd;
     border-bottom-color: transparent;
 }
 
 .left_side{
 
+}
+#cat_head{
+    background-color: #fff;
+    font-family:Viner Hand ITC;
+    padding: 5px;
+    font-size: 18px;
 }
 
 
