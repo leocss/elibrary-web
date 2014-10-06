@@ -161,6 +161,8 @@ $app->get('/examination', 'app.controllers.Exam:main')->bind('exam.main');
 $app->get('/bill', 'app.controllers.User:bill')->bind('user.bill');
 $app->get('/books', 'app.controllers.Book:index')->bind('books.index');
 $app->get('/books/search', 'app.controllers.Book:search')->bind('books.search');
+$app->get('/books/category', 'app.controllers.Book:category')->bind('books.category');
+$app->get('/books/template', 'app.controllers.Book:template')->bind('books.template');
 $app->get('/books/{id}', 'app.controllers.Book:view')->bind('books.view');
 $app->match('/print-jobs', 'app.controllers.PrintJob:index')->bind('printJobs.index')->method('GET|POST');
 $app->match('/print-jobs/create', 'app.controllers.PrintJob:create')->bind('printJobs.create')->method('GET|POST');

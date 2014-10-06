@@ -1,0 +1,94 @@
+$categories = [
+    {
+        cat_name: "OS",
+        books: [
+            {
+                book_name: "Windows",
+                book_cover: "images/1.jpg"
+            },
+            {
+                book_name: "Linux",
+                book_cover: "images/2.jpg"
+            },
+            {
+                book_name: "Linux",
+                book_cover: "images/2.jpg"
+            },
+            {
+                book_name: "Linux",
+                book_cover: "images/2.jpg"
+            },
+            {
+                book_name: "Linux",
+                book_cover: "images/2.jpg"
+            },
+            {
+                book_name: "Linux",
+                book_cover: "images/2.jpg"
+            }
+        ]
+    },
+    {
+        cat_name: "Education",
+        books: [
+            {
+                book_name: "Primary",
+                book_cover: "images/3.jpg"
+            },
+            {
+                book_name: "Secondary",
+                book_cover: "images/4.jpg"
+            },
+            {
+                book_name: "Linux",
+                book_cover: "images/2.jpg"
+            },
+            {
+                book_name: "Linux",
+                book_cover: "images/2.jpg"
+            },
+            {
+                book_name: "Linux",
+                book_cover: "images/2.jpg"
+            },
+            {
+                book_name: "Linux",
+                book_cover: "images/2.jpg"
+            }
+        ]
+    },
+    {
+        cat_name: "School",
+        books: [
+            {
+                book_name: "FUT",
+                book_cover: "images/5.jpg"
+            },
+            {
+                book_name: "FUTA",
+                book_cover: "images/6.jpg"
+            },
+            {
+                book_name: "Linux",
+                book_cover: "images/2.jpg"
+            },
+            {
+                book_name: "Linux",
+                book_cover: "images/2.jpg"
+            },
+            {
+                book_name: "Linux",
+                book_cover: "images/2.jpg"
+            },
+            {
+                book_name: "Linux",
+                book_cover: "images/2.jpg"
+            },
+            {
+                book_name: "Linux",
+                book_cover: "images/2.jpg"
+            }
+        ]
+    }
+
+]

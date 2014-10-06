@@ -136,6 +136,17 @@ class ElibraryApiClient extends Client
         return $books;
     }
 
+    public function getCategories()
+    {
+        $categories = $this->send($this->buildRequest('GET', '/books/categories'));
+
+        foreach ($categories as $index => $category) {
+            $categories[$index] = $this->prepareBook($category);
+        }
+
+        return $category;
+    }
+
     /**
      * @param int $bookId
      * @return array
