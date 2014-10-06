@@ -40,7 +40,7 @@ class UserCtrl extends BaseCtrl
     public function dashboard()
     {
         $randomBook = $this->client->getRandomBook();
-
+        //print_r($randomBook);exit;
         return $this->view->render(
             'user/dashboard.twig',
             [
