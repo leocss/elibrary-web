@@ -20,16 +20,10 @@
             <a href="{{ app.url_generator.generate('user.dashboard') }}" id="logo">
                 <h2>E</h2>
             </a>
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active">
                     <a href="{{ app.url_generator.generate('books.index') }}">Books</a>
@@ -41,7 +35,7 @@
                     <a href="{{ app.url_generator.generate('exam.index') }}">Electronic Exam</a>
                 </li>
                 <li>
-                    <a href="{{ app.url_generator.generate('user.bill') }}">Billing</a>
+                    <a href="{{ app.url_generator.generate('billing.index') }}">Billing</a>
                 </li>
             </ul>
         <div class="col-md-4" style="float:right; margin-right: 5px;">
@@ -73,19 +67,5 @@
 <script type="text/javascript" src="{{ app.base_url }}assets/js/vscroll/jquery.mousewheel.min.js"></script>
 <script type="text/javascript" src="{{ app.base_url }}assets/js/vscroll/jquery-ui-1.10.4.min.js"></script>
 <script type="text/javascript" src="{{ app.base_url }}assets/js/vscroller.js"></script>
-<script type="text/javascript">
-    $(function(){
-        $(".favor").click(
-                function() {
-                    $('.reserved').removeClass('active');
-                    $(this).addClass('active');
-                }); // end toggle
-        $(".reserved").click(
-                function() {
-                    $('.favor').removeClass('active');
-                    $(this).addClass('active');
-                }); // end toggle
-    });
-</script>
 </body>
 </html>

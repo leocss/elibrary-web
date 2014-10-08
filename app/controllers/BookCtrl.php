@@ -23,9 +23,29 @@ class BookCtrl extends BaseCtrl
         ]);
     }
 
+    public function template()
+    {
+        $books = $this->client->getBooks();
+        return $this->view->render('book/template.twig', [
+            'books' => $books,
+            'name' => "DICKSON"
+        ]);
+    }
+    public function category()
+    {
+        $books = $this->client->getBooks();
+        return $this->view->render('book/category.twig', [
+            'books' => $books,
+            'name' => "DICKSON"
+        ]);
+    }
     public function search()
     {
-        return $this->view->render('book/search.twig');
+        $books = $this->client->getBooks();
+        return $this->view->render('book/search.twig', [
+                'books' => $books,
+                'name' => "DICKSON"
+            ]);
     }
 
     /**

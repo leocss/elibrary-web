@@ -8,6 +8,7 @@
     box-shadow: 0 10px 6px -6px #777;
 
 }
+
 #book-index #book-hold .book-item .book-item-preview {
     border-bottom: 1px solid #ddd !important;
     text-align: center !important;
@@ -36,8 +37,19 @@
 #book-hold #book-att-icons p .icon-att{
     padding-right: 15px;
 }
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+    color: #555;
+    cursor: default;
+    background-color: #E9E9E9 !important;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
 
+.left_side{
 
+}
 
 
 

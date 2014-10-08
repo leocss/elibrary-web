@@ -1,0 +1,26 @@
+{% extends 'layout-sidebar.twig' %}
+
+{% block title %}
+    Student-Bill | {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div id="user-dashboard">
+        <div class="page-header">
+            <h2>Student Billing System</h2>
+        </div>
+        <div class="container-fluid">
+            <div class="col-md-12">
+                <div class="col-md-5">
+                    Fund your account with your either with your master card, verve card, voguepay account
+                    <a href="#" class="btn btn-primary btn-block">Fund your account +</a>
+                    Pay for your debt, you can pay with your local account, or via voguepay. You can also pay with
+                    our account detail via your master card, verve card, or any means of payment
+                    <a href="#" class="btn btn-primary btn-block">Pay for existing debt</a>
+                    View your payment history date you paid, document you pay for, amount you paid
+                    <a href="#" class="btn btn-primary btn-block">view billing history</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
