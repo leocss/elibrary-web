@@ -6,34 +6,100 @@
 
 {% block content %}
     <div id="book-index">
-        <div class="page-header">
-            <h3>Books{{ "/All Categories" }}</h3>
+    <div id="header-search">
+        <div id="header_only">ALL CATEGORIES</div>
+            <div class="col-md-4" style=" margin-right: 5px;" id="header_check">
+                <div style="padding-top: 7px;">
+                    <div class="input-group">
+                                <input type="text" placeholder="Looking for a book, what book? " class="form-control">
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                  </span>
+                    </div><!-- /input-group -->
+                 </div><!-- /.col-md-4 -->
+             </div>
         </div>
+
         <div class="container-fluid margin-top-lg">
-            <div class="row book_main" >
+            <div class="row book_main">
                 <div class="col-md-9">
                     <div class="container-fluid margin-top-lg">
                         <div class="row">
-                        {% for category in categories %}
-                            <div id="cat_head">
-                                {{ category.title }}
-                            </div>
                             <div class="body-subcontainer">
-                            {% for book in category.books %}
-                                {{ book.title }} <hr />
-                            {% endfor %}
+                                {% set catArray=[] %}
+                                {% for category in categories %}
+                                    <div id="cat_head">
+                                        {{ category.title }}
+                                    </div>
+
+
+                                    <div class="demo">
+                                        <div class="example" id="{{ 'categories_'~ category.id }}">
+                                            <div>
+                                                <ul>
+                                                    {% for book in category.books %}
+                                                        <li>
+                                                            <img src="{{ app.base_url }}assets/img/sample-book-preview.png"
+                                                                 width="183" height="190">
+                                                            <div class="text-center" id="book-icon">
+                  			<span class="icon-att"><a href="#"><span data-toggle="tooltip"
+                                                                     data-placement="top" title="view">
+                  			<span class="glyphicon glyphicon-eye-open"></span></span></a>
+                            <span class="badge">112</span></span>
+                            <span class="icon-att"><a href="#">
+                            <span data-toggle="tooltip" data-placement="top" title="Click to download book.">
+                  			<span class="glyphicon glyphicon-download"></span></span></a>
+                           	</span>
+                 			<span class="icon-att"><a href="#"><span data-toggle="tooltip" data-placement="top"
+                                                                     title="Click to add book to your favorite">
+                            <span class="glyphicon glyphicon-star"></span></span></a>
+                           	</span>
+                 			<span class="icon-att"><a href="#" style="padding-right:15px;">
+                           <span class="toolt" data-placement="left" data-toggle="tooltip"
+                                 title="Click to apply for hardcopy of this book.">
+                            <span class="glyphicon glyphicon-book"></span></span></a>
+                           	</span>
+                 			<span class="icon-att"><a href="#"><span data-toggle="tooltip" data-placement="top"
+                                                                     title="like">
+                            <span class="glyphicon glyphicon-thumbs-up"></span></span></a>
+                            <span class="badge"> 12</span></span>
+                                                            </div>
+                                                        </li>
+
+                                                    {% endfor %}
+                                                    {% set catid =category.id %}
+                                                    {% set catArray=catArray|merge([catid]) %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- example -->
+
+                                    </div><!-- demo -->
+                                {% endfor %}
                             </div>
-                        {% endfor %}
-                         </div>
-                     </div>
+                            <!-- .body-subcontainer -->
+
+                            {% for cat in catArray %}
+                                $.initializeSlider.init({{ cat }});
+                                {#$('{{'#categories_'~ cat }}').microfiche({ bullets: false, cyclic: true, autoplay: 3, autopause: true});#}
+                            {% endfor %}
+
+                        </div>
+                        <!-- row -->
+                    </div>
+                    <!-- container-fluid margin-top-lg -->
                 </div>
+                <!-- col-md-9 -->
 
                 <div class="col-md-3" style="padding-top: 20px;">
                     {% include 'book/sidebar.twig' %}
                 </div>
 
             </div>
+            <!-- row book_main-->
         </div>
-
-    </div>
+        <!-- container-fluid margin-top-lg -->
+    </div><!-- boook-index -->
 {% endblock %}

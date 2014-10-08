@@ -7,26 +7,21 @@
 {% block content %}
     <div id="book-index">
         <div class="page-header">
-            <h3>Books{{ "/category_name/" }}</h3>
+            <h3>{{ "Books/Categories_name" }}</h3>
         </div>
-{{ name }}
+
         <div class="container-fluid margin-top-lg">
             <div class="row">
-
-
                 <div class="col-md-9">
                     <div class="container-fluid margin-top-lg">
                         <div class="row">
-
-
-
                             {% for book in books %}
                                 <div class="col-md-4">
                                     <div id="book-hold">
                                         <div class="box book-item">
                                             <div class="book-item-preview">
                                                 <img src="{{ app.base_url }}assets/img/sample-book-preview.png"
-                                                     width="170" height="200"/>
+                                                     width="180" height="200"/>
                                             </div>
                                             <div class="text-center" id="book-att-icons">
                                                 <p>
@@ -62,14 +57,9 @@
                                 </div>
                             {% endfor %}
 
-
-
                         </div>
                     </div>
                 </div>
-
-
-
 
                 <div class="col-md-3" style="padding-top: 20px;">
                     {% include 'book/sidebar.twig' %}

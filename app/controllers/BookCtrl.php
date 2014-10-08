@@ -18,7 +18,7 @@ class BookCtrl extends BaseCtrl
     {
         $categories = $this->client->getCategories([
             'include' => 'books',
-            'books_limit' => 3
+            'books_limit' => 12
         ]);
 
         return $this->view->render('book/index.twig', [

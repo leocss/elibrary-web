@@ -38,6 +38,31 @@
 #book-hold #book-att-icons p .icon-att{
     padding-right: 15px;
 }
+
+
+#book-icon{
+    padding-top: 5px;
+}
+.badge {
+    min-width: 10px !important;
+    padding: 3px 3px !important;
+    color: #428bca !important;
+    background-color:#FFF !important;
+}
+.icon-att{
+    padding-right: 6px;
+}
+#header_check{
+    float: right;
+}
+#header_only{
+    float: left;
+}
+#header-search{
+    background-color: #269abc;
+}
+
+
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
@@ -56,7 +81,12 @@
     font-family:Viner Hand ITC;
     padding: 5px;
     font-size: 18px;
+    margin-bottom: 10px;
 }
+
+
+
+
 
 
 
