@@ -6,10 +6,8 @@
 
 {% block content %}
     <div id="book-index">
-    <div id="header-search">
-        <div id="header_only">ALL CATEGORIES</div>
+    <div id="header_search">
             <div class="col-md-4" style=" margin-right: 5px;" id="header_check">
-                <div style="padding-top: 7px;">
                     <div class="input-group">
                                 <input type="text" placeholder="Looking for a book, what book? " class="form-control">
                                   <span class="input-group-btn">
@@ -18,9 +16,9 @@
                                     </button>
                                   </span>
                     </div><!-- /input-group -->
-                 </div><!-- /.col-md-4 -->
              </div>
-        </div>
+        <div id="header_only"><h3>ALL CATEGORIES</h3></div>
+    </div><div class="clearfix"></div>
 
         <div class="container-fluid margin-top-lg">
             <div class="row book_main">
@@ -82,7 +80,9 @@
                             <!-- .body-subcontainer -->
 
                             {% for cat in catArray %}
+                                <script>
                                 $.initializeSlider.init({{ cat }});
+                                </script>
                                 {#$('{{'#categories_'~ cat }}').microfiche({ bullets: false, cyclic: true, autoplay: 3, autopause: true});#}
                             {% endfor %}
 

@@ -58,8 +58,13 @@
 #header_only{
     float: left;
 }
-#header-search{
-    background-color: #269abc;
+#header_search{
+    padding-top: 10px;
+    padding-left: 50px;
+}
+h3{
+   padding-top: 7px !important;
+   margin-top: 0px !important;
 }
 
 
