@@ -1,28 +1,25 @@
 {% extends 'layout-sidebar.twig' %}
 
 {% block title %}
-    Books | {{ parent() }}
+    Search | {{ parent() }}
 {% endblock %}
 
 {% block content %}
-    <div id="book-index">
+    <div id="book-search">
+
         <div class="page-header">
-            <h3>Books{{ "/All Categories" }}</h3>
+            <h2>Search Books</h2>
         </div>
+
         <div class="container-fluid margin-top-lg">
             <div class="row">
                 <div class="col-md-9">
-                    {% for book in books %}
-                        {{ book.category.title }}
-                    {% endfor %}
+                    {{ name }}
                 </div>
-
-                <div class="col-md-3" style="padding-top: 20px;">
+                <div class="col-md-3">
                     {% include 'book/sidebar.twig' %}
                 </div>
-
             </div>
         </div>
-
     </div>
 {% endblock %}
