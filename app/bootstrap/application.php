@@ -13,8 +13,8 @@ $app = new Silex\Application();
  * Define App Config
  */
 $app['debug'] = true;
-$app['app.lib.api.elibrary_client_id'] = 'testclient';
-$app['app.lib.api.elibrary_client_secret'] = 'testsecret';
+$app['app.lib.api.elibrary_client_id'] = '9d81c76533b0407d7c52e0ebd5ba2dcf';
+$app['app.lib.api.elibrary_client_secret'] = 'ebe661a508c4fc56a69643cb8087b005';
 
 /**
  * Register Services
@@ -152,6 +152,12 @@ $app['app.controllers.Exam'] = $app->share(
     }
 );
 
+$app['app.controllers.Article'] = $app->share(
+    function () use ($app) {
+        return new Controllers\ArticleCtrl($app['app.GlobalCtrlDependencies']);
+    }
+);
+
 // Application Routes
 
 $app->match('/', 'app.controllers.User:main')->method('GET|POST')->bind('user.main');
@@ -164,5 +170,6 @@ $app->get('/books/{id}', 'app.controllers.Book:view')->bind('books.view');
 $app->match('/print-jobs', 'app.controllers.PrintJob:index')->bind('printJobs.index')->method('GET|POST');
 $app->match('/print-jobs/create', 'app.controllers.PrintJob:create')->bind('printJobs.create')->method('GET|POST');
 $app->match('/print-jobs/{id}', 'app.controllers.PrintJob:view')->bind('printJobs.view')->method('GET|POST');
+$app->get('/articles', 'app.controllers.Article:index')->bind('article.index');
 
 return $app;

@@ -1,0 +1,81 @@
+{% extends 'layout-sidebar.twig' %}
+
+{% block content %}
+    <div id="print-job-index">
+        <div class="page-header">
+            <h2>Articles</h2>
+        </div>
+        <div class="container-fluid margin-top-lg">
+            <div class="row">
+
+                <div class="col-md-9">
+
+                  {% for article in articles %}
+                    <div class="row article_for_loop">
+
+                       <div class="col-md-3 col-md-offset-1  me">
+                           
+                               <img src="{{ app.base_url}}assets/img/sample-book-preview.png" width="210" height="230" />
+
+                           
+                           </div>
+
+
+                          <div class="col-md-8" id="article_content_col" >
+
+                             
+
+                            <small id="article_create_update_date">Create at :
+                              {{ article.created_at }}
+
+                               updated at : 
+                              {{ article.updated_at }}
+                              </small> 
+                            
+
+                             <h3>
+                               <a href="#" id="article_header_link"> 
+                               {{ article.title }}
+                               </a> 
+                                <small style="font-size:12px; color:#CCC;">
+                                    Author:{{ article.author_id }}
+                                </small>
+
+                              </h3>
+                              
+                            
+
+                            <p>
+                                  
+                                    After Ja’Rule, Ashanti’s Performance, Angry Fans Stone Oritse Femi With Water Bottle
+                                    1q
+
+                                    It is high time celebrities’ especially Nigerian musicians, learn from the mistakes of others on stage. We could remember that there was a certain time Nollywood actress, Tonto Dikeh performed on stage and she fell while performing. Aside her, we have had several other artistes who have had several disappointments on stage all because of probably too much drink back stage.
+                                    OCT
+                                    4
+                                    After Ja’Rule, Ashanti’s Performance, Angry Fans Stone Oritse Femi With Water Bottle
+                                    1q
+
+                                    It is high time celebrities’ especially Nigerian musicians, learn from the mistakes of others on stage. We could remember that there was a certain time Nollywood actress, Tonto Dikeh performed on stage and she fell while performing. Aside her, we have had several other artistes who have had several disappointments on stage all because of probably too much drink back stage.
+
+                            </p>
+
+                          </div>
+
+                    </div>
+
+                  {% endfor %}
+
+                 
+
+                </div>
+
+                <div class="col-md-3">
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -152,6 +152,11 @@ class ElibraryApiClient extends Client
     {
         return $this->prepareBook($this->send($this->buildRequest('GET', '/books/random')));
     }
+	
+	public function getArticles()
+	{
+		return $this->send($this->buildRequest('GET', '/posts'));	
+	}
 
     /**
      * @param $param
