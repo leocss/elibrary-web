@@ -158,6 +158,13 @@ $app['app.controllers.Billing'] = $app->share(
     }
 );
 
+$app['app.controllers.Article'] = $app->share(
+    function () use ($app) {
+        return new Controllers\ArticleCtrl($app['app.GlobalCtrlDependencies']);
+
+    }
+);
+
 // Application Routes
 
 $app->match('/', 'app.controllers.User:main')->method('GET|POST')->bind('user.main');
@@ -173,5 +180,6 @@ $app->get('/books/{id}', 'app.controllers.Book:view')->bind('books.view');
 $app->match('/print-jobs', 'app.controllers.PrintJob:index')->bind('printJobs.index')->method('GET|POST');
 $app->match('/print-jobs/create', 'app.controllers.PrintJob:create')->bind('printJobs.create')->method('GET|POST');
 $app->match('/print-jobs/{id}', 'app.controllers.PrintJob:view')->bind('printJobs.view')->method('GET|POST');
+$app->get('/articles', 'app.controllers.Article:index')->bind('article.index');
 
 return $app;
