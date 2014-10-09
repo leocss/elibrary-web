@@ -169,9 +169,11 @@ class ElibraryApiClient extends Client
 		return $this->send($this->buildRequest('GET', '/posts'));	
 	}
 
-    public function getArticle($id)
+    public function getArticle($id, $query)
     {
-        return $this->send($this->buildRequest('GET', '/posts/' . $id));
+        return $this->send($this->buildRequest('GET', '/posts/' . $id, [
+            'query' => $query
+        ]));
     }
 
     /**

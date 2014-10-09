@@ -3,13 +3,26 @@
 {% block content %}
     <div id="print-job-index">
         <div class="page-header">
-            <h2>Articles</h2>
+            <h2>Article - #{{ article.id }}</h2>
         </div>
         <div class="container-fluid margin-top-lg">
             <div class="row">
 
                 <div class="col-md-9">
-                  {{ article.title }}
+                  <div>
+                      <h3> {{ article.title }} </h3>
+                      <p>
+                          {{ article.content_html }}
+                      </p>
+                  </div>
+
+                  {% for comment in article.comments %}
+                      {{ comment.user.full_name }} - {{ comment.created_at }}
+                      <p>
+                          {{ comment.content }}
+                      </p>
+                      <hr />
+                  {% endfor %}
                 </div>
 
                 <div class="col-md-3">
