@@ -34,7 +34,7 @@
                             
 
                              <h3>
-                               <a href="#" id="article_header_link"> 
+                               <a href="{{ app.url_generator.generate('article.view', {id: article.id}) }}" id="article_header_link"> 
                                {{ article.title }}
                                </a> 
                                 <small style="font-size:12px; color:#CCC;">

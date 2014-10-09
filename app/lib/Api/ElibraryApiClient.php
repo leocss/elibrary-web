@@ -169,6 +169,11 @@ class ElibraryApiClient extends Client
 		return $this->send($this->buildRequest('GET', '/posts'));	
 	}
 
+    public function getArticle($id)
+    {
+        return $this->send($this->buildRequest('GET', '/posts/' . $id));
+    }
+
     /**
      * @param $param
      *  - user_id: ID of user creating the print job
