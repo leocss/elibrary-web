@@ -1,17 +1,17 @@
-{% extends 'layout-sidebar.twig' %}
+{% extends 'layout-main.twig' %}
 
 {% block title %}
-    E-Exam | {{ parent() }}
+    Student-Bill | {{ parent() }}
 {% endblock %}
 
 {% block content %}
     <div id="user-dashboard">
         <div class="page-header">
-            <h2>E-Exam</h2>
+            <h2>Billing <small class="text-muted">/ Checkout</small></h2>
         </div>
         <div class="container-fluid">
             <div class="col-md-12">
-                <a href="{{ app.url_generator.generate('exam.main') }}">Click to test yourself</a>
+
             </div>
         </div>
     </div>

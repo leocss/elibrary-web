@@ -13,21 +13,32 @@ class ArticleCtrl extends BaseCtrl
 {
     public function index(Request $request)
     {
-        $articles = $this->client->getArticles();
+        $articles = $this->client->getPosts();
 
-		    return $this->view->render('article/index.twig', [
-            'articles' => $articles
-        ]);
+        return $this->view->render(
+            'article/index.twig',
+            [
+                'articles' => $articles
+            ]
+        );
     }
 
     public function view($id)
     {
-        $article = $this->client->getArticle($id, [
-            'include' => 'comments,author,comments.user'
-        ]);
+        $article = $this->client->getPost(
+            $id,
+            [
+                'query' => [
+                    'include' => 'comments,author,comments.user'
+                ]
+            ]
+        );
 
-        return $this->view->render('article/view.twig', [
-            'article' => $article
-        ]);
+        return $this->view->render(
+            'article/view.twig',
+            [
+                'article' => $article
+            ]
+        );
     }
 }
