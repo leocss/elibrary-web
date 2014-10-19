@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * @author Laju Morrison <morrelinko@gmail.com>
  */
-class BillingCtrl extends BaseCtrl
+class ElectronicTestCtrl extends BaseCtrl
 {
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
@@ -18,14 +18,6 @@ class BillingCtrl extends BaseCtrl
      */
     public function index(Request $request)
     {
-        return $this->view->render('billing/index.twig');
-    }
-
-    /**
-     * @return string
-     */
-    public function checkout()
-    {
-        return $this->view->render('billing/checkout.twig');
+        return $this->view->render('etest/index.twig');
     }
 }

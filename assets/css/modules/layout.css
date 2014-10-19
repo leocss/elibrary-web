@@ -7,6 +7,7 @@ body, html {
 
 body {
     font-family: "RobotoLight", Arial, san-serif;
+    background: url(../../img/bg-body.jpg) repeat;
 }
 
 #wrapper {
@@ -29,6 +30,7 @@ body {
 }
 
 #header.navbar {
+    background: #260A07;
     margin-bottom: 0;
     min-height: 50px;
 }
@@ -105,6 +107,39 @@ body {
     margin: 0;
 }
 
+.btn-library:active,
+.btn-library:hover,
+.btn-library:focus,
+.btn-library {
+    color: #FFF;
+    border-color: #D9631E;
+    background-color: #D9631E;
+}
+
+/**
+ * Lists
+ */
+.sidebar-list-item {
+    padding: 15px;
+    position: relative;
+    display: block;
+    border-bottom: 1px solid #DFDFDF !important;
+}
+
+.sidebar-list-item > img {
+    height: 50px;
+    width: 50px;
+}
+
+.sidebar-list-item > span {
+    display: block;
+}
+
+.sidebar-list-item h5 {
+    margin-top: 0;
+    color: #4D4D4D;
+}
+
 .centralize {
     margin-top: 10%;
     text-align: center;
@@ -112,6 +147,10 @@ body {
 
 .no-rounded {
     border-radius: 0 !important;
+}
+
+.text-inverse {
+    color: #424242;
 }
 
 .centralize h4 {
