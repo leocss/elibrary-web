@@ -15,8 +15,19 @@ class ArticleCtrl extends BaseCtrl
     {
         $articles = $this->client->getArticles();
 
-		return $this->view->render('article/index.twig', [
+		    return $this->view->render('article/index.twig', [
             'articles' => $articles
+        ]);
+    }
+
+    public function view($id)
+    {
+        $article = $this->client->getArticle($id, [
+            'include' => 'comments,author,comments.user'
+        ]);
+
+        return $this->view->render('article/view.twig', [
+            'article' => $article
         ]);
     }
 }

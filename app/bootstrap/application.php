@@ -174,12 +174,13 @@ $app->get('/examination', 'app.controllers.Exam:main')->bind('exam.main');
 $app->get('/bill', 'app.controllers.Billing:index')->bind('billing.index');
 $app->get('/books', 'app.controllers.Book:index')->bind('books.index');
 $app->get('/books/search', 'app.controllers.Book:search')->bind('books.search');
-$app->get('/books/category', 'app.controllers.Book:category')->bind('books.category');
+$app->get('/books/categories', 'app.controllers.Book:categories')->bind('books.categories');
 $app->get('/books/template', 'app.controllers.Book:template')->bind('books.template');
 $app->get('/books/{id}', 'app.controllers.Book:view')->bind('books.view');
 $app->match('/print-jobs', 'app.controllers.PrintJob:index')->bind('printJobs.index')->method('GET|POST');
 $app->match('/print-jobs/create', 'app.controllers.PrintJob:create')->bind('printJobs.create')->method('GET|POST');
 $app->match('/print-jobs/{id}', 'app.controllers.PrintJob:view')->bind('printJobs.view')->method('GET|POST');
 $app->get('/articles', 'app.controllers.Article:index')->bind('article.index');
+$app->get('/articles/{id}', 'app.controllers.Article:view')->bind('article.view');
 
 return $app;
