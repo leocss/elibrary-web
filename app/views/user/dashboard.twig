@@ -37,8 +37,14 @@
                             </p>
                         </div>
                         <div class="book-actions clearfix">
+                            <span class="stat-item">
+                                <span class="fa fa-thumbs-up"></span> <small>{{ randomBook.likes_count }} Likes</small>
+                            </span>
+                            <span class="stat-item">
+                                <span class="fa fa-users"></span> <small>{{ randomBook.views_count }} Views</small>
+                            </span>
                             <a href="{{ app.url_generator.generate('books.view', {id: randomBook.id}) }}"
-                               class="btn btn-library no-rounded pull-right">Read Book &raquo;</a>
+                               class="btn btn-library action-item no-rounded pull-right">Read Book &raquo;</a>
                         </div>
                     </div>
                 </div>
