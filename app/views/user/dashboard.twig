@@ -62,7 +62,7 @@
                     </div>
                     <div class="panel-body">
                         {% for article in recentArticles %}
-                            <a href="#" class="media recent-article-item sidebar-list-item">
+                            <a href="{{ app.url_generator.generate('articles.view', {id: article.id}) }}" class="media recent-article-item sidebar-list-item">
                                 <img src="{{ article.image_url | default(app.default_article_image) }}" class="media-object pull-left">
                                 <span class="display-block media-body">
                                     <h5>{{ article.title }}</h5>
@@ -85,7 +85,7 @@
                     </div>
                     <div class="panel-body">
                         {% for book in likedBooks %}
-                            <a href="#" class="media recent-article-item sidebar-list-item">
+                            <a href="{{  app.url_generator.generate('books.view', {id: book.id}) }}" class="media recent-article-item sidebar-list-item">
                                 <img src="{{ book.preview_image_url | default(app.default_book_image) }}" class="media-object pull-left">
                                 <span class="display-block media-body">
                                     <h5>{{ book.title }}</h5>
