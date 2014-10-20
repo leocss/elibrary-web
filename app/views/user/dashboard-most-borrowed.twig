@@ -1,0 +1,23 @@
+<div class="most-borrowed-book-list">
+    <div class="page-title">
+        <h2>MOST BORROWED BOOKS</h2>
+    </div>
+    <!-- page title -->
+
+    <div class="row">
+        {% for i in [1, 2, 3, 4] %}
+        <div class="col-md-3">
+            <div class="preview-image">
+                <a href="#">
+                    <img src="{{ app.base_url }}assets/img/book/sample{{ i }}.jpg" alt="" height="260" width="175">
+                </a>
+            </div>
+            {# Picture #}
+
+            <div class="shelf">
+                <img src="{{ app.base_url }}assets/img/book/shelf.png" alt="" class="img-responsive">
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

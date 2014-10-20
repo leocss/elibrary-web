@@ -25,17 +25,20 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"">
             <ul class="nav navbar-nav">
-                <li class="active">
+                <li class="{% if is_module('books') %}active{% endif %}">
                     <a href="{{ app.url_generator.generate('books.index') }}">Books</a>
                 </li>
-                <li>
+                <li class="{% if is_module('print-jobs') %}active{% endif %}">
                     <a href="{{ app.url_generator.generate('printJobs.index') }}">Printing Service</a>
                 </li>
-                <li>
-                    <a href="{{ app.url_generator.generate('exam.index') }}">Electronic Exam</a>
+                <li class="{% if is_module('electronic-test') %}active{% endif %}">
+                    <a href="{{ app.url_generator.generate('etest.index') }}">Electronic Test</a>
                 </li>
-                <li>
-                    <a href="{{ app.url_generator.generate('user.bill') }}">Billing</a>
+                <li class="{% if is_module('articles') %}active{% endif %}">
+                    <a href="{{ app.url_generator.generate('articles.index') }}">Articles</a>
+                </li>
+                <li class="{% if is_module('billing') %}active{% endif %}">
+                    <a href="{{ app.url_generator.generate('billing.index') }}">Billing</a>
                 </li>
             </ul>
         </div>

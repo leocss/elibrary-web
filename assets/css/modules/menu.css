@@ -15,5 +15,22 @@
 }
 
 .navbar-default .navbar-nav > .active > a {
+    background: #F2CA52;
+    color: #260A07;
+    text-shadow: 1px 1px 0px #000;
+}
 
+#header .navbar-nav > li {
+    border-right: 1px solid #FFF;
+    float: left;
+    min-width: 150px;
+    text-align: center;
+    position: relative;
+}
+
+#header .navbar-nav > li > a {
+    color: #FFF;
+    display: block;
+    font-size: 18px;
+    text-transform: uppercase;
 }

@@ -1,0 +1,74 @@
+/**
+ * --------------------------------------------------------------------
+ *  Styles applied in user dashboard
+ * --------------------------------------------------------------------
+ */
+
+.most-borrowed-book-list {
+    text-align: center;
+}
+
+.most-borrowed-book-list .preview-image {
+    position: relative;
+    margin: 0px auto;
+    width: 100%;
+}
+
+#random-book {
+    padding: 20px;
+    background-color: #EDEDED;
+    border: 1px solid #DCDCDC;
+}
+
+#random-book .book-title {
+    padding-left: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #DCDCDC;
+}
+
+#random-book .book-title h2 {
+    padding: 0;
+    margin: 0;
+}
+
+#random-book .book-author {
+    font-size: 18px;
+}
+
+#random-book .book-title h2 a {
+    color: #D9631E;
+    text-transform: uppercase;
+    font-family: "RobotoBold", arial, san-serif;
+    font-weight: bold;
+}
+
+#random-book .book-description {
+    padding-left: 20px;
+    border-bottom: 1px solid #DCDCDC;
+    min-height: 160px;
+}
+
+#random-book .book-description h3 {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 16px;
+    color: #D9631E;
+}
+
+#random-book .book-actions {
+    padding-top: 10px;
+}
+
+#random-book .book-actions a.btn {
+    padding: 15px 50px;
+    font-size: 18px;
+    text-shadow: 1px 1px 0px #000;
+}
+
+#random-book .book-data {
+
+}
+
+/**
+ * Recent Articles
+ */

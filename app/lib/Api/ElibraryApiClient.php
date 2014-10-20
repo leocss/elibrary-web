@@ -125,38 +125,18 @@ class ElibraryApiClient extends Client
     /**
      * @return array
      */
-    public function getBooks()
+    public function getBooks($params = [])
     {
-        $books = $this->send($this->buildRequest('GET', '/books'));
-
-        foreach ($books as $index => $book) {
-            $books[$index] = $this->prepareBook($book);
-        }
-
-        return $books;
-    }
-
-    public function getCategories($params = array())
-    {
-        $params = http_build_query($params);
-        $categories = $this->send($this->buildRequest('GET', '/books/categories' . ($params == true ? '?' . $params : '')));
-
-        return $categories;
-    }
-
-    public function getCategoriesLimit()
-    {
-        $categoriesLimit = $this->send($this->buildRequest('GET', '/books/categories?include=books&books_limit=12'));
-        return $categoriesLimit;
+        return $this->send($this->buildRequest('GET', '/books', $params));
     }
 
     /**
      * @param int $bookId
      * @return array
      */
-    public function getBook($bookId)
+    public function getBook($bookId, $params = [])
     {
-        return $this->prepareBook($this->send($this->buildRequest('GET', sprintf('/books/%d', $bookId))));
+        return $this->send($this->buildRequest('GET', sprintf('/books/%d', $bookId, $params)));
     }
 
     /**
@@ -164,19 +144,34 @@ class ElibraryApiClient extends Client
      */
     public function getRandomBook()
     {
-        return $this->prepareBook($this->send($this->buildRequest('GET', '/books/random')));
+        return $this->send($this->buildRequest('GET', '/books/random'));
     }
-	
-	public function getArticles()
-	{
-		return $this->send($this->buildRequest('GET', '/posts'));	
-	}
 
-    public function getArticle($id, $query)
+    public function getCategories($params = array())
     {
-        return $this->send($this->buildRequest('GET', '/posts/' . $id, [
-            'query' => $query
-        ]));
+        $params = http_build_query($params);
+        $categories = $this->send(
+            $this->buildRequest('GET', '/books/categories' . ($params == true ? '?' . $params : ''))
+        );
+
+        return $categories;
+    }
+
+    public function getCategoriesLimit()
+    {
+        $categoriesLimit = $this->send($this->buildRequest('GET', '/books/categories?include=books&books_limit=12'));
+
+        return $categoriesLimit;
+    }
+
+    public function getPosts($params = [])
+    {
+        return $this->send($this->buildRequest('GET', '/posts', $params));
+    }
+
+    public function getPost($id, $params = [])
+    {
+        return $this->send($this->buildRequest('GET', sprintf('/posts/%s', $id), $params));
     }
 
     /**
@@ -367,14 +362,4 @@ class ElibraryApiClient extends Client
 
         return $response['data'];
     }
-
-    protected function prepareBook($book)
-    {
-        if ($book['preview_image'] == null) {
-            $book['preview_image'] = $this->app['base_url'] . 'assets/img/sample-book-preview.png';
-        }
-
-        return $book;
-    }
-
 }
