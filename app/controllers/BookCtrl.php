@@ -36,11 +36,11 @@ class BookCtrl extends BaseCtrl
         ]);
     }
 
-    public function category()
+    public function category($id)
     {
         $category = $this->client->getCategoryLimit([
-            'category' => 3,
-            'limit' => 5
+            'category' => $id,
+            'limit' => 18
         ]);
         return $this->view->render('book/category.twig', [
             'category' => $category,

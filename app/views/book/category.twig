@@ -7,15 +7,16 @@
 {% block content %}
     <div id="book-index">
         <div class="page-header">
-            <h3>{{ "Books/Category_name" }}</h3>
-        </div>
 
+            <h3>Books/{{ category[0].category.title }}/ </h3>
+        </div>
         <div class="container-fluid margin-top-lg">
             <div class="row">
                 <div class="col-md-9">
                     <div class="container-fluid margin-top-lg">
                         <div class="row">
                             {% for cate in category %}
+
                                 <div class="col-md-3">
                                     <div id="book-hold">
                                         <div class="box book-item">
@@ -47,9 +48,9 @@
                             <span class="glyphicon glyphicon-thumbs-up"></span></span></a>
                             <span class="badge"> 12</span></span>
                                                 </p>
-                                                <p></p>{{ cate.category_id }}
+
                                             </div>
-                                                <div class="clearfix"></div>
+                                            <div class="clearfix"></div>
 
 
                                         </div>

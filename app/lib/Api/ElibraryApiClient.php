@@ -164,9 +164,12 @@ class ElibraryApiClient extends Client
         return $categoriesLimit;
     }
 
-    public function getCategoryLimit()
+    public function getCategoryLimit($params = array())
     {
-        $categoryLimit = $this->send($this->buildRequest('GET', '/books?category=3&limit=12'));
+        $params = http_build_query($params);
+        $categoryLimit = $this->send(
+            $this->buildRequest('GET', '/books?' . $params )
+        );
 
         return $categoryLimit;
     }
