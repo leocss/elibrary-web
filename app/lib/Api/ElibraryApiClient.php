@@ -164,6 +164,16 @@ class ElibraryApiClient extends Client
         return $categoriesLimit;
     }
 
+    public function getCategoryLimit($params = array())
+    {
+        $params = http_build_query($params);
+        $categoryLimit = $this->send(
+            $this->buildRequest('GET', '/books?' . $params )
+        );
+
+        return $categoryLimit;
+    }
+
     public function getPosts($params = [])
     {
         return $this->send($this->buildRequest('GET', '/posts', $params));

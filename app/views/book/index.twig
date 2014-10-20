@@ -31,7 +31,8 @@
                                 {% set catArray=[] %}
                                 {% for category in categories %}
                                     <div id="cat_head">
-                                        {{ category.title }}
+                                        <a href="{{ app.url_generator.generate('books.category', {id: category.id})}}"
+                                           >{{ category.title }}</a>
                                     </div>
 
                                     <div class="demo">

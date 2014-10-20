@@ -26,6 +26,7 @@ class BookCtrl extends BaseCtrl
         ]);
     }
 
+
     public function template()
     {
         $books = $this->client->getBooks();
@@ -34,15 +35,19 @@ class BookCtrl extends BaseCtrl
             'name' => "DICKSON"
         ]);
     }
-    public function categories()
-    {
-        $books = $this->client->getBooks();
-        return $this->view->render('book/categories.twig', [
-            'categories' => $categories,
-            'books' => $books,
 
+    public function category($id)
+    {
+        $category = $this->client->getCategoryLimit([
+            'category' => $id,
+            'limit' => 18
+        ]);
+        return $this->view->render('book/category.twig', [
+            'category' => $category,
         ]);
     }
+
+
     public function search()
     {
         $books = $this->client->getBooks();

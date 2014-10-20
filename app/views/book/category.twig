@@ -7,16 +7,17 @@
 {% block content %}
     <div id="book-index">
         <div class="page-header">
-            <h3>{{ "Books/Categories_name" }}</h3>
-        </div>
 
+            <h3>Books/{{ category[0].category.title }}/ </h3>
+        </div>
         <div class="container-fluid margin-top-lg">
             <div class="row">
                 <div class="col-md-9">
                     <div class="container-fluid margin-top-lg">
                         <div class="row">
-                            {% for book in books %}
-                                <div class="col-md-4">
+                            {% for cate in category %}
+
+                                <div class="col-md-3">
                                     <div id="book-hold">
                                         <div class="box book-item">
                                             <div class="book-item-preview">
@@ -48,9 +49,10 @@
                             <span class="badge"> 12</span></span>
                                                 </p>
 
-                                                <div class="clearfix"></div>
-
                                             </div>
+                                            <div class="clearfix"></div>
+
+
                                         </div>
 
                                     </div>
