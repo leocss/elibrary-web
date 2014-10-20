@@ -11,7 +11,64 @@
         </div>
         <div class="container-fluid">
             <div class="col-md-12">
-                Bill
+                <div class="col-md-8">
+                    <table class="table table-bordered table-responsive">
+                        <thead>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Invoice id</th>
+                            <th>Date</th>
+                        </thead>
+                        <tbody>
+                            {{ for transaction in transactions }}
+                                <tr>
+                                    <td>{{ transaction }}</td>
+                                </tr>
+                            {{ endfor }}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default box no-rounded">
+                        <div class="panel-heading no-rounded">
+                            <h3 class="panel-title">
+                                <span class="fa fa-plus"></span>
+                                Total amount has
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <h3>#750</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default box no-rounded">
+                        <div class="panel-heading no-rounded">
+                            <h3 class="panel-title">
+                                <span class="fa fa-minus"></span>
+                                Total amount currently owned
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <h3>#375</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default box no-rounded">
+                        <div class="panel-heading no-rounded">
+                            <h3 class="panel-title">
+                                <span class="fa fa-plus"></span>
+                                Total amount ever paid
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <h3>#2700</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
