@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{% block title %}Elibrary{% endblock %}</title>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link href="{{ app.base_url }}assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-    <link href="{{ app.base_url }}assets/css/application.css" rel="stylesheet" type="text/css"/>
-    <link href="{{ app.base_url }}assets/css/vscroll/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css"/>
-    <link href="{{ app.base_url }}assets/css/vscroller.css" rel="stylesheet" type="text/css"/>
-
-</head>
-<body class="{% block body_class %}{% endblock %}">
+{% include 'layouts/header.twig' %}
 
 <div id="wrapper">
     {% block before_header %}{% endblock %}
@@ -23,42 +10,34 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"">
-            <ul class="nav navbar-nav">
-                <li class="{% if is_module('books') %}active{% endif %}">
-                    <a href="{{ app.url_generator.generate('books.index') }}">Books</a>
-                </li>
-                <li class="{% if is_module('print-jobs') %}active{% endif %}">
-                    <a href="{{ app.url_generator.generate('printJobs.index') }}">Printing Service</a>
-                </li>
-                <li class="{% if is_module('electronic-test') %}active{% endif %}">
-                    <a href="{{ app.url_generator.generate('etest.index') }}">Electronic Test</a>
-                </li>
-                <li class="{% if is_module('articles') %}active{% endif %}">
-                    <a href="{{ app.url_generator.generate('articles.index') }}">Articles</a>
-                </li>
-                <li class="{% if is_module('billing') %}active{% endif %}">
-                    <a href="{{ app.url_generator.generate('billing.index') }}">Billing</a>
-                </li>
-            </ul>
-        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
+        ">
+        <ul class="nav navbar-nav">
+            <li class="{% if is_module('books') %}active{% endif %}">
+                <a href="{{ app.url_generator.generate('books.index') }}">Books</a>
+            </li>
+            <li class="{% if is_module('print-jobs') %}active{% endif %}">
+                <a href="{{ app.url_generator.generate('printJobs.index') }}">Printing Service</a>
+            </li>
+            <li class="{% if is_module('electronic-test') %}active{% endif %}">
+                <a href="{{ app.url_generator.generate('etest.index') }}">Electronic Test</a>
+            </li>
+            <li class="{% if is_module('articles') %}active{% endif %}">
+                <a href="{{ app.url_generator.generate('articles.index') }}">Articles</a>
+            </li>
+            <li class="{% if is_module('billing') %}active{% endif %}">
+                <a href="{{ app.url_generator.generate('billing.index') }}">Billing</a>
+            </li>
+        </ul>
     </div>
-    {% block after_header %}{% endblock %}
+</div>
+{% block after_header %}{% endblock %}
 
     {% block before_content %}{% endblock %}
-    <div id="main">
-        {% block content %} {% endblock %}
-    </div>
-    {% block after_content %}{% endblock %}
+<div id="main">
+    {% block content %} {% endblock %}
+</div>
+{% block after_content %}{% endblock %}
 </div>
 
-<script type="text/javascript" src="{{ app.base_url }}assets/js/jquery-1.11.0.js"></script>
-<script type="text/javascript" src="{{ app.base_url }}assets/js/book.js"></script>
-<script type="text/javascript" src="{{ app.base_url }}assets/js/microfiche.js"></script>
-<script type="text/javascript" src="{{ app.base_url }}assets/js/vscroll/jquery.mCustomScrollbar.concat.min.js"></script>
-<script type="text/javascript" src="{{ app.base_url }}assets/js/vscroll/jquery.mCustomScrollbar.min.js"></script>
-<script type="text/javascript" src="{{ app.base_url }}assets/js/vscroll/jquery.mousewheel.min.js"></script>
-<script type="text/javascript" src="{{ app.base_url }}assets/js/vscroll/jquery-ui-1.10.4.min.js"></script>
-<script type="text/javascript" src="{{ app.base_url }}assets/js/vscroller.js"></script>
-</body>
-</html>
+{% include 'layouts/footer.twig' %}
