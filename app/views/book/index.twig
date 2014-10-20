@@ -6,6 +6,7 @@
 
 {% block content %}
     <div id="book-index">
+
         <div id="header_search">
             <div class="col-md-4" style=" margin-right: 5px;" id="header_check">
                 <div class="input-group">
@@ -20,6 +21,8 @@
             </div>
             <div id="header_only"><h3>ALL CATEGORIES</h3></div>
         </div>
+
+
         <div class="clearfix"></div>
 
         <div class="container-fluid margin-top-lg">
@@ -31,8 +34,8 @@
                                 {% set catArray=[] %}
                                 {% for category in categories %}
                                     <div id="cat_head">
-                                        <a href="{{ app.url_generator.generate('books.category', {id: category.id})}}"
-                                           >{{ category.title }}</a>
+                                        {{ category.title }}>><a href="{{ app.url_generator.generate('books.category', {id: category.id})}}"
+                                                >see more</a>
                                     </div>
 
                                     <div class="demo">
@@ -41,8 +44,10 @@
                                                 <ul>
                                                     {% for book in category.books %}
                                                         <li>
+                                                            <a href="{{ app.url_generator.generate('books.view', {id: book.id}) }}">
                                                             <img src="{{ app.default_book_image }}"
                                                                  width="183" height="190">
+                                                            </a>
 
                                                             <div class="text-center" id="book-icon">
                                                                 <span class="icon-att">

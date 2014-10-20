@@ -21,8 +21,9 @@
                                     <div id="book-hold">
                                         <div class="box book-item">
                                             <div class="book-item-preview">
+                                               <a href="{{ app.url_generator.generate('books.view', {id: cate.id}) }}">
                                                 <img src="{{ app.base_url }}assets/img/sample-book-preview.png"
-                                                     width="180" height="200"/>
+                                                     width="180" height="200"/></a>
                                             </div>
                                             <div class="text-center" id="book-att-icons">
                                                 <p>
