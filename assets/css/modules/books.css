@@ -4,6 +4,8 @@
 }
 #book-hold{
     background-color: #245269;
+    min-width: 220px;
+    position: relative;
     -webkit-box-shadow: 0 10px 6px -6px #777;
     -moz-box-shadow: 0 10px 6px -6px #777;
     box-shadow: 0 10px 6px -6px #777;
@@ -33,10 +35,11 @@
 #book-hold #book-att-icons{
     padding: 6px;
     background-color: #fafafa;
+    min-width: 220px;
 }
 
 #book-hold #book-att-icons p .icon-att{
-    padding-right: 15px;
+    padding-right: 5px;
 }
 
 
@@ -60,12 +63,17 @@
 }
 #header_search{
     padding-top: 10px;
-    padding-left: 50px;
+    padding-left: 78px;
 }
 h3{
    padding-top: 7px !important;
    margin-top: 0px !important;
 }
+
+
+
+
+
 
 
 .nav-tabs > li.active > a,
