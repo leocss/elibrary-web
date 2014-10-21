@@ -10,6 +10,8 @@ use GuzzleHttp\Message\ResponseInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
+ * Note: This class is no longer used. Will be deleted.
+ *
  * @author Laju Morrison <morrelinko@gmail.com>
  */
 class ElibraryMockClient extends ElibraryApiClient
