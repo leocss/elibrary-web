@@ -96,12 +96,14 @@ body {
 }
 
 .page-header {
+    height: 70px;
     margin: 0;
     padding: 10px 20px;
 }
 
 .page-header h2 {
     text-transform: uppercase;
+    line-height: 50px;
     font-family: "RobotoBold", Arial, san-serif;
     padding: 0;
     margin: 0;

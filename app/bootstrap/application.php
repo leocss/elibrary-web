@@ -123,8 +123,8 @@ $app->before(
             }
         }
 
-        $app['default_article_image'] = $app['base_url'] . '/assets/img/sample-book-preview.png';
-        $app['default_book_image'] = $app['base_url'] . '/assets/img/sample-book-preview.png';
+        $app['default_article_image'] = $app['base_url'] . 'assets/img/sample-book-preview.png';
+        $app['default_book_image'] = $app['base_url'] . 'assets/img/sample-book-preview.png';
     },
     Silex\Application::LATE_EVENT
 );
@@ -176,8 +176,6 @@ $app->get('/dashboard', 'app.controllers.User:dashboard')->bind('user.dashboard'
 $app->get('/books', 'app.controllers.Book:index')->bind('books.index');
 $app->get('/books/search', 'app.controllers.Book:search')->bind('books.search');
 $app->get('/books/category/{id}', 'app.controllers.Book:category')->bind('books.category');
-
-$app->get('/books/template', 'app.controllers.Book:template')->bind('books.template');
 $app->get('/books/{id}', 'app.controllers.Book:view')->bind('books.view');
 $app->get('/books/viewer/{id}', 'app.controllers.Book:viewer')->bind('books.viewer');
 
