@@ -7,6 +7,7 @@
 {% block content %}
     <div id="book-index">
 
+<<<<<<< HEAD
         <div id="header_search">
             <div class="col-md-4" style=" margin-right: 5px;" id="header_check">
                 <div class="input-group">
@@ -21,11 +22,19 @@
             </div>
             <div id="header_only"><h3>BOOKS CATEGORIES</h3></div>
         </div>
+=======
+        <div class="page-header clearfix">
+            <h2 class="pull-left">Browse Books</h2>
+>>>>>>> 88f4bc1c63ac1a6a205330d496bc1677a5c62e11
 
+            <div class="navbar navbar-default pull-right">
+                {% include 'book/search-form.twig' %}
 
-        <div class="clearfix"></div>
+            </div>
+        </div>
 
         <div class="container-fluid margin-top-lg">
+<<<<<<< HEAD
             <div class="row book_main">
                 <div class="col-md-9">
                     <div class="container-fluid margin-top-lg">
@@ -48,67 +57,73 @@
                                                             <img src="{{ app.default_book_image }}"
                                                                  width="183" height="190">
                                                             </a>
-
-                                                            <div class="text-center" id="book-icon">
-                                                                <span class="icon-att">
-                                                                    <a href="#">
-                                                                        <span data-toggle="tooltip" data-placement="top"
-                                                                              title="view">
-                                                                            <span class="glyphicon glyphicon-eye-open"></span>
-                                                                        </span>
-                                                                    </a>
-                                                                    <span class="badge">112</span>
-                                                                </span>
-                                                                <span class="icon-att">
-                                                                    <a href="#">
-                                                                        <span data-toggle="tooltip" data-placement="top"
-                                                                              title="Click to download book.">
-                                                                <span class="glyphicon glyphicon-download"></span></span></a>
-                                                                </span>
-                                                                <span class="icon-att"><a href="#"><span
-                                                                                data-toggle="tooltip"
-                                                                                data-placement="top"
-                                                                                title="Click to add book to your favorite">
-                                                                <span class="glyphicon glyphicon-star"></span></span></a>
-                                                                </span>
-                                                                <span class="icon-att"><a href="#"
-                                                                                          style="padding-right:15px;">
-                                                               <span class="toolt" data-placement="left"
-                                                                     data-toggle="tooltip"
-                                                                     title="Click to apply for hardcopy of this book.">
-                                                                <span class="glyphicon glyphicon-book"></span></span></a>
-                                                                </span>
-                                                                <span class="icon-att"><a href="#"><span
-                                                                                data-toggle="tooltip"
-                                                                                data-placement="top"
-                                                                                title="like">
-                                                                <span class="glyphicon glyphicon-thumbs-up"></span></span></a>
-                                                                <span class="badge"> 12</span></span>
-                                                            </div>
-                                                        </li>
-
-                                                    {% endfor %}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- example -->
-
-                                    </div><!-- demo -->
-                                {% endfor %}
+=======
+            <div class="row">
+                <div class="col-md-8">
+                    {% for category in categories %}
+                        <div class="category-item">
+                            <div class="category-title">
+                                <h3>{{ category.title }}</h3>
                             </div>
-                            <!-- .body-subcontainer -->
+>>>>>>> 88f4bc1c63ac1a6a205330d496bc1677a5c62e11
+
+                            <div class="category-books">
+                                <div class="row">
+                                    {% for book in category.books %}
+                                        <div class="col-xs-6 col-md-3 category-book-item">
+                                            <div href="#" class="thumbnail no-rounded">
+                                                <img src="{{ book.preview_image_url | default(app.default_book_image) }}"
+                                                     alt="..."/>
+
+                                                <div class="caption">
+                                                    <div class="btn-group btn-group-justified no-rounded">
+                                                        <a href="#" class="btn btn-primary no-rounded" role="button">
+                                                            <span class="fa fa-eye"></span> <br/>
+                                                            {{ book.views_count }}
+                                                        </a>
+                                                        <a href="#" class="btn btn-default no-rounded" role="button">
+                                                            <span class="fa fa-thumbs-up"></span> <br />
+                                                            {{ book.likes_count }}
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="col-md-4">
+                    {# Most Liked Books Panel #}
+                    <div class="panel panel-default panel-most-liked-books box no-rounded">
+                        <div class="panel-heading no-rounded">
+                            <h3 class="panel-title">
+                                <span class="fa fa-plus"></span>
+                                Most Liked Books
+                            </h3>
+                        </div>
+                        <div class="panel-body">
 
                         </div>
-                        <!-- row -->
                     </div>
-                    <!-- container-fluid margin-top-lg -->
-                </div>
-                <!-- col-md-9 -->
 
-                <div class="col-md-3" style="padding-top: 20px;">
-                    {% include 'book/sidebar.twig' %}
-                </div>
+                    {# Most Viewed Books #}
+                    <div class="panel panel-default panel-most-liked-books box no-rounded">
+                        <div class="panel-heading no-rounded">
+                            <h3 class="panel-title">
+                                <span class="fa fa-plus"></span>
+                                Most Viewed Books
+                            </h3>
+                        </div>
+                        <div class="panel-body">
 
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- row book_main-->
         </div>

@@ -1,0 +1,86 @@
+<div class="container-fluid margin-top-lg">
+    <div class="row">
+        {% for book in books %}
+        <div class="col-md-3">
+            <div class="box book-item">
+                <div class="book-item-preview">
+                    <img src="{{ app.base_url }}assets/img/sample-book-preview.png" width="200"/>
+                </div>
+                <div class="text-center">
+                    <a class="book-item-title"
+                       href="{{ app.url_generator.generate('books.view', {id: book.id}) }}">
+                        <strong>{{ book.title }}</strong>
+                    </a>
+
+                    <div class="clearfix"></div>
+                    <small class="text-center">
+                        <i class="fa fa-clock-o"></i>
+                        {{ book.category.title }}
+                    </small>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<small class="text-center">
+    <i class="fa fa-clock-o"></i>
+    {{ book.category.title }}
+</small>
+<a class="book-item-title"
+   href="{{ app.url_generator.generate('books.view', {id: book.id}) }}">
+    <strong>{{ book.title }}</strong>
+</a>
+
+
+
+
+
+
+
+{% extends 'layout-sidebar.twig' %}
+
+{% block title %}
+    Viewing {{ book.title }} | {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div id="book-view">
+        <div class="container-fluid margin-top-lg">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="book-header media">
+                        <div class="book-header-thumb">
+                            <div class="text-center">
+                                {# Preview Image will be placed here #}
+                                <i class="fa-5x fa fa-fw"></i>
+                            </div>
+                        </div>
+
+                        <div class="media-body">
+                            <h2 class="media-heading margin-none">
+                                {{ book.title }}
+                            </h2>
+
+                            <p class="book-summary-author">by {{ book.author }}</p>
+                        </div>
+                    </div>
+
+                    <div class="box book-view-container">
+                        {# Place the book here... Using ViewerJS or whatever #}
+                        <img src="{{ app.base_url }}assets/img/sample-ebook-preview.png"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    {% for property in ['author', 'title'] %}
+                        <div>
+                            <b>{{ property }}:</b> {{ book[property] }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
