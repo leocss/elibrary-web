@@ -179,6 +179,7 @@ $app->get('/books/category/{id}', 'app.controllers.Book:category')->bind('books.
 $app->get('/books/{id}', 'app.controllers.Book:view')->bind('books.view');
 $app->get('/books/viewer/{id}', 'app.controllers.Book:viewer')->bind('books.viewer');
 
+
 $app->match('/print-jobs', 'app.controllers.PrintJob:index')->bind('printJobs.index')->method('GET|POST');
 $app->match('/print-jobs/create', 'app.controllers.PrintJob:create')->bind('printJobs.create')->method('GET|POST');
 $app->match('/print-jobs/{id}', 'app.controllers.PrintJob:view')->bind('printJobs.view')->method('GET|POST');

@@ -1,42 +1,72 @@
-{% extends 'layout-sidebar.twig' %}
+{% extends 'layout-main.twig' %}
 
 {% block title %}
-    Viewing {{ book.title }} | {{ parent() }}
+    Search | {{ parent() }}
 {% endblock %}
 
 {% block content %}
-    <div id="book-view">
+    <div id="header_search">
+        <div class="col-md-4" style=" margin-right: 5px;" id="header_check">
+            <div class="input-group">
+                <input type="text" placeholder="Looking for a book, what book? " class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+            </div>
+            <!-- /input-group -->
+        </div>
+        <div id="header_only"><h3></h3></div>
+    </div>
+
+
+    <div class="clearfix"></div>
+    <div id="book-search">
+
         <div class="container-fluid margin-top-lg">
             <div class="row">
                 <div class="col-md-9">
-                    <div class="book-header media">
-                        <div class="book-header-thumb">
-                            <div class="text-center">
-                                {# Preview Image will be placed here #}
-                                <i class="fa-5x fa fa-fw"></i>
+                    <div id="random-book" class="media">
+                        <div class="pull-left book-image">
+                            <img class="media-object"
+                                 src="{{ app.default_book_image }}"
+                                 alt=""
+                                 width="205"
+                                 height="305">
+                        </div>
+                        <div class="book-data media-body">
+                            <div class="book-title media-heading">
+                                <h2>
+                                    <a href="{{ book.title }}">
+                                        {{ book.title }}
+                                    </a>
+                                </h2>
+                                By
+                                <span class="book-author">{{ book.author }}</span>
+                            </div>
+                            <div class="book-description">
+                                <h3>Description</h3>
+                                <p>
+                                    {{ book.overview }}
+                                </p>
+                            </div>
+                            <div class="book-actions clearfix">
+                            <span class="stat-item">
+                                <span class="fa fa-thumbs-up"></span> <small>{{ book.likes_count }} Likes</small>
+                            </span>
+                            <span class="stat-item">
+                                <span class="fa fa-users"></span> <small>{{ book.views_count }} Views</small>
+                            </span>
+                                <a href="{{ app.url_generator.generate('books.view', {id: book.id}) }}"
+                                   class="btn btn-library action-item no-rounded pull-right">Read Book &raquo;</a>
                             </div>
                         </div>
 
-                        <div class="media-body">
-                            <h2 class="media-heading margin-none">
-                                {{ book.title }}
-                            </h2>
-
-                            <p class="book-summary-author">by {{ book.author }}</p>
-                        </div>
-                    </div>
-
-                    <div class="box book-view-container">
-                        {# Place the book here... Using ViewerJS or whatever #}
-                        <img src="{{ app.base_url }}assets/img/sample-ebook-preview.png"/>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    {% for property in ['author', 'title'] %}
-                        <div>
-                            <b>{{ property }}:</b> {{ book[property] }}
-                        </div>
-                    {% endfor %}
+                    {% include 'book/sidebar.twig' %}
                 </div>
             </div>
         </div>
