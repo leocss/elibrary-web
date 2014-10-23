@@ -6,26 +6,8 @@
 
 {% block content %}
     <div id="book-index">
-
-<<<<<<< HEAD
-        <div id="header_search">
-            <div class="col-md-4" style=" margin-right: 5px;" id="header_check">
-                <div class="input-group">
-                    <input type="text" placeholder="Looking for a book, what book? " class="form-control">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
-                </div>
-                <!-- /input-group -->
-            </div>
-            <div id="header_only"><h3>BOOKS CATEGORIES</h3></div>
-        </div>
-=======
         <div class="page-header clearfix">
             <h2 class="pull-left">Browse Books</h2>
->>>>>>> 88f4bc1c63ac1a6a205330d496bc1677a5c62e11
 
             <div class="navbar navbar-default pull-right">
                 {% include 'book/search-form.twig' %}
@@ -34,30 +16,6 @@
         </div>
 
         <div class="container-fluid margin-top-lg">
-<<<<<<< HEAD
-            <div class="row book_main">
-                <div class="col-md-9">
-                    <div class="container-fluid margin-top-lg">
-                        <div class="row">
-                            <div class="body-subcontainer">
-                                {% set catArray=[] %}
-                                {% for category in categories %}
-                                    <div id="cat_head">
-                                        {{ category.title }} &raquo; <a href="{{ app.url_generator.generate('books.category', {id: category.id})}}"
-                                                >see more</a>
-                                    </div>
-
-                                    <div class="demo">
-                                        <div class="example" id="{{ 'categories_'~ category.id }}">
-                                            <div>
-                                                <ul>
-                                                    {% for book in category.books %}
-                                                        <li>
-                                                            <a href="{{ app.url_generator.generate('books.view', {id: book.id}) }}">
-                                                            <img src="{{ app.default_book_image }}"
-                                                                 width="183" height="190">
-                                                            </a>
-=======
             <div class="row">
                 <div class="col-md-8">
                     {% for category in categories %}
@@ -65,7 +23,6 @@
                             <div class="category-title">
                                 <h3>{{ category.title }}</h3>
                             </div>
->>>>>>> 88f4bc1c63ac1a6a205330d496bc1677a5c62e11
 
                             <div class="category-books">
                                 <div class="row">
