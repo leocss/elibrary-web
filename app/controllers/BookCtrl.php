@@ -17,8 +17,10 @@ class BookCtrl extends BaseCtrl
     public function index()
     {
         $categories = $this->client->getCategories([
-            'include' => 'books',
-            'books_limit' => 4
+            'query' => [
+                'include' => 'books',
+                'books_limit' => 4
+            ]
         ]);
 
         return $this->view->render('book/index.twig', [
@@ -38,12 +40,16 @@ class BookCtrl extends BaseCtrl
 
     public function category($id)
     {
-        $category = $this->client->getCategoryLimit([
-            'category' => $id,
-            'limit' => 18
+        $books = $this->client->getBooks([
+            'query' => [
+                'category' => $id,
+                'limit' => 18,
+                'include' => 'category'
+            ]
         ]);
+
         return $this->view->render('book/category.twig', [
-            'category' => $category,
+            'books' => $books,
         ]);
     }
 

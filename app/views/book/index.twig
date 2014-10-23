@@ -19,7 +19,7 @@
                 </div>
                 <!-- /input-group -->
             </div>
-            <div id="header_only"><h3>ALL CATEGORIES</h3></div>
+            <div id="header_only"><h3>BOOKS CATEGORIES</h3></div>
         </div>
 
 
@@ -34,7 +34,7 @@
                                 {% set catArray=[] %}
                                 {% for category in categories %}
                                     <div id="cat_head">
-                                        {{ category.title }}>><a href="{{ app.url_generator.generate('books.category', {id: category.id})}}"
+                                        {{ category.title }} &raquo; <a href="{{ app.url_generator.generate('books.category', {id: category.id})}}"
                                                 >see more</a>
                                     </div>
 
@@ -44,9 +44,9 @@
                                                 <ul>
                                                     {% for book in category.books %}
                                                         <li>
-                                                            <a href="{{ app.url_generator.generate('books.view', {id: book.books.id}) }}">
-                                                            <img src="{{ app.default_book_image }}"
-                                                                 width="183" height="190">
+                                                            <a href="{{ app.url_generator.generate('books.view', {id: book.id}) }}">
+                                                                <img src="{{ app.default_book_image }}"
+                                                                     width="183" height="190">
                                                             </a>
 
                                                             <div class="text-center" id="book-icon">
