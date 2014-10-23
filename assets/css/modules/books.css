@@ -91,10 +91,20 @@ h3{
 }
 #cat_head{
     background-color: #fff;
-    font-family:Viner Hand ITC;
     padding: 5px;
     font-size: 18px;
     margin-bottom: 10px;
+    color: #D9631E;
+    text-transform: uppercase;
+    font-family: "RobotoBold", arial, san-serif;
+    font-weight: bold;
+}
+#cat_head a{
+    font-size: 18px;
+    color: #D9631E;
+    text-transform: uppercase;
+    font-family: "RobotoBold", arial, san-serif;
+    font-weight: bold;
 }
 
 
