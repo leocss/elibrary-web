@@ -125,6 +125,7 @@ $app->before(
 
         $app['default_article_image'] = $app['base_url'] . 'assets/img/sample-book-preview.png';
         $app['default_book_image'] = $app['base_url'] . 'assets/img/sample-book-preview.png';
+        $app['default_user_image'] = $app['base_url'] . 'assets/img/user/default-user-image.png';
     },
     Silex\Application::LATE_EVENT
 );
