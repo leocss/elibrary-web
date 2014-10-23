@@ -191,5 +191,8 @@ $app->get('/billing', 'app.controllers.Billing:index')->bind('billing.index');
 $app->get('/billing/checkout', 'app.controllers.Billing:checkout')->bind('billing.checkout');
 
 $app->get('/electronic-test', 'app.controllers.ElectronicTest:index')->bind('etest.index');
+$app->get('/electronic-test/test', 'app.controllers.ElectronicTest:test')->bind('etest.test');
+
+
 
 return $app;
