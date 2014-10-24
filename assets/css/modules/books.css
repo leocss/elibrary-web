@@ -1,9 +1,8 @@
-#book-index {
-    background-color: #f2f2f2 !important;
+#book-index{
+    background-color:#f2f2f2 !important;
     min-height: 1000px !important;
 }
-
-#book-hold {
+#book-hold{
     background-color: #245269;
     min-width: 220px;
     position: relative;
@@ -27,56 +26,55 @@
     font-family: "RobotoBold", Arial, san-serif;
 
 }
-
 #book-hold #book-att-icons .badge {
     min-width: 10px !important;
     padding: 3px 3px !important;
     color: #428bca !important;
-    background-color: #FFF !important;
+    background-color:#FFF !important;
 }
-
-#book-hold #book-att-icons {
+#book-hold #book-att-icons{
     padding: 6px;
     background-color: #fafafa;
     min-width: 220px;
 }
 
-#book-hold #book-att-icons p .icon-att {
+#book-hold #book-att-icons p .icon-att{
     padding-right: 5px;
 }
 
-#book-icon {
+
+#book-icon{
     padding-top: 5px;
 }
-
 .badge {
     min-width: 10px !important;
     padding: 3px 3px !important;
     color: #428bca !important;
-    background-color: #FFF !important;
+    background-color:#FFF !important;
 }
-
-.icon-att {
+.icon-att{
     padding-right: 6px;
 }
-
-#header_check {
+#header_check{
     float: right;
 }
-
-#header_only {
+#header_only{
     float: left;
 }
-
-#header_search {
+#header_search{
     padding-top: 10px;
     padding-left: 78px;
 }
-
-h3 {
-    padding-top: 7px !important;
-    margin-top: 0px !important;
+h3{
+   padding-top: 7px !important;
+   margin-top: 0px !important;
 }
+
+
+
+
+
+
 
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
@@ -88,47 +86,32 @@ h3 {
     border-bottom-color: transparent;
 }
 
-/**
- * Book Search Form
- */
-.book-search-form input.form-control {
-    width: 312px;
-}
-
-.category-item .category-title {
-    padding-left: 20px;
-    background: #FFF;
-    border: 1px solid #ECECEC;
-    border-bottom: 1px solid #DCDCDC;
-}
-
-.category-book-item .caption {
-    padding: 0;
-    padding-top: 5px;
-}
-
-.category-book-item .caption .btn {
-    border: 0;
-    background: transparent;
-    color: #434343;
-    border-right: 1px solid #CCC;
-}
-
-.category-book-item .caption .btn:last-child {
-    border-right: 0;
-}
-
-.left_side {
+.left_side{
 
 }
-
-#cat_head {
+#cat_head{
     background-color: #fff;
-    font-family: Viner Hand ITC;
     padding: 5px;
     font-size: 18px;
     margin-bottom: 10px;
+    color: #D9631E;
+    text-transform: uppercase;
+    font-family: "RobotoBold", arial, san-serif;
+    font-weight: bold;
 }
+#cat_head a{
+    font-size: 18px;
+    color: #D9631E;
+    text-transform: uppercase;
+    font-family: "RobotoBold", arial, san-serif;
+    font-weight: bold;
+}
+
+
+
+
+
+
 
 #book-view .book-header {
     background: none repeat scroll 0% 0% #FFFFFF;

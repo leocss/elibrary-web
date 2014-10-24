@@ -1,0 +1,75 @@
+{% extends 'layout-main.twig' %}
+
+{% block title %}
+    Books | {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div id="book-index">
+        <div class="page-header">
+
+            <h3>Books&raquo;{{ category[0].category.title }}&raquo;</h3>
+        </div>
+        <div class="container-fluid margin-top-lg">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="container-fluid margin-top-lg">
+                        <div class="row">
+                            {% for cate in category %}
+
+                                <div class="col-md-3">
+                                    <div id="book-hold">
+                                        <div class="box book-item">
+                                            <div class="book-item-preview">
+                                               <a href="{{ app.url_generator.generate('books.view', {id: cate.id}) }}">
+                                                <img src="{{ app.base_url }}assets/img/sample-book-preview.png"
+                                                     width="180" height="200"/></a>
+                                            </div>
+                                            <div class="text-center" id="book-att-icons">
+                                                <p>
+                  			<span class="icon-att"><a href="#"><span data-toggle="tooltip"
+                                                                     data-placement="top" title="view">
+                  			<span class="glyphicon glyphicon-eye-open"></span></span></a>
+                            <span class="badge">112</span></span>
+                  			<span class="icon-att"><a href="#">
+                            <span data-toggle="tooltip" data-placement="top" title="Click to download book.">
+                  			<span class="glyphicon glyphicon-download"></span></span></a>
+                           	</span>
+                 			<span class="icon-att"><a href="#"><span data-toggle="tooltip" data-placement="top"
+                                                                     title="Click to add book to your favorite">
+                            <span class="glyphicon glyphicon-star"></span></span></a>
+                           	</span>
+                 			<span class="icon-att"><a href="#" style="padding-right:15px;">
+                           <span class="toolt" data-placement="left" data-toggle="tooltip"
+                                 title="Click to apply for hardcopy of this book.">
+                            <span class="glyphicon glyphicon-book"></span></span></a>
+                           	</span>
+                 			<span class="icon-att"><a href="#"><span data-toggle="tooltip" data-placement="top"
+                                                                     title="like">
+                            <span class="glyphicon glyphicon-thumbs-up"></span></span></a>
+                            <span class="badge"> 12</span></span>
+                                                </p>
+
+                                            </div>
+                                            <div class="clearfix"></div>
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3" style="padding-top: 20px;">
+                    {% include 'book/sidebar.twig' %}
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
