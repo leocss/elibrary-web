@@ -18,13 +18,15 @@
                             </div>
                             <div class="panel-body">
                                 {% if question.type == 'multiple_choice' %}
-                                <input type="radio" name="question[{{ question.id }}][answer]"> Option 1 <br />
-                                <input type="radio" name="question[{{ question.id }}][answer]"> Option 1 <br />
-                                <input type="radio" name="question[{{ question.id }}][answer]"> Option 1 <br />
-                                <input type="radio" name="question[{{ question.id }}][answer]"> Option 1 <br />
+
+                                    {% for option in question.options_parsed %}
+                                        <input type="radio" name="question[{{ question.id }}][answer]" value="{{ loop.index }}"> {{ option }} <br />
+                                    {% endfor %}
 
                                 {% elseif question.type == 'true_or_false' %}
-
+                                    {% for option in question.options_parsed %}
+                                        <input type="radio" name="question[{{ question.id }}][answer]" value="{{ loop.index }}"> {{ option }} <br />
+                                    {% endfor %}
                                 {% endif %}
                             </div>
                         </div>
