@@ -12,18 +12,18 @@
 
                 <div class="col-md-8">
 
-                    <div class="panel panel-default panel-article">
+                    <div class="panel panel-default panel-article no-rounded">
                         <div class="panel-body">
                             <h3 class="article-title">{{ article.title }}</h3>
 
                             <div class="article-meta">
                                 <span>By: <a href="#">{{ article.author.full_name }}</a></span>
-                                <span>Jan 02, 2014</span>
-                                <span><a href="#">2 Comments</a></span>
+                                <span>{{ article.created_at }}</span>
+                                <span><a href="#">{{ article.comments_count }} Comments</a></span>
                             </div>
 
                             <div class="article-img">
-                                <img src="images/photos/blog1.jpg" class="img-responsive" alt="">
+                                <img src="{{ article.image_url | default(app.default_article_image) }}" class="img-responsive" alt="">
                             </div>
 
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
@@ -66,35 +66,30 @@
                         <!-- media -->
                     </div>
 
-                    <ul class="media-list comment-list">
+                    {% if article.comments is not empty %}
+                        <ul class="media-list comment-list">
+                            {% for comment in article.comments %}
+                                <li class="media">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object thumbnail"
+                                             src="{{ comment.user.image_url | default(app.default_user_image) }}"
+                                             alt="">
+                                    </a>
 
-                        <li class="media">
-                            <a class="pull-left" href="#">
-                                <img class="media-object thumbnail" src="images/photos/user4.png" alt="">
-                            </a>
-
-                            <div class="media-body">
-                                <a href="#" class="btn btn-primary btn-xs pull-right reply">Reply</a>
-                                <h4>Weno Carasbong</h4>
-                                <small class="text-muted">January 10, 2014 at 7:30am</small>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            </div>
-                        </li>
-                        <!-- media -->
-
-                    </ul>
-                    {% for comment in article.comments %}
-                        {{ comment.user.full_name }} - {{ comment.created_at }}
-                        <p>
-                            {{ comment.content }}
-                        </p>
-                        <hr/>
-                    {% endfor %}
+                                    <div class="media-body">
+                                        <a href="#" class="btn btn-primary btn-xs pull-right reply">Reply</a>
+                                        <h4>{{ comment.user.full_name }}</h4>
+                                        <small class="text-muted">{{ comment.created_at }}</small>
+                                        <p>{{ comment.content }}</p>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
                 </div>
 
                 <div class="col-md-4">
+
                     <div class="panel panel-default panel-recent-articles box no-rounded">
                         <div class="panel-heading no-rounded">
                             <h3 class="panel-title">
@@ -119,6 +114,33 @@
                             {% endfor %}
                         </div>
                     </div>
+
+                    <div class="panel panel-default panel-recent-articles box no-rounded">
+                        <div class="panel-heading no-rounded">
+                            <h3 class="panel-title">
+                                <span class="fa fa-plus"></span>
+                                Most Liked Books
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            {% for book in likedBooks %}
+                                <a href="{{ app.url_generator.generate('books.view', {id: book.id}) }}"
+                                   class="media recent-article-item sidebar-list-item">
+                                    <img src="{{ book.preview_image_url | default(app.default_book_image) }}"
+                                         class="media-object pull-left">
+                                <span class="display-block media-body">
+                                    <h5>{{ book.title }}</h5>
+                                    <div class="clearfix"></div>
+                                    <small class="text-center text-inverse muted">
+                                        <i class="fa fa-thumbs-up"></i> {{ book.likes_count }} Like(s)
+                                    </small>
+                                </span>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
                 </div>
 
             </div>
