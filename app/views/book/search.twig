@@ -1,4 +1,4 @@
-{% extends 'layout-sidebar.twig' %}
+{% extends 'layout-main.twig' %}
 
 {% block title %}
     Books | {{ parent() }}
@@ -6,22 +6,31 @@
 
 {% block content %}
     <div id="book-index">
-        <div class="page-header">
-            <h3>{{ "Search result" }}</h3>
-        </div>
-
+        <div id="header_search">
+            <div class="col-md-4" style=" margin-right: 5px;" id="header_check">
+                <div class="input-group">
+                    <input type="text" placeholder="Looking for a book, what book? " class="form-control">
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                  </span>
+                </div><!-- /input-group -->
+            </div>
+            <div id="header_only"><h3>{{ "Search result" }}</h3></div>
+        </div><div class="clearfix"></div>
         <div class="container-fluid margin-top-lg">
             <div class="row">
                 <div class="col-md-9">
                     <div class="container-fluid margin-top-lg">
                         <div class="row">
                             {% for book in books %}
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div id="book-hold">
                                         <div class="box book-item">
                                             <div class="book-item-preview">
                                                 <img src="{{ app.base_url }}assets/img/sample-book-preview.png"
-                                                     width="170" height="200"/>
+                                                     width="180" height="200"/>
                                             </div>
                                             <div class="text-center" id="book-att-icons">
                                                 <p>

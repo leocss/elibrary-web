@@ -39,18 +39,13 @@ class UserCtrl extends BaseCtrl
      */
     public function dashboard()
     {
-        $randomBook = $this->client->getRandomBook();
-
         return $this->view->render(
             'user/dashboard.twig',
             [
-                'randomBook' => $randomBook
+                'randomBook' => $this->client->getRandomBook(),
+                'recentArticles' => $this->client->getPosts(['query' => ['limit' => 5]]),
+                'likedBooks' => $this->client->getBooks(['query' => ['stat' => '5_most_liked']])
             ]
         );
-    }
-
-    public function bill()
-    {
-        return $this->view->render('user/bill.twig');
     }
 }

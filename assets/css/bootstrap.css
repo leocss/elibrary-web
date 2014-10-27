@@ -5504,6 +5504,12 @@ button.close {
   filter: alpha(opacity=0);
   opacity: 0;
 }
+.toyo{
+
+    position:absolute;
+    top: 20%;
+    laft:20%
+}
 .tooltip.in {
   filter: alpha(opacity=90);
   opacity: .9;

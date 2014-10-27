@@ -1,8 +1,11 @@
-#wrapper{
-    background-color:#E9E9E9 ;
+#book-index{
+    background-color:#f2f2f2 !important;
+    min-height: 1000px !important;
 }
 #book-hold{
     background-color: #245269;
+    min-width: 220px;
+    position: relative;
     -webkit-box-shadow: 0 10px 6px -6px #777;
     -moz-box-shadow: 0 10px 6px -6px #777;
     box-shadow: 0 10px 6px -6px #777;
@@ -14,8 +17,8 @@
     text-align: center !important;
     padding: 12px;
     position: relative;
-    /* background-color: #222222;*/
     background-color: #fafafa;
+
 }
 
 #book-index #book-hold .book-item .book-item-title {
@@ -32,17 +35,53 @@
 #book-hold #book-att-icons{
     padding: 6px;
     background-color: #fafafa;
+    min-width: 220px;
 }
 
 #book-hold #book-att-icons p .icon-att{
-    padding-right: 15px;
+    padding-right: 5px;
 }
+
+
+#book-icon{
+    padding-top: 5px;
+}
+.badge {
+    min-width: 10px !important;
+    padding: 3px 3px !important;
+    color: #428bca !important;
+    background-color:#FFF !important;
+}
+.icon-att{
+    padding-right: 6px;
+}
+#header_check{
+    float: right;
+}
+#header_only{
+    float: left;
+}
+#header_search{
+    padding-top: 10px;
+    padding-left: 78px;
+}
+h3{
+   padding-top: 7px !important;
+   margin-top: 0px !important;
+}
+
+
+
+
+
+
+
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
     color: #555;
     cursor: default;
-    background-color: #E9E9E9 !important;
+    background-color: #f2f2f2 !important;
     border: 1px solid #ddd;
     border-bottom-color: transparent;
 }
@@ -50,6 +89,27 @@
 .left_side{
 
 }
+#cat_head{
+    background-color: #fff;
+    padding: 5px;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #D9631E;
+    text-transform: uppercase;
+    font-family: "RobotoBold", arial, san-serif;
+    font-weight: bold;
+}
+#cat_head a{
+    font-size: 18px;
+    color: #D9631E;
+    text-transform: uppercase;
+    font-family: "RobotoBold", arial, san-serif;
+    font-weight: bold;
+}
+
+
+
+
 
 
 
@@ -84,62 +144,4 @@
 #book-view .book-view-container img {
     width: 100%;
     box-sizing: border-box;
-}
-
-/**
- * --------------------------------------------------------------------
- *  Styles applied to the 'random book' displayed in user dashboard
- * --------------------------------------------------------------------
- */
-#random-book {
-    padding: 20px;
-    border: 1px solid #EFEFEF;
-}
-
-#random-book .book-title {
-    padding-left: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #EFEFEF;
-}
-
-#random-book .book-title h2 {
-    padding: 0;
-    margin: 0;
-}
-
-#random-book .book-author {
-    font-size: 18px;
-}
-
-#random-book .book-title h2 a {
-    color: #900;
-    text-transform: uppercase;
-    font-family: "RobotoBold", arial, san-serif;
-    font-weight: bold;
-}
-
-#random-book .book-description {
-    padding-left: 20px;
-    border-bottom: 1px solid #EFEFEF;
-    min-height: 160px;
-}
-
-#random-book .book-description h3 {
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 16px;
-    color: #900;
-}
-
-#random-book .book-actions {
-    padding-top: 10px;
-}
-
-#random-book .book-actions a.btn {
-    padding-left: 50px;
-    padding-right: 50px;
-}
-
-#random-book .book-data {
-
 }

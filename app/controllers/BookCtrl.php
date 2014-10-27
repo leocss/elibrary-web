@@ -16,12 +16,18 @@ class BookCtrl extends BaseCtrl
      */
     public function index()
     {
-        $books = $this->client->getBooks();
+        $categories = $this->client->getCategories([
+            'query' => [
+                'include' => 'books',
+                'books_limit' => 4
+            ]
+        ]);
 
         return $this->view->render('book/index.twig', [
-            'books' => $books,
+            'categories' => $categories
         ]);
     }
+
 
     public function template()
     {
@@ -31,20 +37,28 @@ class BookCtrl extends BaseCtrl
             'name' => "DICKSON"
         ]);
     }
-    public function category()
+
+    public function category($id)
     {
-        $books = $this->client->getBooks();
+        $books = $this->client->getBooks([
+            'query' => [
+                'category' => $id,
+                'limit' => 18,
+                'include' => 'category'
+            ]
+        ]);
+
         return $this->view->render('book/category.twig', [
             'books' => $books,
-            'name' => "DICKSON"
         ]);
     }
+
+
     public function search()
     {
         $books = $this->client->getBooks();
         return $this->view->render('book/search.twig', [
                 'books' => $books,
-                'name' => "DICKSON"
             ]);
     }
 
@@ -59,6 +73,14 @@ class BookCtrl extends BaseCtrl
         $book = $this->client->getBook($id);
 
         return $this->view->render('book/view.twig', [
+            'book' => $book
+        ]);
+    }
+    public function viewer($id)
+    {
+        $book = $this->client->getBook($id);
+
+        return $this->view->render('book/bookview.twig', [
             'book' => $book
         ]);
     }

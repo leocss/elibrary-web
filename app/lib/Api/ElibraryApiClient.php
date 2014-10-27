@@ -48,16 +48,17 @@ class ElibraryApiClient extends Client
         parent::__construct(['base_url' => $options['endpoint']]);
     }
 
-    public function setApiEndpoint($url)
-    {
-        $this->apiUrl = $url;
-    }
-
+    /**
+     * @param $clientId
+     */
     public function setClientId($clientId)
     {
         $this->clientId = $clientId;
     }
 
+    /**
+     * @param $clientSecret
+     */
     public function setClientSecret($clientSecret)
     {
         $this->clientSecret = $clientSecret;
@@ -125,35 +126,18 @@ class ElibraryApiClient extends Client
     /**
      * @return array
      */
-    public function getBooks()
+    public function getBooks($params = [])
     {
-        $books = $this->send($this->buildRequest('GET', '/books'));
-
-        foreach ($books as $index => $book) {
-            $books[$index] = $this->prepareBook($book);
-        }
-
-        return $books;
-    }
-
-    public function getCategories()
-    {
-        $categories = $this->send($this->buildRequest('GET', '/books/categories'));
-
-        foreach ($categories as $index => $category) {
-            $categories[$index] = $this->prepareBook($category);
-        }
-
-        return $category;
+        return $this->send($this->buildRequest('GET', '/books', $params));
     }
 
     /**
      * @param int $bookId
      * @return array
      */
-    public function getBook($bookId)
+    public function getBook($bookId, $params = [])
     {
-        return $this->prepareBook($this->send($this->buildRequest('GET', sprintf('/books/%d', $bookId))));
+        return $this->send($this->buildRequest('GET', sprintf('/books/%d', $bookId, $params)));
     }
 
     /**
@@ -161,13 +145,36 @@ class ElibraryApiClient extends Client
      */
     public function getRandomBook()
     {
-        return $this->prepareBook($this->send($this->buildRequest('GET', '/books/random')));
+        return $this->send($this->buildRequest('GET', '/books/random'));
     }
-	
-	public function getArticles()
-	{
-		return $this->send($this->buildRequest('GET', '/posts'));	
-	}
+
+    /**
+     * @param array $params
+     * @return ResponseInterface
+     */
+    public function getCategories($params = [])
+    {
+        return $this->send($this->buildRequest('GET', '/books/categories', $params));
+    }
+
+    /**
+     * @param array $params
+     * @return ResponseInterface
+     */
+    public function getPosts($params = [])
+    {
+        return $this->send($this->buildRequest('GET', '/posts', $params));
+    }
+
+    /**
+     * @param $id
+     * @param array $params
+     * @return ResponseInterface
+     */
+    public function getPost($id, $params = [])
+    {
+        return $this->send($this->buildRequest('GET', sprintf('/posts/%s', $id), $params));
+    }
 
     /**
      * @param $param
@@ -240,6 +247,11 @@ class ElibraryApiClient extends Client
         return $this->send($request);
     }
 
+    /**
+     * @param $jobId
+     * @param $documentId
+     * @return ResponseInterface
+     */
     public function deletePrintJobDocument($jobId, $documentId)
     {
         $user = $this->getSessionUser();
@@ -258,6 +270,42 @@ class ElibraryApiClient extends Client
     }
 
     /**
+     * @param array $params
+     * @return ResponseInterface
+     */
+    public function getEtestCourses($params = [])
+    {
+        return $this->send($this->buildRequest('GET', '/etest/courses', $params));
+    }
+
+    /**
+     * @param array $params
+     * @return ResponseInterface
+     */
+    public function createEtestSession($params = [])
+    {
+        return $this->send($this->buildRequest('POST', '/etest/sessions', $params));
+    }
+
+    /**
+     * @param $sessionId
+     * @param array $params
+     * @return ResponseInterface
+     */
+    public function getEtestSession($sessionId, $params = [])
+    {
+        return $this->send($this->buildRequest('GET', sprintf('/etest/sessions/%s', $sessionId), $params));
+    }
+
+    public function submitEtestSessionResult($sessionId, $answers, $params = [])
+    {
+        $params = array_merge($params, ['body' => ['answers' => $answers]]);
+
+        return $this->send($this->buildRequest('POST', sprintf('/etest/sessions/%s/result', $sessionId), $params));
+    }
+
+    /**
+     * @return bool|ResponseInterface
      */
     public function invalidateToken()
     {
@@ -356,14 +404,5 @@ class ElibraryApiClient extends Client
         }
 
         return $response['data'];
-    }
-
-    protected function prepareBook($book)
-    {
-        if ($book['preview_image'] == null) {
-            $book['preview_image'] = $this->app['base_url'] . 'assets/img/sample-book-preview.png';
-        }
-
-        return $book;
     }
 }

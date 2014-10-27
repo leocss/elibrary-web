@@ -1,4 +1,4 @@
-{% extends 'layout-sidebar.twig' %}
+{% extends 'layout-main.twig' %}
 
 {% block title %}
     Dashboard | {{ parent() }}
@@ -10,12 +10,12 @@
             <h2>Dashboard</h2>
         </div>
         <div class="container-fluid margin-top-lg">
-            <div class="col-md-9">
+            <div class="col-md-8">
                 {# Start -> Display Random Book #}
                 <div id="random-book" class="media">
                     <div class="pull-left book-image">
                         <img class="media-object"
-                             src="{{ randomBook.preview_image }}"
+                             src="{{ randomBook.preview_image | default(app.default_book_image) }}"
                              alt=""
                              width="205"
                              height="305">
@@ -32,21 +32,72 @@
                         </div>
                         <div class="book-description">
                             <h3>Description</h3>
-
                             <p>
                                 {{ randomBook.overview }}
                             </p>
                         </div>
                         <div class="book-actions clearfix">
+                            <span class="stat-item">
+                                <span class="fa fa-thumbs-up"></span> <small>{{ randomBook.likes_count }} Likes</small>
+                            </span>
+                            <span class="stat-item">
+                                <span class="fa fa-users"></span> <small>{{ randomBook.views_count }} Views</small>
+                            </span>
                             <a href="{{ app.url_generator.generate('books.view', {id: randomBook.id}) }}"
-                               class="btn btn-successno-rounded pull-right">View Book</a>
+                               class="btn btn-library action-item no-rounded pull-right">Read Book &raquo;</a>
                         </div>
                     </div>
                 </div>
                 {# End -> Display Random Book #}
-            </div>
-            <div class="col-md-3">
 
+                {% include 'user/dashboard-most-borrowed.twig' %}
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default panel-recent-articles box no-rounded">
+                    <div class="panel-heading no-rounded">
+                        <h3 class="panel-title">
+                            <span class="fa fa-plus"></span>
+                            Recent Articles
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        {% for article in recentArticles %}
+                            <a href="{{ app.url_generator.generate('articles.view', {id: article.id}) }}" class="media recent-article-item sidebar-list-item">
+                                <img src="{{ article.image_url | default(app.default_article_image) }}" class="media-object pull-left">
+                                <span class="display-block media-body">
+                                    <h5>{{ article.title }}</h5>
+                                    <div class="clearfix"></div>
+                                    <small class="text-center text-inverse muted">
+                                        <i class="fa fa-fw fa-clock-o"></i> {{ article.created_at }}
+                                    </small>
+                                </span>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="panel panel-default panel-recent-articles box no-rounded">
+                    <div class="panel-heading no-rounded">
+                        <h3 class="panel-title">
+                            <span class="fa fa-plus"></span>
+                            Most Liked Books
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        {% for book in likedBooks %}
+                            <a href="{{  app.url_generator.generate('books.view', {id: book.id}) }}" class="media recent-article-item sidebar-list-item">
+                                <img src="{{ book.preview_image_url | default(app.default_book_image) }}" class="media-object pull-left">
+                                <span class="display-block media-body">
+                                    <h5>{{ book.title }}</h5>
+                                    <div class="clearfix"></div>
+                                    <small class="text-center text-inverse muted">
+                                        <i class="fa fa-thumbs-up"></i> {{ book.likes_count }} Like(s)
+                                    </small>
+                                </span>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

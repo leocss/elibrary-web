@@ -1,4 +1,4 @@
-{% extends 'layout-main.twig' %}
+{% extends 'layouts/blank.twig' %}
 
 {% block title %}
     Lock Screen | {{ parent() }}
@@ -6,40 +6,44 @@
 
 {% block content %}
 
-    <div id="user-dashboard">
+    <div id="home">
 
-        {% include 'partials/errors.twig' %}
+        <div class="lock-background">
+            <h1>SICT Library</h1>
+        </div>
 
         <div class="login-form">
-            <div class="login-form-title"><h2>Login To Start Using E-Library Service.</h2></div>
+
+            <div class="login-form-title">
+                <h2>Login Here</h2>
+            </div>
             <form action="{{ app.url_generator.generate('user.main') }}" method="post" class="form-horizontal"
                   role="form">
-                <div class="form-group">
-                    <label for="input-login-id" class="col-sm-2 control-label">Login ID</label>
 
-                    <div class="col-md-5">
-                        <input type="text" name="unique_id" class="form-control" id="inputEmail"
+                {% include 'partials/errors.twig' %}
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="text" name="unique_id" class="form-control no-rounded" id="inputEmail"
                                placeholder="Staff ID or Matric Number">
 
-                        <p>
+                        <p class="text-center text-muted">
                             <small>Note: Use your Matric Number if you are a student, and Staff ID if you are a Staff.
                             </small>
                         </p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword" class="col-sm-2 control-label">Password</label>
-
-                    <div class="col-md-5">
-                        <input type="password" name="password" class="form-control" id="inputPassword"
+                    <div class="col-md-12">
+                        <input type="password" name="password" class="form-control no-rounded" id="inputPassword"
                                placeholder="Password">
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Sign in</button>
-                    </div>
+
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-default no-rounded">Sign in</button>
                 </div>
+
             </form>
         </div>
     </div>
