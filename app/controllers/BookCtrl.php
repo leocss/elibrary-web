@@ -16,33 +16,50 @@ class BookCtrl extends BaseCtrl
      */
     public function index()
     {
-        $categories = $this->client->getCategories(
-            [
-                'query' => [
-                    'include' => 'books',
-                    'books_limit' => 4
-                ]
+        $categories = $this->client->getCategories([
+            'query' => [
+                'include' => 'books',
+                'books_limit' => 4
             ]
-        );
+        ]);
 
-        return $this->view->render(
-            'book/index.twig',
-            [
-                'categories' => $categories
-            ]
-        );
+        return $this->view->render('book/index.twig', [
+            'categories' => $categories
+        ]);
     }
+
+
+    public function template()
+    {
+        $books = $this->client->getBooks();
+        return $this->view->render('book/template.twig', [
+            'books' => $books,
+            'name' => "DICKSON"
+        ]);
+    }
+
+    public function category($id)
+    {
+        $books = $this->client->getBooks([
+            'query' => [
+                'category' => $id,
+                'limit' => 18,
+                'include' => 'category'
+            ]
+        ]);
+
+        return $this->view->render('book/category.twig', [
+            'books' => $books,
+        ]);
+    }
+
 
     public function search()
     {
         $books = $this->client->getBooks();
-
-        return $this->view->render(
-            'book/search.twig',
-            [
+        return $this->view->render('book/search.twig', [
                 'books' => $books,
-            ]
-        );
+            ]);
     }
 
     /**
@@ -55,11 +72,16 @@ class BookCtrl extends BaseCtrl
     {
         $book = $this->client->getBook($id);
 
-        return $this->view->render(
-            'book/view.twig',
-            [
-                'book' => $book
-            ]
-        );
+        return $this->view->render('book/view.twig', [
+            'book' => $book
+        ]);
+    }
+    public function viewer($id)
+    {
+        $book = $this->client->getBook($id);
+
+        return $this->view->render('book/bookview.twig', [
+            'book' => $book
+        ]);
     }
 }

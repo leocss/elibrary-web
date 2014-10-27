@@ -1,19 +1,50 @@
+/**
+ *  Article List
+ */
 
-.article_for_loop
-{
-	margin-bottom: 30px;
+#article-index
 
+/**
+ *  View Article
+ */
+.article-title {
+    color: #333;
+    margin: 0px;
 }
-#article_content_col:hover
-{
-	border: 1px solid #CCC;
+
+.article-meta {
+    list-style: none outside none;
+    padding: 0px;
+    margin: 10px 0px 0px;
 }
-small#article_create_update_date
-{
-	float: right;
-	color: #CCC;
+
+.article-meta li {
+    float: left;
+    padding: 0px 5px;
+    border-right: 1px solid #DDD;
+    line-height: normal;
+    font-size: 11px;
+    margin-bottom: 5px;
 }
-a#article_header_link:hover
-{
-	text-decoration:none;
+
+.article-meta li:first-child {
+    padding-left: 0px;
+}
+
+.article-author-panel {
+    margin: 20px 0px;
+    border-top: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;
+    padding: 20px 0px;
+}
+
+.article-author-panel h4 {
+    text-transform: uppercase;
+    color: #333;
+    margin-bottom: 15px;
+    margin-top: 0px;
+}
+
+.article-author-panel .media {
+    padding: 0px;
 }
