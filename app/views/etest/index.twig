@@ -8,14 +8,8 @@
     <div id="etest-index">
         <div class="page-header">
             <h2>Electronic Test Practice</h2>
-            <section class="layout">
-                <a href="{{ app.url_generator.generate('etest.test')}}">
-
-                <h4> Click below to see available tests</h4></a>
-
-                <a href="{{ app.url_generator.generate('etest.test1', {id: etest_courses.id}) }}">see here</a>
-            </section>
         </div>
+
         <div class="container-fluid">
             <div class="col-md-8">
                 {% for course in courses %}

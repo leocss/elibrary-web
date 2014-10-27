@@ -37,18 +37,6 @@ class ElectronicTestCtrl extends BaseCtrl
      */
     public function session(Request $request, $course_id)
     {
-<<<<<<< HEAD
-
-        // $myTest = [];
-         //$myTest =[];
-        //$myTest = question.quest;
-
-        return $this->view->render('etest/test.twig',[
-           // 'question' => $myTest
-
-        ]);
-
-=======
         $user = $this->client->getSessionUser();
         $sessionName = sprintf('etest.session_%s', $course_id);
 
@@ -119,24 +107,16 @@ class ElectronicTestCtrl extends BaseCtrl
                 'session' => $session
             ]
         );
->>>>>>> 19107be272e34b4bf0b92019e25f47c6130061c3
     }
 
     public function result()
     {
-
-<<<<<<< HEAD
-
         return $this->view->render('etest/result.twig');
-
-=======
->>>>>>> 19107be272e34b4bf0b92019e25f47c6130061c3
     }
 
     public function test1($id)
     {
-<<<<<<< HEAD
-               $etest_courses = $this->client->getEtest_courses($id);
+        $etest_courses = $this->client->getEtest_courses($id);
 
         return $this->view->render(
             'etest/test1.twig',
@@ -144,9 +124,6 @@ class ElectronicTestCtrl extends BaseCtrl
                 'etest_courses' => $etest_courses
             ]
         );
-=======
-
->>>>>>> 19107be272e34b4bf0b92019e25f47c6130061c3
     }
 
     public function summary()

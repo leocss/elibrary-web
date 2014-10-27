@@ -202,16 +202,10 @@ $app->get('/articles/{id}', 'app.controllers.Article:view')->bind('articles.view
 $app->get('/billing', 'app.controllers.Billing:index')->bind('billing.index');
 $app->get('/billing/checkout', 'app.controllers.Billing:checkout')->bind('billing.checkout');
 
-<<<<<<< HEAD
-$app->get('/electronic-test', 'app.controllers.ElectronicTest:index')->bind('etest.index');
+$app->match('/etest', 'app.controllers.ElectronicTest:index')->bind('etest.index')->method('GET|POST');
+$app->match('/etest/session/course-{course_id}', 'app.controllers.ElectronicTest:session')->bind('etest.session')->method('GET|POST');
 $app->get('/electronic-test/test', 'app.controllers.ElectronicTest:test')->bind('etest.test');
 $app->get('/electronic-test/{id}', 'app.controllers.ElectronicTest:test1')->bind('etest.test1');
 $app->get('/electronic-test/result', 'app.controllers.ElectronicTest:result')->bind('etest.result');
-
-
-=======
-$app->match('/etest', 'app.controllers.ElectronicTest:index')->bind('etest.index')->method('GET|POST');
-$app->match('/etest/session/course-{course_id}', 'app.controllers.ElectronicTest:session')->bind('etest.session')->method('GET|POST');
->>>>>>> 19107be272e34b4bf0b92019e25f47c6130061c3
 
 return $app;
