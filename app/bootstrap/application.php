@@ -191,6 +191,7 @@ $app->get('/articles/{id}', 'app.controllers.Article:view')->bind('articles.view
 $app->get('/billing', 'app.controllers.Billing:index')->bind('billing.index');
 $app->get('/billing/checkout', 'app.controllers.Billing:checkout')->bind('billing.checkout');
 
-$app->get('/electronic-test', 'app.controllers.ElectronicTest:index')->bind('etest.index');
+$app->match('/etest', 'app.controllers.ElectronicTest:index')->bind('etest.index')->method('GET|POST');
+$app->match('/etest/session/course-{course_id}', 'app.controllers.ElectronicTest:session')->bind('etest.session')->method('GET|POST');
 
 return $app;
