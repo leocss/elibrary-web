@@ -297,6 +297,13 @@ class ElibraryApiClient extends Client
         return $this->send($this->buildRequest('GET', sprintf('/etest/sessions/%s', $sessionId), $params));
     }
 
+    public function submitEtestSessionResult($sessionId, $answers, $params = [])
+    {
+        $params = array_merge($params, ['body' => ['answers' => $answers]]);
+
+        return $this->send($this->buildRequest('POST', sprintf('/etest/sessions/%s/result', $sessionId), $params));
+    }
+
     /**
      * @return bool|ResponseInterface
      */

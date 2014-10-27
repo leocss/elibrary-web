@@ -12,6 +12,9 @@
             <div class="col-md-8">
                 <form action="" method="post">
                     {% for question in session.questions %}
+
+                        <input type="hidden" name="question[{{ loop.index }}][id]" value="{{ question.id }}"/>
+
                         <div class="course-item panel">
                             <div class="panel-heading">
                                 {{ question.question }}
@@ -19,18 +22,22 @@
                             <div class="panel-body">
                                 {% if question.type == 'multiple_choice' %}
 
-                                    {% for option in question.options_parsed %}
-                                        <input type="radio" name="question[{{ question.id }}][answer]" value="{{ loop.index }}"> {{ option }} <br />
+                                    {% for option in question.options %}
+                                        <input type="radio" name="question[{{ loop.parent.loop.index }}][answer]"
+                                               value="{{ loop.index }}"> {{ option }} <br/>
                                     {% endfor %}
 
                                 {% elseif question.type == 'true_or_false' %}
-                                    {% for option in question.options_parsed %}
-                                        <input type="radio" name="question[{{ question.id }}][answer]" value="{{ loop.index }}"> {{ option }} <br />
+                                    {% for option in question.options %}
+                                        <input type="radio" name="question[{{ loop.parent.loop.index }}]"
+                                               value="{{ loop.index }}"> {{ option }} <br/>
                                     {% endfor %}
                                 {% endif %}
                             </div>
                         </div>
                     {% endfor %}
+
+                    <button class="btn btn-default btn-library">Submit</button>
                 </form>
             </div>
 
