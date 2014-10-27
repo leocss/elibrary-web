@@ -6,6 +6,10 @@ use Elibrary\Lib\Api\ElibraryApiClient;
 use Elibrary\Lib\Exception\ApiException;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+ // $question = require ('../storage/data/exam.json');
+  //$app['question'] = $question;
+//$_POST= post;
+
 
 /**
  * @author Elijah Abolaji <tyabolaji@gmail.com>
@@ -25,7 +29,14 @@ class ElectronicTestCtrl extends BaseCtrl
     public function  test()
     {
 
-        return $this->view->render('etest/test.twig');
+        // $myTest = [];
+         //$myTest =[];
+        //$myTest = question.quest;
+
+        return $this->view->render('etest/test.twig',[
+           // 'question' => $myTest
+
+        ]);
 
     }
 
@@ -34,16 +45,20 @@ class ElectronicTestCtrl extends BaseCtrl
     {
 
 
-
+        return $this->view->render('etest/result.twig');
 
     }
 
-
-    public function resume()
+    public function test1($id)
     {
+               $etest_courses = $this->client->getEtest_courses($id);
 
-
-
+        return $this->view->render(
+            'etest/test1.twig',
+            [
+                'etest_courses' => $etest_courses
+            ]
+        );
     }
 
     public function summary()
