@@ -220,7 +220,7 @@ $app->get('/electronic-test/{id}', 'app.controllers.ElectronicTest:test1')->bind
 $app->get('/electronic-test/result', 'app.controllers.ElectronicTest:result')->bind('etest.result');
 
 // Ajax Stuffs
-$app->get('/ajax/articles/{article_id}/like', 'app.controllers.Ajax:likeArticle');
-$app->get('/ajax/articles/{article_id}/unlike', 'app.controllers.Ajax:unlikeArticle');
+$app->post('/ajax/articles/{article_id}/like', 'app.controllers.Ajax:likeArticle');
+$app->post('/ajax/articles/{article_id}/unlike', 'app.controllers.Ajax:unlikeArticle');
 
 return $app;

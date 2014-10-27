@@ -48,6 +48,11 @@
                                 eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
                                 vel illum qui dolorem eum fugiat quo voluptas nulla pariatur</p>
 
+                            {% if article.context_user_liked == true %}
+                                <a href="#" class="article-unlike-like" data-action="unlike" id="article-unlike-{{ article.id }}">Unlike</a>
+                            {% else %}
+                                <a href="#" class="article-unlike-like" data-action="like" id="article-like-{{ article.id }}">Like</a>
+                            {% endif %}
                         </div>
                     </div> {# Panel #}
 
