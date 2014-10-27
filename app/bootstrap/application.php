@@ -180,29 +180,47 @@ $app['app.controllers.Billing'] = $app->share(
     }
 );
 
+$app['app.controllers.Ajax'] = $app->share(
+    function () use ($app) {
+        return new Controllers\AjaxCtrl($app['app.GlobalCtrlDependencies']);
+    }
+);
+
 // Application Routes
 
+// General
 $app->match('/', 'app.controllers.User:main')->method('GET|POST')->bind('user.main');
 $app->get('/dashboard', 'app.controllers.User:dashboard')->bind('user.dashboard');
 
+// Books
 $app->get('/books', 'app.controllers.Book:index')->bind('books.index');
 $app->get('/books/search', 'app.controllers.Book:search')->bind('books.search');
 $app->get('/books/category/{id}', 'app.controllers.Book:category')->bind('books.category');
 $app->get('/books/{id}', 'app.controllers.Book:view')->bind('books.view');
 $app->get('/books/viewer/{id}', 'app.controllers.Book:viewer')->bind('books.viewer');
 
-
+// Print Jobs
 $app->match('/print-jobs', 'app.controllers.PrintJob:index')->bind('printJobs.index')->method('GET|POST');
 $app->match('/print-jobs/create', 'app.controllers.PrintJob:create')->bind('printJobs.create')->method('GET|POST');
 $app->match('/print-jobs/{id}', 'app.controllers.PrintJob:view')->bind('printJobs.view')->method('GET|POST');
 
+// Article
 $app->get('/articles', 'app.controllers.Article:index')->bind('articles.index');
 $app->get('/articles/{id}', 'app.controllers.Article:view')->bind('articles.view');
 
+// Billing
 $app->get('/billing', 'app.controllers.Billing:index')->bind('billing.index');
 $app->get('/billing/checkout', 'app.controllers.Billing:checkout')->bind('billing.checkout');
 
+// Electronic Test
 $app->match('/etest', 'app.controllers.ElectronicTest:index')->bind('etest.index')->method('GET|POST');
 $app->match('/etest/session/course-{course_id}', 'app.controllers.ElectronicTest:session')->bind('etest.session')->method('GET|POST');
+$app->get('/electronic-test/test', 'app.controllers.ElectronicTest:test')->bind('etest.test');
+$app->get('/electronic-test/{id}', 'app.controllers.ElectronicTest:test1')->bind('etest.test1');
+$app->get('/electronic-test/result', 'app.controllers.ElectronicTest:result')->bind('etest.result');
+
+// Ajax Stuffs
+$app->get('/ajax/articles/{article_id}/like', 'app.controllers.Ajax:likeArticle');
+$app->get('/ajax/articles/{article_id}/unlike', 'app.controllers.Ajax:unlikeArticle');
 
 return $app;
