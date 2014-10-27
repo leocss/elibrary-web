@@ -8,21 +8,21 @@
     <div id="book-index">
         <div class="page-header">
 
-            <h3>Books&raquo;{{ category[0].category.title }}&raquo;</h3>
+            <h3>Books&raquo;{{ books[0].category.title }}&raquo;</h3>
         </div>
         <div class="container-fluid margin-top-lg">
             <div class="row">
                 <div class="col-md-9">
                     <div class="container-fluid margin-top-lg">
                         <div class="row">
-                            {% for cate in category %}
+                            {% for book in books %}
 
                                 <div class="col-md-3">
                                     <div id="book-hold">
                                         <div class="box book-item">
                                             <div class="book-item-preview">
-                                               <a href="{{ app.url_generator.generate('books.view', {id: cate.id}) }}">
-                                                <img src="{{ app.base_url }}assets/img/sample-book-preview.png"
+                                               <a href="{{ app.url_generator.generate('books.view', {id: book.id}) }}">
+                                                <img src="{{ book.preview_image_url | default(app.default_book_image) }}"
                                                      width="180" height="200"/></a>
                                             </div>
                                             <div class="text-center" id="book-att-icons">

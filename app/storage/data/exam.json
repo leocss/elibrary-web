@@ -1,0 +1,81 @@
+$exam = [
+{
+
+
+                exam_name: "TEST",
+                questions: [{
+
+                                    question1: 'What are the two binary numbers?<br><br>',
+                                    answer1:'<input type="radio" name="q1" value="1 and O"> 1 and O<br>',
+                                    answer2:'<input type="radio" name="q1" value="2 and 0"> 2 and O<br>',
+                                    answer3:'<input type="radio" name="q1" value="1 to 9"> 1 to 9 '
+
+                            },
+                            {
+                                    question2: '',
+                                    answers:''
+                            },
+
+
+                            {
+                                    question3: '',
+                                    answers:''
+                            },
+
+
+                            {
+                                    question4: '',
+                                    answers:''
+                            }
+
+
+
+
+
+
+
+
+
+
+        ]
+
+   }
+
+
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

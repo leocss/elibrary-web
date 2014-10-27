@@ -8,7 +8,7 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @author Laju Morrison <morrelinko@gmail.com>
+ * @author Elijah Abolaji <tyabolaji@gmail.com>
  */
 class ElectronicTestCtrl extends BaseCtrl
 {
@@ -20,4 +20,38 @@ class ElectronicTestCtrl extends BaseCtrl
     {
         return $this->view->render('etest/index.twig');
     }
+
+
+    public function  test()
+    {
+
+        return $this->view->render('etest/test.twig');
+
+    }
+
+
+    public function result()
+    {
+
+
+
+
+    }
+
+
+    public function resume()
+    {
+
+
+
+    }
+
+    public function summary()
+    {
+
+
+
+    }
+
+
 }
