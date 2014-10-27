@@ -2,11 +2,9 @@
 .article_for_loop
 {
 	margin-bottom: 30px;
+	background-color: #FFF;
+	padding-top: 10px;
 
-}
-#article_content_col:hover
-{
-	border: 1px solid #CCC;
 }
 small#article_create_update_date
 {
