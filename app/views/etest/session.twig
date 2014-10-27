@@ -1,0 +1,42 @@
+{% extends 'layout-main.twig' %}
+
+{% block title %}
+    E-Exam | {{ parent() }}
+{% endblock %}
+
+{% block content %}
+
+    <div id="etest-session">
+        <div class="container-fluid margin-top-lg">
+
+            <div class="col-md-8">
+                <form action="" method="post">
+                    {% for question in session.questions %}
+                        <div class="course-item panel">
+                            <div class="panel-heading">
+                                {{ question.question }}
+                            </div>
+                            <div class="panel-body">
+                                {% if question.type == 'multiple_choice' %}
+                                <input type="radio" name="question[{{ question.id }}][answer]"> Option 1 <br />
+                                <input type="radio" name="question[{{ question.id }}][answer]"> Option 1 <br />
+                                <input type="radio" name="question[{{ question.id }}][answer]"> Option 1 <br />
+                                <input type="radio" name="question[{{ question.id }}][answer]"> Option 1 <br />
+
+                                {% elseif question.type == 'true_or_false' %}
+
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </form>
+            </div>
+
+            <div class="col-md-4">
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
