@@ -42,6 +42,8 @@ $(function () {
         }
     })
 
+
+    //########################################-book-unlike-like############################################################
     /**
      * Register a click event on the like
      * and unlike buttons in article pages...
@@ -63,12 +65,14 @@ $(function () {
                 type: 'post',
                 dataType: 'json',
                 success: function (res) {
+                    alert("like");
                     $this.find('.glyphicon')
                         .removeClass('glyphicon-thumbs-up')
                         .addClass('glyphicon-thumbs-down');
 
                     $this.attr('id', 'book-unlike-' + id)
                         .attr('data-action', 'unlike');
+
                 }
             });
         } else if (action == 'unlike') {
@@ -77,6 +81,7 @@ $(function () {
                 type: 'post',
                 dataType: 'json',
                 success: function (res) {
+                    alert("unlike");
                     $this.find('.glyphicon')
                         .removeClass('glyphicon-thumbs-down')
                         .addClass('glyphicon-thumbs-up');
@@ -90,5 +95,6 @@ $(function () {
         }
     })
 
+    //########################################-book-unlike-like############################################################
 
 });

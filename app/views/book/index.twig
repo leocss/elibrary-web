@@ -51,58 +51,33 @@
                                                             </a>
 
                                                             <div class="text-center" id="book-icon">
-                    <span class="icon-att">
+                    <span class="icon-att" style="float: left;">
                         <a href="#">
                             <span data-toggle="tooltip" data-placement="top" title="view">
-                                <span class="fa fa-users"></span>
-                            </span>
-                        </a>
-                        <span class="badge">112</span>
-                    </span>
-
-                   <span class="icon-att">
-                        <a href="#" style="padding-right:15px;">
-                             <span data-toggle="tooltip" data-placement="top" title="Click to download book.">
-                                <span class="glyphicon glyphicon-download"></span>
+                                <span class="fa fa-users design"><span class="like_view_count">{{ book.views_count }}</span></span>
                             </span>
                         </a>
                     </span>
 
-                    <span class="icon-att">
-                    <a href="#">
-                        <span data-toggle="tooltip" data-placement="top" title="Click to add book to your favorite">
-                            <span class="glyphicon glyphicon-star"></span>
-                        </span>
-                    </a>
-                   </span>
 
-                   <span class="icon-att">
-                   <a href="#">
-                       <span class="toolt" data-placement="left" data-toggle="tooltip"
-                             title="Click to apply for hardcopy of this book.">
-                            <span class="glyphicon glyphicon-book"></span>
-                       </span>
-                   </a>
-                   </span>
-
-                    <span class="icon-att">
+                    <span class="icon-att" style="float: right;">
 
                     {% if book.context_user_liked %}
                         <a href="javascript:void(0)" id="book-like-{{ book.id }}" class="book-unlike-like"
                            data-action="like">
                         <span data-toggle="tooltip" data-placement="top" title="like">
-                            <span class="glyphicon glyphicon-thumbs-down"></span>
+                            <span class="glyphicon glyphicon-thumbs-down design"><span class="like_view_count">{{ book.likes_count }}</span></span>
                         </span>
                         </a>
                         {% else %}
                         <a href="javascript:void(0)" id="book-unlike-{{ book.id }}" class="book-unlike-like"
                            data-action="unlike">
                         <span data-toggle="tooltip" data-placement="top" title="like">
-                            <span class="glyphicon glyphicon-thumbs-up"></span>
+                            <span class="glyphicon glyphicon-thumbs-up design"><span class="like_view_count">{{ book.likes_count }}</span></span>
                         </span>
                         </a>
                     {% endif %}
-                        <span class="badge"> 12</span>
+
                     </span>
                                                             </div>
                                                         </li>

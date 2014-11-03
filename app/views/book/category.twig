@@ -16,7 +16,7 @@
                         <button class="btn btn-default" type="button">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
-                    </span>7
+                    </span>
                 </div>
                 <!-- /input-group -->
             </div>
@@ -41,32 +41,24 @@
                                                 <img src="{{ book.preview_image_url | default(app.default_book_image) }}"
                                                      width="180" height="200"/></a>
                                             </div>
-                                            <div class="text-center" id="book-att-icons">
-                                                <p>
-                  			<span class="icon-att"><a href="#"><span data-toggle="tooltip"
-                                                                     data-placement="top" title="view">
-                  			<span class="glyphicon glyphicon-eye-open"></span></span></a>
-                            <span class="badge">112</span></span>
-                  			<span class="icon-att"><a href="#">
-                            <span data-toggle="tooltip" data-placement="top" title="Click to download book.">
-                  			<span class="glyphicon glyphicon-download"></span></span></a>
-                           	</span>
-                 			<span class="icon-att"><a href="#"><span data-toggle="tooltip" data-placement="top"
-                                                                     title="Click to add book to your favorite">
-                            <span class="glyphicon glyphicon-star"></span></span></a>
-                           	</span>
-                 			<span class="icon-att"><a href="#" style="padding-right:15px;">
-                           <span class="toolt" data-placement="left" data-toggle="tooltip"
-                                 title="Click to apply for hardcopy of this book.">
-                            <span class="glyphicon glyphicon-book"></span></span></a>
-                           	</span>
-                 			<span class="icon-att"><a href="#"><span data-toggle="tooltip" data-placement="top"
-                                                                     title="like">
-                            <span class="glyphicon glyphicon-thumbs-up"></span></span></a>
-                            <span class="badge"> 12</span></span>
-                                                </p>
+                             <div class="text-center" id="book-att-icons">
+                             <p>
+                  			<span class="icon-att" style="float: left;">
+                            <a href="#">
+                            <span data-toggle="tooltip" data-placement="top" title="view">
+                  			<span class="fa fa-users design"><span class="like_view_count">{{ book.views_count }}</span></span></span>
+                            </a>
+                            </span>
 
-                                            </div>
+                 			<span class="icon-att" style="float: right;">
+                            <a href="#">
+                            <span data-toggle="tooltip" data-placement="top" title="like">
+                            <span class="glyphicon glyphicon-thumbs-up design"><span class="like_view_count">{{ book.likes_count }}</span></span></span>
+                            </a>
+                            </span>
+
+                             </p>
+                             </div>
                                             <div class="clearfix"></div>
 
 
