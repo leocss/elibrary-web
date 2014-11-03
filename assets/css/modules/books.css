@@ -69,7 +69,7 @@ h3{
 .favor a{
     color: #333333;
 }
-.favorite_div{
+.reserved_favorite_div{
     width: 305px;
     height: 20px;
     color: #00f;
@@ -82,6 +82,21 @@ span.like_view_count{
     padding-left: 4px;
     font-family: "RobotoLight", Arial, san-serif;
 }
+#favorite_div{
+    margin-right: auto;
+    margin-left: auto;
+    height: 100px;
+    width: 280px;
+    background-color: #080808;
+}
+#reserved_div{
+    margin-right: auto;
+    margin-left: auto;
+    height: 100px;
+    width: 280px;
+    background-color: #260A07;
+}
+.h
 
 
 
