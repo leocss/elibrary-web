@@ -1,5 +1,4 @@
 {% include 'layouts/header.twig' %}
-
 <div id="wrapper">
     {% block before_header %}{% endblock %}
     <div id="header" class="navbar navbar-default navbar-fixed-top">
@@ -8,7 +7,6 @@
                 <h2>E</h2>
             </a>
         </div>
-
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="{% if is_module('books') %}active{% endif %}">
@@ -30,7 +28,6 @@
         </div>
     </div>
     {% block after_header %}{% endblock %}
-
     {% block before_content %}{% endblock %}
     <div id="main">
         {% block content %} {% endblock %}

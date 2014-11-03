@@ -56,19 +56,27 @@
     padding-right: 6px;
 }
 #header_check{
-    float: right;
+    float:right;
 }
 #header_only{
-    float: left;
+   float:left;
 }
 #header_search{
     padding-top: 10px;
     padding-left: 78px;
 }
+.book_main{
+
+}
 h3{
    padding-top: 7px !important;
    margin-top: 0px !important;
 }
+.reserved a,
+.favor a{
+    color: #333333;
+}
+
 
 
 
