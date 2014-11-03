@@ -3,10 +3,10 @@
 Timer For examination. by Elijah Abolaji
 
 
- */
 
 
-function countDown() {
+
+function countDown(sec) {
     sec--;
     if (sec == -01) {
         sec = 59;
@@ -47,3 +47,4 @@ function addLoadEvent(func) {
 addLoadEvent(function() {
     countDown();
 });
+    */

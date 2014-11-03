@@ -39,6 +39,8 @@ class ElectronicTestCtrl extends BaseCtrl
     {
         $user = $this->client->getSessionUser();
         $sessionName = sprintf('etest.session_%s', $course_id);
+        // to delete existing session to create a new one
+        $this->session->remove($sessionName);
 
         // Check if we have a cached session for this etest session.
         if (!$this->session->has($sessionName)) {
@@ -71,8 +73,10 @@ class ElectronicTestCtrl extends BaseCtrl
             [
                 'query' => [
                     'include' => 'questions'
+
                 ]
             ]
+
         );
 
         // Check if the form is submitted. (ie lookout for a POST request)
@@ -109,7 +113,7 @@ class ElectronicTestCtrl extends BaseCtrl
         );
     }
 
-    public function result()
+    public function result($session_id)
     {
         return $this->view->render('etest/result.twig');
     }
