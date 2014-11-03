@@ -5,17 +5,25 @@
 {% endblock %}
 
 {% block content %}
-    <div id="user-dashboard">
+    <div id="etest-index">
         <div class="page-header">
             <h2>Electronic Test Practice</h2>
-            <section class="layout">
-                <a href="{{ app.url_generator.generate('etest.test')}}">
-
-                <h4> Click below to see available tests</h4></a>
-            </section>
         </div>
+
         <div class="container-fluid">
-            <div class="col-md-12">
+            <div class="col-md-8">
+                {% for course in courses %}
+                <div class="course-item panel">
+                    <h3>
+                        <a href="{{ app.url_generator.generate('etest.session', {course_id: course.id}) }}">
+                            {{ course.name }}
+                        </a>
+                    </h3>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="col-md-4">
 
             </div>
         </div>

@@ -48,16 +48,17 @@ class ElibraryApiClient extends Client
         parent::__construct(['base_url' => $options['endpoint']]);
     }
 
-    public function setApiEndpoint($url)
-    {
-        $this->apiUrl = $url;
-    }
-
+    /**
+     * @param $clientId
+     */
     public function setClientId($clientId)
     {
         $this->clientId = $clientId;
     }
 
+    /**
+     * @param $clientSecret
+     */
     public function setClientSecret($clientSecret)
     {
         $this->clientSecret = $clientSecret;
@@ -147,19 +148,52 @@ class ElibraryApiClient extends Client
         return $this->send($this->buildRequest('GET', '/books/random'));
     }
 
+    /**
+     * @param array $params
+     * @return ResponseInterface
+     */
     public function getCategories($params = [])
     {
         return $this->send($this->buildRequest('GET', '/books/categories', $params));
     }
 
+    /**
+     * @param array $params
+     * @return ResponseInterface
+     */
     public function getPosts($params = [])
     {
         return $this->send($this->buildRequest('GET', '/posts', $params));
     }
 
+    /**
+     * @param $id
+     * @param array $params
+     * @return ResponseInterface
+     */
     public function getPost($id, $params = [])
     {
         return $this->send($this->buildRequest('GET', sprintf('/posts/%s', $id), $params));
+    }
+
+    /**
+     * @param $id
+     * @param array $params
+     * @return ResponseInterface
+     */
+    public function likePost($id, $params = [])
+    {
+        return $this->send($this->buildRequest('POST', sprintf('/posts/%s/like', $id), $params));
+    }
+
+    /**
+     * @param $id
+     * @param array $params
+     * @return ResponseInterface
+     */
+    public function unlikePost($id, $params = [])
+    {
+        return $this->send($this->buildRequest('DELETE', sprintf('/posts/%s/like', $id), $params));
     }
 
     /**
@@ -233,6 +267,11 @@ class ElibraryApiClient extends Client
         return $this->send($request);
     }
 
+    /**
+     * @param $jobId
+     * @param $documentId
+     * @return ResponseInterface
+     */
     public function deletePrintJobDocument($jobId, $documentId)
     {
         $user = $this->getSessionUser();
@@ -251,6 +290,42 @@ class ElibraryApiClient extends Client
     }
 
     /**
+     * @param array $params
+     * @return ResponseInterface
+     */
+    public function getEtestCourses($params = [])
+    {
+        return $this->send($this->buildRequest('GET', '/etest/courses', $params));
+    }
+
+    /**
+     * @param array $params
+     * @return ResponseInterface
+     */
+    public function createEtestSession($params = [])
+    {
+        return $this->send($this->buildRequest('POST', '/etest/sessions', $params));
+    }
+
+    /**
+     * @param $sessionId
+     * @param array $params
+     * @return ResponseInterface
+     */
+    public function getEtestSession($sessionId, $params = [])
+    {
+        return $this->send($this->buildRequest('GET', sprintf('/etest/sessions/%s', $sessionId), $params));
+    }
+
+    public function submitEtestSessionResult($sessionId, $answers, $params = [])
+    {
+        $params = array_merge($params, ['body' => ['answers' => $answers]]);
+
+        return $this->send($this->buildRequest('POST', sprintf('/etest/sessions/%s/result', $sessionId), $params));
+    }
+
+    /**
+     * @return bool|ResponseInterface
      */
     public function invalidateToken()
     {

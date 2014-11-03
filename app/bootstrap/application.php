@@ -76,9 +76,11 @@ $app->error(
  */
 $app['app.lib.ElibraryApiClient'] = $app->share(
     function () use ($app) {
-        $client = new \Elibrary\Lib\Api\ElibraryApiClient($app, $app['session'], [
-            'endpoint' => 'http://127.0.0.1:4000'
-        ]);
+        $client = new \Elibrary\Lib\Api\ElibraryApiClient(
+            $app, $app['session'], [
+                'endpoint' => 'http://127.0.0.1:4000'
+            ]
+        );
         $client->setClientId($app['app.lib.api.elibrary_client_id']);
         $client->setClientSecret($app['app.lib.api.elibrary_client_secret']);
 
@@ -99,21 +101,30 @@ $app['app.GlobalCtrlDependencies'] = $app->share(
 /**
  * Register Handlers
  */
+
 $app->before(
     function (Request $request) use ($app) {
         $app['base_url'] = $request->getUriForPath('/');
 
         $app['url_segments'] = array_filter(explode('/', trim($request->getPathInfo(), '/ ')));
 
+        $app['twig']->addFunction(
+            new Twig_SimpleFunction(
+                'is_module', function ($name) use ($app) {
+                    return (isset($app['url_segments'][0]) && $app['url_segments'][0] == $name);
+                }
+            )
+        );
+    },
+    Silex\Application::LATE_EVENT
+);
+
+$app->before(
+    function (Request $request) use ($app) {
+
         // Register a global 'errors' variable that will be available in all
         // views of this library application...
         $app['twig']->addGlobal('errors', $app['session']->getFlashBag()->get('errors'));
-
-        $app['twig']->addFunction(
-            new Twig_SimpleFunction('is_module', function ($name) use ($app) {
-                return (isset($app['url_segments'][0]) && $app['url_segments'][0] == $name);
-            })
-        );
 
         $elibraryClient = $app['app.lib.ElibraryApiClient'];
         // Ensure that the user is logged in...
@@ -125,6 +136,7 @@ $app->before(
 
         $app['default_article_image'] = $app['base_url'] . 'assets/img/sample-book-preview.png';
         $app['default_book_image'] = $app['base_url'] . 'assets/img/sample-book-preview.png';
+        $app['default_user_image'] = $app['base_url'] . 'assets/img/user/default-user-image.png';
     },
     Silex\Application::LATE_EVENT
 );
@@ -168,31 +180,47 @@ $app['app.controllers.Billing'] = $app->share(
     }
 );
 
+$app['app.controllers.Ajax'] = $app->share(
+    function () use ($app) {
+        return new Controllers\AjaxCtrl($app['app.GlobalCtrlDependencies']);
+    }
+);
+
 // Application Routes
 
+// General
 $app->match('/', 'app.controllers.User:main')->method('GET|POST')->bind('user.main');
 $app->get('/dashboard', 'app.controllers.User:dashboard')->bind('user.dashboard');
 
+// Books
 $app->get('/books', 'app.controllers.Book:index')->bind('books.index');
 $app->get('/books/search', 'app.controllers.Book:search')->bind('books.search');
 $app->get('/books/category/{id}', 'app.controllers.Book:category')->bind('books.category');
 $app->get('/books/{id}', 'app.controllers.Book:view')->bind('books.view');
 $app->get('/books/viewer/{id}', 'app.controllers.Book:viewer')->bind('books.viewer');
 
-
+// Print Jobs
 $app->match('/print-jobs', 'app.controllers.PrintJob:index')->bind('printJobs.index')->method('GET|POST');
 $app->match('/print-jobs/create', 'app.controllers.PrintJob:create')->bind('printJobs.create')->method('GET|POST');
 $app->match('/print-jobs/{id}', 'app.controllers.PrintJob:view')->bind('printJobs.view')->method('GET|POST');
 
+// Article
 $app->get('/articles', 'app.controllers.Article:index')->bind('articles.index');
 $app->get('/articles/{id}', 'app.controllers.Article:view')->bind('articles.view');
 
+// Billing
 $app->get('/billing', 'app.controllers.Billing:index')->bind('billing.index');
 $app->get('/billing/checkout', 'app.controllers.Billing:checkout')->bind('billing.checkout');
 
-$app->get('/electronic-test', 'app.controllers.ElectronicTest:index')->bind('etest.index');
+// Electronic Test
+$app->match('/etest', 'app.controllers.ElectronicTest:index')->bind('etest.index')->method('GET|POST');
+$app->match('/etest/session/course-{course_id}', 'app.controllers.ElectronicTest:session')->bind('etest.session')->method('GET|POST');
 $app->get('/electronic-test/test', 'app.controllers.ElectronicTest:test')->bind('etest.test');
+$app->get('/electronic-test/{id}', 'app.controllers.ElectronicTest:test1')->bind('etest.test1');
+$app->get('/electronic-test/result', 'app.controllers.ElectronicTest:result')->bind('etest.result');
 
-
+// Ajax Stuffs
+$app->post('/ajax/articles/{article_id}/like', 'app.controllers.Ajax:likeArticle');
+$app->post('/ajax/articles/{article_id}/unlike', 'app.controllers.Ajax:unlikeArticle');
 
 return $app;

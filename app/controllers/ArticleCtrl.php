@@ -37,7 +37,8 @@ class ArticleCtrl extends BaseCtrl
         return $this->view->render(
             'article/view.twig',
             [
-                'article' => $article
+                'article' => $article,
+                'likedBooks' => $this->client->getBooks(['query' => ['stat' => '5_most_liked']])
             ]
         );
     }
