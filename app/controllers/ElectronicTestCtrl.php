@@ -7,6 +7,7 @@ use Elibrary\Lib\Exception\ApiException;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
+
 /**
  * @author Laju Morrison <morrelinko@gmail.com>
  * @author Elijah Abolaji <tyabolaji@gmail.com>
@@ -110,13 +111,19 @@ class ElectronicTestCtrl extends BaseCtrl
 
     public function result()
     {
-
+        return $this->view->render('etest/result.twig');
     }
 
-
-    public function resume()
+    public function test1($id)
     {
+        $etest_courses = $this->client->getEtest_courses($id);
 
+        return $this->view->render(
+            'etest/test1.twig',
+            [
+                'etest_courses' => $etest_courses
+            ]
+        );
     }
 
     public function summary()

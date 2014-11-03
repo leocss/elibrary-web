@@ -9,5 +9,11 @@
     <link href="{{ app.base_url }}assets/css/application.css" rel="stylesheet" type="text/css"/>
     <link href="{{ app.base_url }}assets/css/vscroll/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css"/>
     <link href="{{ app.base_url }}assets/css/vscroller.css" rel="stylesheet" type="text/css"/>
+
+    <script type="text/javascript">
+        var app = {
+            base_url: '{{ app.base_url }}'
+        };
+    </script>
 </head>
 <body class="{% block body_class %}{% endblock %}">

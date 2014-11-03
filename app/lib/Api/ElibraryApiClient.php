@@ -177,6 +177,26 @@ class ElibraryApiClient extends Client
     }
 
     /**
+     * @param $id
+     * @param array $params
+     * @return ResponseInterface
+     */
+    public function likePost($id, $params = [])
+    {
+        return $this->send($this->buildRequest('POST', sprintf('/posts/%s/like', $id), $params));
+    }
+
+    /**
+     * @param $id
+     * @param array $params
+     * @return ResponseInterface
+     */
+    public function unlikePost($id, $params = [])
+    {
+        return $this->send($this->buildRequest('DELETE', sprintf('/posts/%s/like', $id), $params));
+    }
+
+    /**
      * @param $param
      *  - user_id: ID of user creating the print job
      *  - name: Job name

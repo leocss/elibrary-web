@@ -17,7 +17,8 @@
 
 
                             <div class="article-img">
-                                <img src="{{ article.image_url | default(app.default_article_image) }}" class="img-responsive" alt="">
+                                <img src="{{ article.image_url | default(app.default_article_image) }}"
+                                     class="img-responsive" alt="">
                             </div>
 
                             <div class="article-meta">
@@ -53,6 +54,11 @@
                                 eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
                                 vel illum qui dolorem eum fugiat quo voluptas nulla pariatur</p>
 
+                            {% if article.context_user_liked == true %}
+                                <a href="#" class="article-unlike-like" data-action="unlike" id="article-unlike-{{ article.id }}">Unlike</a>
+                            {% else %}
+                                <a href="#" class="article-unlike-like" data-action="like" id="article-like-{{ article.id }}">Like</a>
+                            {% endif %}
                         </div>
                     </div> {# Panel #}
 
