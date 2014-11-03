@@ -168,9 +168,16 @@ $app['app.controllers.ElectronicTest'] = $app->share(
     }
 );
 
+$app['app.controllers.Billing'] = $app->share(
+    function () use ($app) {
+        return new Controllers\BillingCtrl($app['app.GlobalCtrlDependencies']);
+    }
+);
+
 $app['app.controllers.Article'] = $app->share(
     function () use ($app) {
         return new Controllers\ArticleCtrl($app['app.GlobalCtrlDependencies']);
+
     }
 );
 
@@ -211,6 +218,9 @@ $app->get('/articles/{id}', 'app.controllers.Article:view')->bind('articles.view
 // Billing
 $app->get('/billing', 'app.controllers.Billing:index')->bind('billing.index');
 $app->get('/billing/checkout', 'app.controllers.Billing:checkout')->bind('billing.checkout');
+$app->get('/billing/checkout/transactions', 'app.controllers.Billing:checkout')->bind('billing.checkout');
+$app->get('/billing/checkout/fund', 'app.controllers.Billing:checkout')->bind('billing.checkout');
+$app->get('/billing/checkout/pay', 'app.controllers.Billing:checkout')->bind('billing.checkout');
 
 // Electronic Test
 $app->match('/etest', 'app.controllers.ElectronicTest:index')->bind('etest.index')->method('GET|POST');

@@ -6,12 +6,28 @@
 
 {% block content %}
     <div id="book-index">
-        <div class="page-header">
 
-            <h3>Books&raquo;{{ books[0].category.title }}&raquo;</h3>
+
+        <div id="header_search">
+            <div class="col-md-4" style=" margin-right: 5px;" id="header_check">
+                <div class="input-group">
+                    <input type="text" placeholder="Looking for a book, what book? " class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>7
+                </div>
+                <!-- /input-group -->
+            </div>
+            <div id="header_only"><h3>Books&raquo;{{ books[0].category.title }}</h3></div>
         </div>
+
+
+        <div class="clearfix"></div>
+
         <div class="container-fluid margin-top-lg">
-            <div class="row">
+            <div class="row book_main">
                 <div class="col-md-9">
                     <div class="container-fluid margin-top-lg">
                         <div class="row">
