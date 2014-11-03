@@ -309,6 +309,30 @@ class ElibraryApiClient extends Client
         );
     }
 
+    public function getPaymentTransactions()
+    {
+        $user = $this->getSessionUser();
+
+        $request = $this->buildRequest('GET', sprintf('users/%s/transactions', $user['id']));
+
+        return $this->send($request);
+    }
+
+    public function getPaymentTransaction($transId)
+    {
+
+    }
+
+    public function fundAccount($amount)
+    {
+        $user = $this->getSessionUser();
+
+        $request = $this->buildRequest('POST', sprintf('users/%s/fund', $user['id']));
+        $request->getBody()->setField('amount', $amount);
+
+        return $this->send($request);
+    }
+
     /**
      * @param array $params
      * @return ResponseInterface
@@ -362,7 +386,8 @@ class ElibraryApiClient extends Client
     /**
      * @return null|string
      */
-    public function getAccessToken()
+    public
+    function getAccessToken()
     {
         if (($accessTokenData = $this->session->get('api.token')) != null) {
             return $accessTokenData['access_token'];
@@ -371,7 +396,8 @@ class ElibraryApiClient extends Client
         return null;
     }
 
-    public function clearSessionUser()
+    public
+    function clearSessionUser()
     {
         if (($response = $this->invalidateToken()) && ((bool)$response['invalidated'])) {
             $this->session->remove('api.token');
@@ -379,7 +405,8 @@ class ElibraryApiClient extends Client
         }
     }
 
-    public function getSessionUser()
+    public
+    function getSessionUser()
     {
         if ($this->session->has('api.user')) {
             return $this->session->get('api.user');
@@ -394,7 +421,8 @@ class ElibraryApiClient extends Client
      * @param $opts
      * @return \GuzzleHttp\Message\RequestInterface
      */
-    protected function buildRequest($method, $endpoint, $opts = [])
+    protected
+    function buildRequest($method, $endpoint, $opts = [])
     {
         $request = $this->createRequest($method, $endpoint, $opts);
 
@@ -417,7 +445,8 @@ class ElibraryApiClient extends Client
      * @throws \Elibrary\Lib\Exception\ApiException
      * @returns ResponseInterface
      */
-    public function send(RequestInterface $request)
+    public
+    function send(RequestInterface $request)
     {
         try {
             $response = parent::send($request)->json();

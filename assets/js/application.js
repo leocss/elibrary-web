@@ -95,6 +95,22 @@ $(function () {
         }
     })
 
+<<<<<<< HEAD
     //########################################-book-unlike-like############################################################
+=======
+      return false;
+    }
+  });
+
+
+    $("#question-form").children('div').steps({
+        headerTag: "h3",
+        bodyTag: "section",
+        transitionEffect: "slideLeft",
+        autoFocus: true
+    });
+
+
+>>>>>>> b7e3d8aa957d6401129f87622e639e763d1c0c8e
 
 });

@@ -168,9 +168,16 @@ $app['app.controllers.ElectronicTest'] = $app->share(
     }
 );
 
+$app['app.controllers.Billing'] = $app->share(
+    function () use ($app) {
+        return new Controllers\BillingCtrl($app['app.GlobalCtrlDependencies']);
+    }
+);
+
 $app['app.controllers.Article'] = $app->share(
     function () use ($app) {
         return new Controllers\ArticleCtrl($app['app.GlobalCtrlDependencies']);
+
     }
 );
 
@@ -211,13 +218,16 @@ $app->get('/articles/{id}', 'app.controllers.Article:view')->bind('articles.view
 // Billing
 $app->get('/billing', 'app.controllers.Billing:index')->bind('billing.index');
 $app->get('/billing/checkout', 'app.controllers.Billing:checkout')->bind('billing.checkout');
+$app->get('/billing/checkout/transactions', 'app.controllers.Billing:checkout')->bind('billing.checkout');
+$app->get('/billing/checkout/fund', 'app.controllers.Billing:checkout')->bind('billing.checkout');
+$app->get('/billing/checkout/pay', 'app.controllers.Billing:checkout')->bind('billing.checkout');
 
 // Electronic Test
 $app->match('/etest', 'app.controllers.ElectronicTest:index')->bind('etest.index')->method('GET|POST');
 $app->match('/etest/session/course-{course_id}', 'app.controllers.ElectronicTest:session')->bind('etest.session')->method('GET|POST');
-$app->get('/electronic-test/test', 'app.controllers.ElectronicTest:test')->bind('etest.test');
-$app->get('/electronic-test/{id}', 'app.controllers.ElectronicTest:test1')->bind('etest.test1');
-$app->get('/electronic-test/result', 'app.controllers.ElectronicTest:result')->bind('etest.result');
+$app->get('/etest/test', 'app.controllers.ElectronicTest:test')->bind('etest.test');
+$app->get('/etest/{id}', 'app.controllers.ElectronicTest:test1')->bind('etest.test1');
+$app->get('/etest/result/{session_id}', 'app.controllers.ElectronicTest:result')->bind('etest.result');
 
 // Ajax Stuffs
 $app->post('/ajax/articles/{article_id}/like', 'app.controllers.Ajax:likeArticle');

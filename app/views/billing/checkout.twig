@@ -7,11 +7,45 @@
 {% block content %}
     <div id="user-dashboard">
         <div class="page-header">
-            <h2>Billing <small class="text-muted">/ Checkout</small></h2>
+            <h2>Billing
+                <small class="text-muted">/ Checkout</small>
+            </h2>
         </div>
         <div class="container-fluid">
             <div class="col-md-12">
-
+                <div class="col-md-8">
+                    <table class="table">
+                        <thead>
+                        <th>S/N</th>
+                        <th>Transaction ID</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                        <th>Date</th>
+                        </thead>
+                        <tbody>
+                        {% for transaction in transactions %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ transaction.transaction_id }}</td>
+                                <td>{{ transaction.description }}</td>
+                                <td>#{{ transaction.amount }}</td>
+                                <td>{{ transaction.status }}</td>
+                                {% if(transaction.status) == 'success' %}
+                                    <td class="btn btn-success">Paid</td>
+                                {% else %}
+                                    <td class="btn btn-danger">Click to pay</td>
+                                {% endif %}
+                                <td>{{ transaction.created_at }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4">
+                    {% include 'partials/billing-sidebar.twig' %}
+                </div>
             </div>
         </div>
     </div>
