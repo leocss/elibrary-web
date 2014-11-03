@@ -59,13 +59,14 @@ $(function () {
         .replace('book-like-', '')
         .replace('book-unlike-', '');
 
+    console.log(action);
+
     if (action == 'like') {
       $.ajax({
         url: app.base_url + 'ajax/books/' + id + '/like',
         type: 'post',
         dataType: 'json',
         success: function (res) {
-          alert("like");
           $this.find('.glyphicon')
             .removeClass('glyphicon-thumbs-up')
             .addClass('glyphicon-thumbs-down');
@@ -81,7 +82,6 @@ $(function () {
         type: 'post',
         dataType: 'json',
         success: function (res) {
-          alert("unlike");
           $this.find('.glyphicon')
             .removeClass('glyphicon-thumbs-down')
             .addClass('glyphicon-thumbs-up');
