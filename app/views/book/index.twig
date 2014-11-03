@@ -8,7 +8,6 @@
     <div id="book-index">
 
         <div id="header_search">
-
             <div class="col-md-4"  style="padding-right: 15px;" id="header_check">
                 <div class="input-group">
                     <input type="text" placeholder="Looking for a book, what book? " class="form-control">
@@ -39,56 +38,61 @@
                                                 >see more</a>
                                     </div>
 
-                                    <div class="demo">
-                                        <div class="example" id="{{ 'categories_'~ category.id }}">
-                                            <div>
-                                                <ul>
-                                                    {% for book in category.books %}
-                                                        <li>
-                                                            <a href="{{ app.url_generator.generate('books.view', {id: book.id}) }}">
-                                                                <img src="{{ app.default_book_image }}"
-                                                                     width="183" height="190">
-                                                            </a>
+              <div class="demo">
+                    <div class="example" id="{{ 'categories_'~ category.id }}">
+                        <div>
+                            <ul>
+                                {% for book in category.books %}
+                                    <li>
+                                        <a href="{{ app.url_generator.generate('books.view', {id: book.id}) }}">
+                                            <img src="{{ app.default_book_image }}"
+                                                 width="183" height="190">
+                                        </a>
+                <div class="text-center" id="book-icon">
+                    <span class="icon-att">
+                        <a href="#">
+                            <span data-toggle="tooltip" data-placement="top" title="view">
+                                <span class="fa fa-users"></span>
+                            </span>
+                        </a>
+                        <span class="badge">112</span>
+                    </span>
 
-                                                            <div class="text-center" id="book-icon">
-                                                                <span class="icon-att">
-                                                                    <a href="#">
-                                                                        <span data-toggle="tooltip" data-placement="top"
-                                                                              title="view">
-                                                                            <span class="fa fa-users"></span>
-                                                                        </span>
-                                                                    </a>
-                                                                    <span class="badge">112</span>
-                                                                </span>
-                                                                <span class="icon-att">
-                                                                    <a href="#">
-                                                                        <span data-toggle="tooltip" data-placement="top"
-                                                                              title="Click to download book.">
-                                                                <span class="glyphicon glyphicon-download"></span></span></a>
-                                                                </span>
-                                                                <span class="icon-att"><a href="#"><span
-                                                                                data-toggle="tooltip"
-                                                                                data-placement="top"
-                                                                                title="Click to add book to your favorite">
-                                                                <span class="glyphicon glyphicon-star"></span></span></a>
-                                                                </span>
-                                                                <span class="icon-att"><a href="#"
-                                                                                          style="padding-right:15px;">
-                                                               <span class="toolt" data-placement="left"
-                                                                     data-toggle="tooltip"
-                                                                     title="Click to apply for hardcopy of this book.">
-                                                                <span class="glyphicon glyphicon-book"></span></span></a>
-                                                                </span>
-                                                                <span class="icon-att"><a href="#"><span
-                                                                                data-toggle="tooltip"
-                                                                                data-placement="top"
-                                                                                title="like">
-                                                                <span class="glyphicon glyphicon-thumbs-up"></span></span></a>
-                                                                <span class="badge"> 12</span></span>
-                                                            </div>
-                                                        </li>
+                   <span class="icon-att">
+                        <a href="#" style="padding-right:15px;">
+                             <span data-toggle="tooltip" data-placement="top" title="Click to download book.">
+                                <span class="glyphicon glyphicon-download"></span>
+                            </span>
+                        </a>
+                    </span>
 
-                                                    {% endfor %}
+                    <span class="icon-att">
+                    <a href="#">
+                        <span data-toggle="tooltip" data-placement="top" title="Click to add book to your favorite">
+                            <span class="glyphicon glyphicon-star"></span>
+                        </span>
+                    </a>
+                   </span>
+
+                   <span class="icon-att">
+                   <a href="#" style="padding-right:15px;">
+                       <span class="tooltip" data-placement="left" data-toggle="tooltip" title="Click to apply for hardcopy of this book.">
+                            <span class="glyphicon glyphicon-book"></span>
+                       </span>
+                   </a>
+                   </span>
+
+                    <span class="icon-att">
+                    <a href="javascript:void(0)" id="book-like-{{ book.id }}" class="book-unlike-like" data-action="unlike">
+                        <span data-toggle="tooltip" data-placement="top" title="like">
+                            <span class="glyphicon glyphicon-thumbs-up"></span>
+                        </span>
+                    </a>
+                    <span class="badge"> 12</span>
+                    </span>
+                                                        </div>
+                                                    </li>
+                                               {% endfor %}
                                                 </ul>
                                             </div>
                                         </div>

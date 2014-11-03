@@ -149,6 +149,26 @@ class ElibraryApiClient extends Client
     }
 
     /**
+     * @param $id
+     * @param array $params
+     * @return ResponseInterface
+     */
+    public function likeBook($id, $params = [])
+    {
+        return $this->send($this->buildRequest('POST', sprintf('/books/%s/like', $id), $params));
+    }
+
+    /**
+     * @param $id
+     * @param array $params
+     * @return ResponseInterface
+     */
+    public function unlikeBook($id, $params = [])
+    {
+        return $this->send($this->buildRequest('DELETE', sprintf('/books/%s/like', $id), $params));
+    }
+
+    /**
      * @param array $params
      * @return ResponseInterface
      */
