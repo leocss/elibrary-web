@@ -23,6 +23,8 @@ class BookCtrl extends BaseCtrl
             ]
         ]);
 
+        //print_r($categories);exit;
+
         return $this->view->render('book/index.twig', [
             'categories' => $categories
         ]);
