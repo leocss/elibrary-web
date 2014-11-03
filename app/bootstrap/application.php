@@ -232,6 +232,7 @@ $app->get('/etest/result/{session_id}', 'app.controllers.ElectronicTest:result')
 // Ajax Stuffs
 $app->post('/ajax/articles/{article_id}/like', 'app.controllers.Ajax:likeArticle');
 $app->post('/ajax/articles/{article_id}/unlike', 'app.controllers.Ajax:unlikeArticle');
+$app->post('/ajax/books/{book_id}/like', 'app.controllers.Ajax:likeBook');
 $app->post('/ajax/books/{book_id}/unlike', 'app.controllers.Ajax:unlikeBook');
 
 return $app;

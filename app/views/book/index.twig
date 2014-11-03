@@ -54,7 +54,8 @@
                     <span class="icon-att" style="float: left;">
                         <a href="#">
                             <span data-toggle="tooltip" data-placement="top" title="view">
-                                <span class="fa fa-users design"><span class="like_view_count">{{ book.views_count }}</span></span>
+                                <span class="fa fa-users design"><span
+                                            class="like_view_count">{{ book.views_count }}</span></span>
                             </span>
                         </a>
                     </span>
@@ -62,19 +63,26 @@
 
                     <span class="icon-att" style="float: right;">
 
-                    {% if book.context_user_liked %}
-                        <a href="javascript:void(0)" id="book-like-{{ book.id }}" class="book-unlike-like"
-                           data-action="like">
-                        <span data-toggle="tooltip" data-placement="top" title="like">
-                            <span class="glyphicon glyphicon-thumbs-down design"><span class="like_view_count">{{ book.likes_count }}</span></span>
+                    {% if book.context_user_liked == 1 %}
+                        <a href="javascript:void(0)"
+                           id="book-unlike-{{ book.id }}"
+                           class="book-unlike-like"
+                           data-action="unlike">
+                        <span data-toggle="tooltip" data-placement="top" title="Unlike">
+                            <span class="glyphicon glyphicon-thumbs-down design"><span
+                                        class="like_view_count">{{ book.likes_count }}</span></span>
                         </span>
                         </a>
                         {% else %}
-                        <a href="javascript:void(0)" id="book-unlike-{{ book.id }}" class="book-unlike-like"
-                           data-action="unlike">
-                        <span data-toggle="tooltip" data-placement="top" title="like">
-                            <span class="glyphicon glyphicon-thumbs-up design"><span class="like_view_count">{{ book.likes_count }}</span></span>
-                        </span>
+                        <a href="javascript:void(0)"
+                           id="book-like-{{ book.id }}"
+                           class="book-unlike-like"
+                           data-action="like">
+                            <span data-toggle="tooltip" data-placement="top" title="like">
+                                <span class="glyphicon glyphicon-thumbs-up design">
+                                    <span class="like_view_count">{{ book.likes_count }}</span>
+                                </span>
+                            </span>
                         </a>
                     {% endif %}
 
