@@ -30,6 +30,10 @@ class BillingCtrl extends BaseCtrl
      */
     public function checkout()
     {
-        return $this->view->render('billing/checkout.twig');
+        $transactions = $this->client->getPaymentTransactions();
+
+        return $this->view->render('billing/checkout.twig', [
+            'transactions' => $transactions
+        ]);
     }
 }

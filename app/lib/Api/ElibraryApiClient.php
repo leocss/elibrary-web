@@ -252,46 +252,31 @@ class ElibraryApiClient extends Client
 
     public function getPaymentTransactions()
     {
-        $transaction[] = [
-            'description' => [
-                'payed for printing',
-                'fund your account',
-                'payed for book borrowed'
-            ]
-        ];
-        $transaction[] = ['amount' =>
-            [
-                '300', '750', '75'
-            ]
-        ];
-        $transaction[] = ['invoice' =>
-            [
-                '1254789JI', '5563589GT', '5963713UY'
-            ]
-        ];
-        for ($i = 1; $i <= 10; $i++) {
-            $transactions[] = $transaction;
-        }
+        $user = $this->getSessionUser();
 
-        return $transactions;
+        $request = $this->buildRequest('GET', sprintf('users/%s/transactions', $user['id']));
+
+        return $this->send($request);
     }
 
-    public
-    function getPaymentTransaction($transId)
+    public function getPaymentTransaction($transId)
     {
 
     }
 
-    public
-    function fundAccount()
+    public function fundAccount($amount)
     {
+        $user = $this->getSessionUser();
 
+        $request = $this->buildRequest('POST', sprintf('users/%s/fund', $user['id']));
+        $request->getBody()->setField('amount', $amount);
+
+        return $this->send($request);
     }
 
     /**
      */
-    public
-    function invalidateToken()
+    public function invalidateToken()
     {
         $accessToken = $this->getAccessToken();
         if ($accessToken == null) {

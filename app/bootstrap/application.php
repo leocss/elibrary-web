@@ -196,6 +196,9 @@ $app->get('/articles/{id}', 'app.controllers.Article:view')->bind('articles.view
 
 $app->get('/billing', 'app.controllers.Billing:index')->bind('billing.index');
 $app->get('/billing/checkout', 'app.controllers.Billing:checkout')->bind('billing.checkout');
+$app->get('/billing/checkout/transactions', 'app.controllers.Billing:checkout')->bind('billing.checkout');
+$app->get('/billing/checkout/fund', 'app.controllers.Billing:checkout')->bind('billing.checkout');
+$app->get('/billing/checkout/pay', 'app.controllers.Billing:checkout')->bind('billing.checkout');
 
 $app->get('/electronic-test', 'app.controllers.ElectronicTest:index')->bind('etest.index');
 

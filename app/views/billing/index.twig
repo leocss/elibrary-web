@@ -7,67 +7,47 @@
 {% block content %}
     <div id="user-dashboard">
         <div class="page-header">
-            <h2>Student Bill</h2>
+            <h2>Student Bill
+                <a href="{{ app.url_generator.generate('billing.checkout') }}" class="btn btn-primary">
+                    Manage your bill
+                </a>
+            </h2>
         </div>
         <div class="container-fluid">
             <div class="col-md-12">
                 <div class="col-md-8">
-                    <table class="table table-bordered table-responsive">
+                    <table class="table">
                         <thead>
-                            <th>Description</th>
-                            <th>Amount</th>
-                            <th>Invoice id</th>
-                            <th>Date</th>
+                        <th>S/N</th>
+                        <th>Transaction ID</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                        <th>Date</th>
                         </thead>
                         <tbody>
-                            {{ for transaction in transactions }}
-                                <tr>
-                                    <td>{{ transaction }}</td>
-                                </tr>
-                            {{ endfor }}
+                        {% for transaction in transactions %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ transaction.transaction_id }}</td>
+                                <td>{{ transaction.description }}</td>
+                                <td>#{{ transaction.amount }}</td>
+                                <td>{{ transaction.status }}</td>
+                                {% if(transaction.status) == 'success' %}
+                                    <td class="btn btn-success">Paid</td>
+                                {% else %}
+                                    <td class="btn btn-danger">Click to pay</td>
+                                {% endif %}
+                                <td>{{ transaction.created_at }}</td>
+                            </tr>
+                        {% endfor %}
                         </tbody>
+                    </table>
                     </table>
                 </div>
                 <div class="col-md-4">
-                    <div class="panel panel-default box no-rounded">
-                        <div class="panel-heading no-rounded">
-                            <h3 class="panel-title">
-                                <span class="fa fa-plus"></span>
-                                Total amount has
-                            </h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <h3>#750</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default box no-rounded">
-                        <div class="panel-heading no-rounded">
-                            <h3 class="panel-title">
-                                <span class="fa fa-minus"></span>
-                                Total amount currently owned
-                            </h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <h3>#375</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default box no-rounded">
-                        <div class="panel-heading no-rounded">
-                            <h3 class="panel-title">
-                                <span class="fa fa-plus"></span>
-                                Total amount ever paid
-                            </h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <h3>#2700</h3>
-                            </div>
-                        </div>
-                    </div>
+                    {% include 'partials/billing-sidebar.twig' %}
                 </div>
             </div>
         </div>
