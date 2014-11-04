@@ -33,7 +33,7 @@
 
                                     {% elseif question.type == 'true_or_false' %}
                                         {% for option in question.options %}
-                                            <input type="radio" name="question[{{ loop.parent.loop.index }}]"
+                                            <input type="radio" name="question[{{ loop.parent.loop.index }}][answer]"
                                                    value="{{ loop.index }}"> {{ option }} <br/>
                                         {% endfor %}
                                     {% endif %}
@@ -54,6 +54,10 @@
                         <h4> Tests</h4></a>
 
                 </div>
+
+                <form action="" method="post">
+                    <button class="btn btn-block btn-secondary" name="delete_session">Delete Session</button>
+                </form>
             </div>
 
         </div>

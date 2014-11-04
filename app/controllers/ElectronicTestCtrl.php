@@ -81,27 +81,33 @@ class ElectronicTestCtrl extends BaseCtrl
 
         // Check if the form is submitted. (ie lookout for a POST request)
         if ($request->isMethod('post')) {
-            // Retreive answers for all questions
-            $answers = $request->request->get('question');
 
-            // Send the results to the api server to process.
-            $response = $this->client->submitEtestSessionResult($session['id'], $answers);
+            if ($request->request->has('delete_session')) {
+                $response = $this->client->deleteEtestSession($session['id']);
+                return $this->app->redirect($this->app['url_generator']->generate('etest.index'));
+            } else {
+                // Retreive answers for all questions
+                $answers = $request->request->get('question');
 
-            if (isset($response['success'])) {
-                // Clear the session saving our etest session info
-                $this->session->remove($sessionName);
+                // Send the results to the api server to process.
+                $response = $this->client->submitEtestSessionResult($session['id'], $answers);
 
-                // If everything goes well over there in the api...
-                // we redirect the user to the results page for this session.
-                // Note: the api server also takes care of closing the etest session.
-                return $this->app->redirect(
-                    $this->app['url_generator']->generate(
-                        'etest.result',
-                        [
-                            'session_id' => $session['id']
-                        ]
-                    )
-                );
+                if (isset($response['success'])) {
+                    // Clear the session saving our etest session info
+                    $this->session->remove($sessionName);
+
+                    // If everything goes well over there in the api...
+                    // we redirect the user to the results page for this session.
+                    // Note: the api server also takes care of closing the etest session.
+                    return $this->app->redirect(
+                        $this->app['url_generator']->generate(
+                            'etest.result',
+                            [
+                                'session_id' => $session['id']
+                            ]
+                        )
+                    );
+                }
             }
         }
 
