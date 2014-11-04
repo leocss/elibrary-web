@@ -187,6 +187,8 @@ $app['app.controllers.Billing'] = $app->share(
     }
 );
 
+
+
 $app['app.controllers.Ajax'] = $app->share(
     function () use ($app) {
         return new Controllers\AjaxCtrl($app['app.GlobalCtrlDependencies']);
