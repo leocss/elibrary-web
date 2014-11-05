@@ -46,15 +46,13 @@ class ElectronicTestCtrl extends BaseCtrl
         if (!$this->session->has($sessionName)) {
             // If none exists, we tell the api server to begin a new
             // question session for this user in the selected course.
-            $session = $this->client->createEtestSession(
-                [
-                    'body' => [
-                        'course_id' => $course_id,
-                        'user_id' => $user['id'],
-                        'question_limit' => 20
-                    ]
+            $session = $this->client->createEtestSession([
+                'body' => [
+                    'course_id' => $course_id,
+                    'user_id' => $user['id'],
+                    'question_limit' => 20
                 ]
-            );
+            ]);
 
             // Save the etest-session info into our server session.
             // So we can reference to it later.
@@ -68,22 +66,19 @@ class ElectronicTestCtrl extends BaseCtrl
         // The session record returned from the previous request is
         // used to perform another request to retrieve both the session details
         // and all the questions associated with this session.
-        $session = $this->client->getEtestSession(
-            $session['id'],
-            [
-                'query' => [
-                    'include' => 'questions'
+        $session = $this->client->getEtestSession($session['id'], [
+            'query' => [
+                'include' => 'questions'
 
-                ]
             ]
-
-        );
+        ]);
 
         // Check if the form is submitted. (ie lookout for a POST request)
         if ($request->isMethod('post')) {
 
             if ($request->request->has('delete_session')) {
                 $response = $this->client->deleteEtestSession($session['id']);
+
                 return $this->app->redirect($this->app['url_generator']->generate('etest.index'));
             } else {
                 // Retreive answers for all questions
