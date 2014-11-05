@@ -82,7 +82,7 @@ class BookCtrl extends BaseCtrl
     {
         $book = $this->client->getBook($id);
 
-        return $this->view->render('book/bookview.twig', [
+        return $this->view->render('book/viewer.twig', [
             'book' => $book
         ]);
     }
