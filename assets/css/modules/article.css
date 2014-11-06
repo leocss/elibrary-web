@@ -19,6 +19,7 @@
 }
 .blog-list-desc > h2 > a {
     transition: all 0.4s ease 0s;
+    color:#700;
 }
 .blog-list-desc > h2 > a:hover {
   color:#EC644B;
@@ -84,7 +85,17 @@
  
   padding: 20px 30px; 
 }
-.article-leave-comment-header
+.article-leave-comment-header > h2 > i
 {
-  background-color: #F00;
+  margin-right: 5px;
+}
+
+.article-post-comment-input
+{
+  margin-bottom: 10px;
+}
+.article-post-comment-button
+{
+  margin-bottom: 50px;
+  margin-top: 5px;
 }
