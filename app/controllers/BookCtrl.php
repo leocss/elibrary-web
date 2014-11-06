@@ -53,6 +53,9 @@ class BookCtrl extends BaseCtrl
         return $this->view->render('book/category.twig', [
             'books' => $books,
         ]);
+/*        return $this->view->render('book/sidebar.twig', [
+            'books' => $books,
+        ]);*/
     }
 
 
