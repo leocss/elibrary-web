@@ -10,39 +10,54 @@
         <div class="container-fluid margin-top-lg">
 
             <div class="col-md-8">
-                <form action="" method="post">
+                <form action="" method="post" id="question-form">
+                    <div>
                     {% for question in session.questions %}
+                        <h3>Question {{ loop.index }}</h3>
 
-                        <input type="hidden" name="question[{{ loop.index }}][id]" value="{{ question.id }}"/>
+                        <section>
+                            <input type="hidden" name="question[{{ loop.index }}][id]" value="{{ question.id }}"/>
 
-                        <div class="course-item panel">
-                            <div class="panel-heading">
-                                {{ question.question }}
+                            <div class="course-item panel">
+                                <div class="panel-heading">
+                                    {{ question.question }}
+                                </div>
+                                <div class="panel-body">
+                                    {% if question.type == 'multiple_choice' %}
+
+                                        {% for option in question.options %}
+
+                                            <input type="radio" name="question[{{ loop.parent.loop.index }}][answer]"
+                                                   value="{{ loop.index }}"> {{ option }} <br/>
+                                        {% endfor %}
+
+                                    {% elseif question.type == 'true_or_false' %}
+                                        {% for option in question.options %}
+                                            <input type="radio" name="question[{{ loop.parent.loop.index }}][answer]"
+                                                   value="{{ loop.index }}"> {{ option }} <br/>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
                             </div>
-                            <div class="panel-body">
-                                {% if question.type == 'multiple_choice' %}
-
-                                    {% for option in question.options %}
-                                        <input type="radio" name="question[{{ loop.parent.loop.index }}][answer]"
-                                               value="{{ loop.index }}"> {{ option }} <br/>
-                                    {% endfor %}
-
-                                {% elseif question.type == 'true_or_false' %}
-                                    {% for option in question.options %}
-                                        <input type="radio" name="question[{{ loop.parent.loop.index }}]"
-                                               value="{{ loop.index }}"> {{ option }} <br/>
-                                    {% endfor %}
-                                {% endif %}
-                            </div>
-                        </div>
+                        </section>
                     {% endfor %}
+                        </div>
 
                     <button class="btn btn-default btn-library">Submit</button>
                 </form>
             </div>
 
             <div class="col-md-4">
+                <div class="col-md-3" style="padding-bottom: 20px;">
+                    <a href="{{ app.url_generator.generate('etest.index')}}">
 
+                        <h4> Tests</h4></a>
+
+                </div>
+
+                <form action="" method="post">
+                    <button class="btn btn-block btn-secondary" name="delete_session">Delete Session</button>
+                </form>
             </div>
 
         </div>

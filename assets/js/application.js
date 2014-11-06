@@ -42,4 +42,63 @@ $(function () {
     }
   })
 
+
+  //########################################-book-unlike-like############################################################
+  /**
+   * Register a click event on the like
+   * and unlike buttons in article pages...
+   */
+  $('.book-unlike-like').on('click', function (e) {
+
+    e.preventDefault();
+
+    var $this = $(this),
+      action = $this.attr('data-action'),
+      json_data,
+      id = $this.attr('id')
+        .replace('book-like-', '')
+        .replace('book-unlike-', '');
+
+    console.log(action);
+
+    if (action == 'like') {
+      $.ajax({
+        url: app.base_url + 'ajax/books/' + id + '/like',
+        type: 'post',
+        dataType: 'json',
+        success: function (res) {
+          $this.find('.glyphicon')
+            .removeClass('glyphicon-thumbs-up')
+            .addClass('glyphicon-thumbs-down');
+
+          $this.attr('id', 'book-unlike-' + id)
+            .attr('data-action', 'unlike');
+
+        }
+      });
+    } else if (action == 'unlike') {
+      $.ajax({
+        url: app.base_url + 'ajax/books/' + id + '/unlike',
+        type: 'post',
+        dataType: 'json',
+        success: function (res) {
+          $this.find('.glyphicon')
+            .removeClass('glyphicon-thumbs-down')
+            .addClass('glyphicon-thumbs-up');
+
+          $this.attr('id', 'book-like-' + id)
+            .attr('data-action', 'like');
+        }
+      });
+
+      return false;
+    }
+  });
+
+  $("#question-form").children('div').steps({
+    headerTag: "h3",
+    bodyTag: "section",
+    transitionEffect: "slideLeft",
+    autoFocus: true
+  });
 });

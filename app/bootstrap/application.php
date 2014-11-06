@@ -228,12 +228,14 @@ $app->get('/payment/gateway', 'app.controllers.Billing:payment')->bind('billing.
 // Electronic Test
 $app->match('/etest', 'app.controllers.ElectronicTest:index')->bind('etest.index')->method('GET|POST');
 $app->match('/etest/session/course-{course_id}', 'app.controllers.ElectronicTest:session')->bind('etest.session')->method('GET|POST');
-$app->get('/electronic-test/test', 'app.controllers.ElectronicTest:test')->bind('etest.test');
-$app->get('/electronic-test/{id}', 'app.controllers.ElectronicTest:test1')->bind('etest.test1');
-$app->get('/electronic-test/result', 'app.controllers.ElectronicTest:result')->bind('etest.result');
+$app->get('/etest/test', 'app.controllers.ElectronicTest:test')->bind('etest.test');
+$app->get('/etest/{id}', 'app.controllers.ElectronicTest:test1')->bind('etest.test1');
+$app->get('/etest/result/{session_id}', 'app.controllers.ElectronicTest:result')->bind('etest.result');
 
 // Ajax Stuffs
 $app->post('/ajax/articles/{article_id}/like', 'app.controllers.Ajax:likeArticle');
 $app->post('/ajax/articles/{article_id}/unlike', 'app.controllers.Ajax:unlikeArticle');
+$app->post('/ajax/books/{book_id}/like', 'app.controllers.Ajax:likeBook');
+$app->post('/ajax/books/{book_id}/unlike', 'app.controllers.Ajax:unlikeBook');
 
 return $app;

@@ -8,8 +8,7 @@
     <div id="book-index">
 
         <div id="header_search">
-
-            <div class="col-md-4"  style="padding-right: 15px;" id="header_check">
+            <div class="col-md-4" style="padding-right: 15px;" id="header_check">
                 <div class="input-group">
                     <input type="text" placeholder="Looking for a book, what book? " class="form-control">
                     <span class="input-group-btn">
@@ -20,7 +19,7 @@
                 </div>
                 <!-- /input-group -->
             </div>
-            <div  id="header_only"><h3>BOOKS CATEGORIES</h3></div>
+            <div id="header_only"><h3>BOOKS CATEGORIES</h3></div>
         </div>
 
 
@@ -35,7 +34,8 @@
                                 {% set catArray=[] %}
                                 {% for category in categories %}
                                     <div id="cat_head">
-                                        {{ category.title }} &raquo; <a href="{{ app.url_generator.generate('books.category', {id: category.id})}}"
+                                        {{ category.title }} &raquo; <a
+                                                href="{{ app.url_generator.generate('books.category', {id: category.id}) }}"
                                                 >see more</a>
                                     </div>
 
@@ -51,45 +51,47 @@
                                                             </a>
 
                                                             <div class="text-center" id="book-icon">
-                                                                <span class="icon-att">
-                                                                    <a href="#">
-                                                                        <span data-toggle="tooltip" data-placement="top"
-                                                                              title="view">
-                                                                            <span class="fa fa-users"></span>
-                                                                        </span>
-                                                                    </a>
-                                                                    <span class="badge">112</span>
-                                                                </span>
-                                                                <span class="icon-att">
-                                                                    <a href="#">
-                                                                        <span data-toggle="tooltip" data-placement="top"
-                                                                              title="Click to download book.">
-                                                                <span class="glyphicon glyphicon-download"></span></span></a>
-                                                                </span>
-                                                                <span class="icon-att"><a href="#"><span
-                                                                                data-toggle="tooltip"
-                                                                                data-placement="top"
-                                                                                title="Click to add book to your favorite">
-                                                                <span class="glyphicon glyphicon-star"></span></span></a>
-                                                                </span>
-                                                                <span class="icon-att"><a href="#"
-                                                                                          style="padding-right:15px;">
-                                                               <span class="toolt" data-placement="left"
-                                                                     data-toggle="tooltip"
-                                                                     title="Click to apply for hardcopy of this book.">
-                                                                <span class="glyphicon glyphicon-book"></span></span></a>
-                                                                </span>
-                                                                <span class="icon-att"><a href="#"><span
-                                                                                data-toggle="tooltip"
-                                                                                data-placement="top"
-                                                                                title="like">
-                                                                <span class="glyphicon glyphicon-thumbs-up"></span></span></a>
-                                                                <span class="badge"> 12</span></span>
+                    <span class="icon-att" style="float: left;">
+                        <a href="#">
+                            <span data-toggle="tooltip" data-placement="top" title="view">
+                                <span class="fa fa-users design"><span
+                                            class="like_view_count">{{ book.views_count }}</span></span>
+                            </span>
+                        </a>
+                    </span>
+
+
+                    <span class="icon-att" style="float: right;">
+
+                    {% if book.context_user_liked == 1 %}
+                        <a href="javascript:void(0)"
+                           id="book-unlike-{{ book.id }}"
+                           class="book-unlike-like"
+                           data-action="unlike">
+                        <span data-toggle="tooltip" data-placement="top" title="Unlike">
+                            <span class="glyphicon glyphicon-thumbs-down design"><span
+                                        class="like_view_count">{{ book.likes_count }}</span></span>
+                        </span>
+                        </a>
+                        {% else %}
+                        <a href="javascript:void(0)"
+                           id="book-like-{{ book.id }}"
+                           class="book-unlike-like"
+                           data-action="like">
+                            <span data-toggle="tooltip" data-placement="top" title="like">
+                                <span class="glyphicon glyphicon-thumbs-up design">
+                                    <span class="like_view_count">{{ book.likes_count }}</span>
+                                </span>
+                            </span>
+                        </a>
+                    {% endif %}
+
+                    </span>
                                                             </div>
                                                         </li>
-
                                                     {% endfor %}
                                                 </ul>
+
                                             </div>
                                         </div>
                                         <!-- example -->
