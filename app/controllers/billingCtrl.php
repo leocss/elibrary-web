@@ -36,4 +36,9 @@ class BillingCtrl extends BaseCtrl
             'transactions' => $transactions
         ]);
     }
+
+    public function payment()
+    {
+        return $this->view->render('payment/index.twig');
+    }
 }

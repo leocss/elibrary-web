@@ -222,6 +222,9 @@ $app->get('/billing/checkout/transactions', 'app.controllers.Billing:checkout')-
 $app->get('/billing/checkout/fund', 'app.controllers.Billing:checkout')->bind('billing.checkout');
 $app->get('/billing/checkout/pay', 'app.controllers.Billing:checkout')->bind('billing.checkout');
 
+//payment
+$app->get('/payment/gateway', 'app.controllers.Billing:payment')->bind('billing.payment');
+
 // Electronic Test
 $app->match('/etest', 'app.controllers.ElectronicTest:index')->bind('etest.index')->method('GET|POST');
 $app->match('/etest/session/course-{course_id}', 'app.controllers.ElectronicTest:session')->bind('etest.session')->method('GET|POST');

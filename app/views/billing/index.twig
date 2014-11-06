@@ -37,7 +37,11 @@
                                 {% if(transaction.status) == 'success' %}
                                     <td class="btn btn-success">Paid</td>
                                 {% else %}
-                                    <td class="btn btn-danger">Click to pay</td>
+                                    <td>
+                                        <a href="{{ app.url_generator.generate('billing.payment') }}" class="btn btn-danger">
+                                            Click to pay
+                                        </a>
+                                    </td>
                                 {% endif %}
                                 <td>{{ transaction.created_at }}</td>
                             </tr>
