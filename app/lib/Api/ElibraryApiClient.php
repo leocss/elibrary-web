@@ -169,6 +169,16 @@ class ElibraryApiClient extends Client
     }
 
     /**
+     * @param $id
+     * @param array $params
+     * @return ResponseInterface
+     */
+    public function viewedBook($id, $params = [])
+    {
+        return $this->send($this->buildRequest('POST', sprintf('/books/%s/view', $id), $params));
+    }
+
+    /**
      * @param array $params
      * @return ResponseInterface
      */

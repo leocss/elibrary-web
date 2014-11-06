@@ -1,0 +1,37 @@
+.course-item {
+    background: #fff;
+    margin: 0 auto 15px;
+    position: relative;
+    border: 1px solid #efefef;
+}
+
+.course-item .media-body {
+    padding: 15px;
+    position: relative;
+    margin-left: 100px;
+
+}
+
+.course-item .media-body span {
+    display: block;
+    padding-right: 100px;
+}
+
+.course-item .media-heading {
+    margin-bottom: 15px;
+}
+
+.course-item .btn-start-test {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+.course-item .course-icon {
+    text-align: center !important;
+    color: #FFF;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+}

@@ -66,4 +66,20 @@ class AjaxCtrl extends BaseCtrl
 
         return json_encode(['id' => $book_id, 'success' => true]);
     }
+
+    /**
+     * @param $book_id
+     * @return array|string
+     */
+    public function viewedBook($book_id)
+    {
+        $response = $this->client->viewBook($book_id);
+        if (isset($response['error'])) {
+            return json_encode(['error_message' => $response['error']['message']]);
+        }
+
+        return json_encode(['id' => $book_id, 'success' => true]);
+    }
+
+
 }

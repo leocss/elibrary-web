@@ -75,12 +75,15 @@
     border: 1px solid #DCDCDC;
 }
 
+#random-book .reserve_div .reserve-title,
 #random-book .book-title {
+    padding-top: 10px;
     padding-left: 20px;
     padding-bottom: 10px;
     border-bottom: 1px solid #DCDCDC;
 }
 
+#random-book .reserve_div .reserve-title h2,
 #random-book .book-title h2 {
     padding: 0;
     margin: 0;
@@ -90,6 +93,8 @@
     font-size: 18px;
 }
 
+#random-book .reserve_div .reserve-title h2,
+#random-book .book-title h2,
 #random-book .book-title h2 a {
     color: #D9631E;
     text-transform: uppercase;
@@ -97,17 +102,24 @@
     font-weight: bold;
 }
 
-#random-book .book-description {
+#random-book .book-description,
+#random-book .book-reservation
+{
     padding-left: 20px;
     border-bottom: 1px solid #DCDCDC;
     min-height: 160px;
 }
 
-#random-book .book-description h3 {
+#random-book .book-description h3,
+#random-book .book-reservation h3{
     text-transform: uppercase;
     font-weight: bold;
     font-size: 16px;
     color: #D9631E;
+}
+
+.reserve_hide{
+    display: none;
 }
 
 #random-book .book-actions {

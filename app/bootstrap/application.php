@@ -236,5 +236,6 @@ $app->post('/ajax/articles/{article_id}/like', 'app.controllers.Ajax:likeArticle
 $app->post('/ajax/articles/{article_id}/unlike', 'app.controllers.Ajax:unlikeArticle');
 $app->post('/ajax/books/{book_id}/like', 'app.controllers.Ajax:likeBook');
 $app->post('/ajax/books/{book_id}/unlike', 'app.controllers.Ajax:unlikeBook');
+$app->post('/ajax/books/{book_id}/view', 'app.controllers.Ajax:viewBook');
 
 return $app;
