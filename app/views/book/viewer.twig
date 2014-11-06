@@ -4,6 +4,18 @@
 {% endblock %}
 
 {% block content %}
-    <iframe id="book-viewer" src="{{ app.base_url }}/assets/js/viewerjs/index.html#../../../app/storage/books/330.pdf"
+  {% if book.file_name %}
+    <iframe id="book-viewer"
+            src="{{ app.base_url }}/assets/js/viewerjs/index.html#../../../app/storage/books/{{ localBookHash }}.{{ localBookExt }}"
             height="100%" width="100%" allowfullscreen webkitallowfullscreen></iframe>
+  {% else %}
+    <div class="no-result">
+      <h3>This book does not have a soft copy... </h3>
+      {% if book.hard_copies_count > 0 %}
+        <h4 class="text-muted">
+          But you can reserve a hard copy and go borrow it later from the library.
+        </h4>
+      {% endif %}
+    </div>
+  {% endif %}
 {% endblock %}

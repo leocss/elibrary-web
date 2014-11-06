@@ -34,6 +34,7 @@ class BookCtrl extends BaseCtrl
     public function template()
     {
         $books = $this->client->getBooks();
+
         return $this->view->render('book/template.twig', [
             'books' => $books,
             'name' => "DICKSON"
@@ -53,18 +54,19 @@ class BookCtrl extends BaseCtrl
         return $this->view->render('book/category.twig', [
             'books' => $books,
         ]);
-/*        return $this->view->render('book/sidebar.twig', [
-            'books' => $books,
-        ]);*/
+        /*        return $this->view->render('book/sidebar.twig', [
+                    'books' => $books,
+                ]);*/
     }
 
 
     public function search()
     {
         $books = $this->client->getBooks();
+
         return $this->view->render('book/search.twig', [
-                'books' => $books,
-            ]);
+            'books' => $books,
+        ]);
     }
 
     /**
@@ -81,12 +83,31 @@ class BookCtrl extends BaseCtrl
             'book' => $book
         ]);
     }
-    public function viewer($id)
+
+    /**
+     * @param Application $app
+     * @param $id
+     * @return string
+     */
+    public function viewer(Application $app, $id)
     {
         $book = $this->client->getBook($id);
+        $localBookFile = null;
+        $localBookHash = null;
+        $localBookExt = null;
+        if (!empty($book['file_name'])) {
+            $localBookHash = md5($book['book_file_url']);
+            $localBookExt = pathinfo($book['book_file_url'], PATHINFO_EXTENSION);
+            $localBookFile = file_put_contents(
+                sprintf('%s/storage/books/%s.%s', $app['APP_DIR'], $localBookHash, $localBookExt)
+            );
+        }
 
         return $this->view->render('book/viewer.twig', [
-            'book' => $book
+            'book' => $book,
+            'localBookFile' => $localBookFile,
+            'localBookHash' => $localBookHash,
+            'localBookExt' => $localBookExt
         ]);
     }
 }
