@@ -117,7 +117,15 @@ class ElectronicTestCtrl extends BaseCtrl
 
     public function result($session_id)
     {
-        return $this->view->render('etest/result.twig');
+        $session = $this->client->getEtestSession($session_id, [
+            'query' => [
+                'include' => 'questions'
+            ]
+        ]);
+
+        return $this->view->render('etest/result.twig', [
+            'session' => $session
+        ]);
     }
 
     public function test1($id)
