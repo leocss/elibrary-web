@@ -19,9 +19,11 @@ class BillingCtrl extends BaseCtrl
     public function index(Request $request)
     {
         $transactions = $this->client->getPaymentTransactions();
+        $user = $this->client->getSessionUser();
 
         return $this->view->render('billing/index.twig', [
-            'transactions' => $transactions
+            'transactions' => $transactions,
+            'user' => $user,
         ]);
     }
 
@@ -45,8 +47,11 @@ class BillingCtrl extends BaseCtrl
 
     public function payment(Request $request)
     {
-        var_dump($request->request->all());
-
         return $this->view->render('payment/index.twig');
+    }
+
+    public function manage()
+    {
+        return $this->view->render('payment/manage.twig');
     }
 }
