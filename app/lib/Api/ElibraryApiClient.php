@@ -169,6 +169,16 @@ class ElibraryApiClient extends Client
     }
 
     /**
+     * @param $id
+     * @param array $params
+     * @return ResponseInterface
+     */
+    public function viewedBook($id, $params = [])
+    {
+        return $this->send($this->buildRequest('POST', sprintf('/books/%s/view', $id), $params));
+    }
+
+    /**
      * @param array $params
      * @return ResponseInterface
      */
@@ -436,12 +446,8 @@ class ElibraryApiClient extends Client
      * @param $opts
      * @return \GuzzleHttp\Message\RequestInterface
      */
-    protected
-    function buildRequest(
-        $method,
-        $endpoint,
-        $opts = []
-    ) {
+    public function buildRequest($method, $endpoint, $opts = [])
+    {
         $request = $this->createRequest($method, $endpoint, $opts);
 
         if (($accessTokenData = $this->session->get('api.token')) != null) {
@@ -463,10 +469,8 @@ class ElibraryApiClient extends Client
      * @throws \Elibrary\Lib\Exception\ApiException
      * @returns ResponseInterface
      */
-    public
-    function send(
-        RequestInterface $request
-    ) {
+    public function send(RequestInterface $request)
+    {
         try {
             $response = parent::send($request)->json();
             if (isset($response['error'])) {

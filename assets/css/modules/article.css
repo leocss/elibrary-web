@@ -1,50 +1,101 @@
-/**
- *  Article List
- */
-
-#article-index
-
-/**
- *  View Article
- */
-.article-title {
-    color: #333;
-    margin: 0px;
-}
-
-.article-meta {
-    list-style: none outside none;
-    padding: 0px;
-    margin: 10px 0px 0px;
-}
-
-.article-meta li {
+.blog-list {
     float: left;
-    padding: 0px 5px;
-    border-right: 1px solid #DDD;
-    line-height: normal;
-    font-size: 11px;
-    margin-bottom: 5px;
+    width: 100%;
+    margin-top: 30px;
+  
+}
+.blog-list img {
+    border-radius: 5px;
+}
+.post-thumb {
+    float: left;
+    width: 100%;
 }
 
-.article-meta li:first-child {
-    padding-left: 0px;
+.post-thumb > img {
+    float: left;
+    width: 100%;
+    height: auto;
 }
-
-.article-author-panel {
-    margin: 20px 0px;
-    border-top: 1px solid #DDD;
-    border-bottom: 1px solid #DDD;
-    padding: 20px 0px;
+.blog-list-desc > h2 > a {
+    transition: all 0.4s ease 0s;
+    color:#700;
 }
-
-.article-author-panel h4 {
-    text-transform: uppercase;
-    color: #333;
-    margin-bottom: 15px;
-    margin-top: 0px;
+.blog-list-desc > h2 > a:hover {
+  color:#EC644B;
+  text-decoration: none;
 }
-
-.article-author-panel .media {
+.plan-metas {
+    list-style: none outside none;
+    margin: 0px 0px 20px 0px;
     padding: 0px;
+    width: auto;
+}
+.blog-list .plan-metas > li {
+    color: rgb(165, 165, 165);
+    font-family: Source Sans Pro;
+    font-style: italic;
+    display: inline-block;
+}
+.blog-list .plan-metas > li > i {
+    color:#400000;
+  font-size:24px;
+  padding:10px;
+  background-color:#FFF;
+  border-radius:100%;
+  border:1px solid #F00;
+  margin: 0px 0px 0px 10px;
+}
+.blog-list-desc > a {
+    border: 1px solid rgb(136, 136, 136);
+    border-radius: 3px;
+    color: rgb(51, 51, 51);
+    float: left;
+    font-family: Roboto;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    margin-top: 16px;
+    padding: 10px 15px;
+    transition: all 0.4s ease 0s;
+}
+.blog-list-desc > a:hover {
+  text-decoration: none;
+  background-color:#EC644B;
+  color: #FFF;
+  font-size: 16px;
+  }
+.blog-list-desc > a > i {
+    margin-left: 6px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.article-meta
+{
+ 
+  padding: 20px 30px; 
+}
+.article-leave-comment-header > h2 > i
+{
+  margin-right: 5px;
+}
+
+.article-post-comment-input
+{
+  margin-bottom: 10px;
+}
+.article-post-comment-button
+{
+  margin-bottom: 50px;
+  margin-top: 5px;
 }

@@ -134,6 +134,8 @@ $app->before(
             }
         }
 
+        $app['ROOT_DIR'] = __DIR__ . '/../..';
+        $app['APP_DIR'] = $app['ROOT_DIR'] . '/app';
         $app['default_article_image'] = $app['base_url'] . 'assets/img/sample-book-preview.png';
         $app['default_book_image'] = $app['base_url'] . 'assets/img/sample-book-preview.png';
         $app['default_user_image'] = $app['base_url'] . 'assets/img/user/default-user-image.png';
@@ -203,8 +205,8 @@ $app->get('/dashboard', 'app.controllers.User:dashboard')->bind('user.dashboard'
 $app->get('/books', 'app.controllers.Book:index')->bind('books.index');
 $app->get('/books/search', 'app.controllers.Book:search')->bind('books.search');
 $app->get('/books/category/{id}', 'app.controllers.Book:category')->bind('books.category');
+$app->get('/books/{id}/read', 'app.controllers.Book:viewer')->bind('books.viewer');
 $app->get('/books/{id}', 'app.controllers.Book:view')->bind('books.view');
-$app->get('/books/viewer/{id}', 'app.controllers.Book:viewer')->bind('books.viewer');
 
 // Print Jobs
 $app->match('/print-jobs', 'app.controllers.PrintJob:index')->bind('printJobs.index')->method('GET|POST');
@@ -227,6 +229,7 @@ $app->get('/payment/gateway', 'app.controllers.Billing:payment')->bind('billing.
 
 // Electronic Test
 $app->match('/etest', 'app.controllers.ElectronicTest:index')->bind('etest.index')->method('GET|POST');
+$app->get('/etest/{course_id}', 'app.controllers.ElectronicTest:viewCourse')->bind('etest.view-course');
 $app->match('/etest/session/course-{course_id}', 'app.controllers.ElectronicTest:session')->bind('etest.session')->method('GET|POST');
 $app->get('/etest/test', 'app.controllers.ElectronicTest:test')->bind('etest.test');
 $app->get('/etest/{id}', 'app.controllers.ElectronicTest:test1')->bind('etest.test1');
@@ -237,5 +240,6 @@ $app->post('/ajax/articles/{article_id}/like', 'app.controllers.Ajax:likeArticle
 $app->post('/ajax/articles/{article_id}/unlike', 'app.controllers.Ajax:unlikeArticle');
 $app->post('/ajax/books/{book_id}/like', 'app.controllers.Ajax:likeBook');
 $app->post('/ajax/books/{book_id}/unlike', 'app.controllers.Ajax:unlikeBook');
+$app->post('/ajax/books/{book_id}/view', 'app.controllers.Ajax:viewBook');
 
 return $app;

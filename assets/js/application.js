@@ -1,4 +1,5 @@
 $(function () {
+  $('.lock-background').backstretch(app.base_url + 'assets/img/user/lock-header.jpg');
 
   /**
    * Register a click event on the like
@@ -102,8 +103,7 @@ $(function () {
     autoFocus: true
   });
 
-    //book js
-});
-$('.delete').on('hover', function(e) {
+  $('.delete').on('hover', function(e) {
     alert('DELETED');
+  });
 });

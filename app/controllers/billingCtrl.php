@@ -19,11 +19,9 @@ class BillingCtrl extends BaseCtrl
     public function index(Request $request)
     {
         $transactions = $this->client->getPaymentTransactions();
-        $user = $this->client->getSessionUser();
 
         return $this->view->render('billing/index.twig', [
-            'transactions' => $transactions,
-            'user' => $user,
+            'transactions' => $transactions
         ]);
     }
 
