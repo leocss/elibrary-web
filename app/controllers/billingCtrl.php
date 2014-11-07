@@ -19,26 +19,36 @@ class BillingCtrl extends BaseCtrl
     public function index(Request $request)
     {
         $transactions = $this->client->getPaymentTransactions();
+        $user = $this->client->getSessionUser();
 
         return $this->view->render('billing/index.twig', [
             'transactions' => $transactions,
+            'user' => $user,
         ]);
     }
 
     /**
      * @return string
      */
-    public function checkout()
+    public function checkout(Request $request)
     {
         $transactions = $this->client->getPaymentTransactions();
+        $user = $this->client->getSessionUser();
+
+        if ($request->isMethod("POST")) {
+            var_dump(array_sum($request->request->get('amount')));
+        }
 
         return $this->view->render('billing/checkout.twig', [
-            'transactions' => $transactions
+            'transactions' => $transactions,
+            'user' => $user,
         ]);
     }
 
-    public function payment()
+    public function payment(Request $request)
     {
+        var_dump($request->request->all());
+
         return $this->view->render('payment/index.twig');
     }
 }

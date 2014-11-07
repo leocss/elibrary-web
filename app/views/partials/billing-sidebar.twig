@@ -1,16 +1,20 @@
 <div class="panel panel-default box no-rounded">
-    <div class="panel-heading no-rounded">
-        <h3 class="panel-title">
-            <span class="fa fa-plus"></span>
-            Total amount has
-        </h3>
-    </div>
-    <div class="panel-body">
-        <div class="form-group">
-            <h3>#750</h3>
-            <a href="#" class="btn btn-primary btn-block">Add fund</a>
+    <form action="{{ app.url_generator.generate('billing.payment') }}" method="get">
+        <div class="panel-heading no-rounded">
+            <h3 class="panel-title">
+                <span class="fa fa-plus"></span>
+                Total amount has
+            </h3>
         </div>
-    </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <h3>#{{ user.fund }}</h3>
+                <input type="hidden" name="user-fund" value="{{ user.fund }}">
+                <input type="hidden" name="type" value="debt">
+                <a href="{{ app.url_generator.generate('billing.payment') }}" class="btn btn-primary btn-block">Add fund</a>
+            </div>
+        </div>
+    </form>
 </div>
 <div class="panel panel-default box no-rounded">
     <div class="panel-heading no-rounded">
@@ -21,8 +25,9 @@
     </div>
     <div class="panel-body">
         <div class="form-group">
-            <h3>#375</h3>
-            <a href="#" class="btn btn-primary btn-block">Pay your bills</a>
+            <h3>#{{ user.debt }}</h3>
+            <input type="hidden" name="user-debt" value="{{ user.debt }}">
+            <input type="hidden" name="user-debt" value="debt">
         </div>
     </div>
 </div>
@@ -36,7 +41,6 @@
     <div class="panel-body">
         <div class="form-group">
             <h3>#2700</h3>
-            <a href="#" class="btn btn-primary btn-block">Check Billings</a>
         </div>
     </div>
 </div>

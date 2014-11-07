@@ -101,4 +101,9 @@ $(function () {
     transitionEffect: "slideLeft",
     autoFocus: true
   });
+
+    //book js
+});
+$('.delete').on('hover', function(e) {
+    alert('DELETED');
 });
