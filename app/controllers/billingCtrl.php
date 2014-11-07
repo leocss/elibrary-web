@@ -44,11 +44,4 @@ class BillingCtrl extends BaseCtrl
             'user' => $user,
         ]);
     }
-
-    public function payment(Request $request)
-    {
-        var_dump($request->request->all());
-
-        return $this->view->render('payment/index.twig');
-    }
 }
