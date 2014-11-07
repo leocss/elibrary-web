@@ -1,21 +1,16 @@
 <?php
 
-namespace Elibrary\Controllers;
-
-use Elibrary\Lib\Api\ElibraryApiClient;
-use Elibrary\Lib\Exception\ApiException;
-use Silex\Application;
-use Symfony\Component\HttpFoundation\Request;
+namespace Elibrary\controllers;
 
 /**
+ * Class BillingCtrl
+ * @package Elibrary\controllers
+ *
  * @author Laju Morrison <morrelinko@gmail.com>
+ * @author Tosin Akomolafe <gettosin4me@gmail.com>
  */
 class BillingCtrl extends BaseCtrl
 {
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return string
-     */
     public function index(Request $request)
     {
         $transactions = $this->client->getPaymentTransactions();
@@ -49,4 +44,4 @@ class BillingCtrl extends BaseCtrl
 
         return $this->view->render('payment/index.twig');
     }
-}
+} 
