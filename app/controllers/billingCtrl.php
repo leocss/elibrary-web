@@ -1,6 +1,8 @@
 <?php
 
-namespace Elibrary\controllers;
+namespace Elibrary\Controllers;
+
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class BillingCtrl
@@ -44,4 +46,4 @@ class BillingCtrl extends BaseCtrl
 
         return $this->view->render('payment/index.twig');
     }
-} 
+}
