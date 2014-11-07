@@ -88,6 +88,7 @@ class ElectronicTestCtrl extends BaseCtrl
                 // Send the results to the api server to process.
                 $response = $this->client->submitEtestSessionResult($session['id'], $answers);
 
+                exit();
                 if (isset($response['success'])) {
                     // Clear the session saving our etest session info
                     $this->session->remove($sessionName);
@@ -117,7 +118,25 @@ class ElectronicTestCtrl extends BaseCtrl
 
     public function result($session_id)
     {
-        return $this->view->render('etest/result.twig');
+        $session = $this->client->getEtestSession($session_id, [
+            'query' => [
+                'include' => 'questions'
+            ]
+        ]);
+
+        $correctlyAnswered = 0;
+        $totalQuestions = count($session['questions']);
+        foreach ($session['questions'] as $key => $question) {
+            if ($question['_pivot_correctly_answered'] === true) {
+                $answered++;
+            }
+        }
+
+        return $this->view->render('etest/result.twig', [
+            'session' => $session,
+            'correctlyAnswered' => $correctlyAnswered,
+            'totalQuestions' => $totalQuestions
+        ]);
     }
 
     public function test1($id)
