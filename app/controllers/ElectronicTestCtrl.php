@@ -21,13 +21,14 @@ class ElectronicTestCtrl extends BaseCtrl
     public function index(Request $request)
     {
         $courses = $this->client->getEtestCourses();
+        $recentlyAddedCourses = $this->client->getEtestCourses([
+            'query' => ['limit' => 5, 'order' => 'latest']
+        ]);
 
-        return $this->view->render(
-            'etest/index.twig',
-            [
-                'courses' => $courses
-            ]
-        );
+        return $this->view->render('etest/index.twig', [
+            'courses' => $courses,
+            'recentlyAddedCourses' => $recentlyAddedCourses
+        ]);
     }
 
     /**
