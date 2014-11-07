@@ -1,22 +1,21 @@
 {% extends 'layout-main.twig' %}
 
 {% block title %}
-    E-Exam | {{ parent() }}
+  E-Exam | {{ parent() }}
 {% endblock %}
 
 {% block content %}
-    <div id="user-dashboard">
-        <div class="page-header">
-            <h2>Electronic Test Practice</h2>
-            <section class="layout">
-
-           <p>please quietly walk out</p>
-            </section>
-        </div>
-        <div class="container-fluid">
-            <div class="col-md-12">
-
-            </div>
-        </div>
+  <div id="user-dashboard">
+    <div class="page-header">
+      <h2>Electronic Test Practice:
+        <small>/ Result</small>
+      </h2>
     </div>
+    <div class="container-fluid">
+      <div class="col-md-12">
+        <p>Total Attempted: {{ totalQuestions }} </p>
+        <p>Score: {{ correctlyAnswered }} / {{ totalQuestions }} </p>
+      </div>
+    </div>
+  </div>
 {% endblock %}
