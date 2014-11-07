@@ -1,5 +1,7 @@
 $(function () {
 
+  $('.lock-background').backstretch(app.base_url + 'assets/img/user/lock-header.jpg');
+
   /**
    * Register a click event on the like
    * and unlike buttons in article pages...

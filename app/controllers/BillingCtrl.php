@@ -18,7 +18,11 @@ class BillingCtrl extends BaseCtrl
      */
     public function index(Request $request)
     {
-        return $this->view->render('billing/index.twig');
+        $transactions = $this->client->getPaymentTransactions();
+
+        return $this->view->render('billing/index.twig', [
+            'transactions' => $transactions
+        ]);
     }
 
     /**

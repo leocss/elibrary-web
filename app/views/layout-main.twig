@@ -1,6 +1,8 @@
 {% include 'layouts/header.twig' %}
 <div id="wrapper">
     {% block before_header %}{% endblock %}
+
+    {% block header %}
     <div id="header" class="navbar navbar-default navbar-fixed-top">
         <div class="navbar-header">
             <a href="{{ app.url_generator.generate('user.dashboard') }}" id="logo">
@@ -39,6 +41,8 @@
         </div><!-- /.col-lg-6 -->
         </div>
     </div>
+    {% endblock %}
+
     {% block after_header %}{% endblock %}
     {% block before_content %}{% endblock %}
     <div id="main">

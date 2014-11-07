@@ -446,12 +446,8 @@ class ElibraryApiClient extends Client
      * @param $opts
      * @return \GuzzleHttp\Message\RequestInterface
      */
-    protected
-    function buildRequest(
-        $method,
-        $endpoint,
-        $opts = []
-    ) {
+    public function buildRequest($method, $endpoint, $opts = [])
+    {
         $request = $this->createRequest($method, $endpoint, $opts);
 
         if (($accessTokenData = $this->session->get('api.token')) != null) {
@@ -473,10 +469,8 @@ class ElibraryApiClient extends Client
      * @throws \Elibrary\Lib\Exception\ApiException
      * @returns ResponseInterface
      */
-    public
-    function send(
-        RequestInterface $request
-    ) {
+    public function send(RequestInterface $request)
+    {
         try {
             $response = parent::send($request)->json();
             if (isset($response['error'])) {
