@@ -41,7 +41,7 @@
                                         <div class="btn btn-danger">Not Paid</div>
                                     </td>
                                 {% endif %}
-                                <td>{{ transaction.created_at }}</td>
+                                <td>{{ transaction.created_at | date('d-M-Y') }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>
