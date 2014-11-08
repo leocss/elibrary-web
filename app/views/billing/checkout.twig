@@ -5,67 +5,42 @@
 {% endblock %}
 
 {% block content %}
-    <form action="{{ app.url_generator.generate('billing.payment') }}" method="post" class="form-horizontal">
-        <div id="user-dashboard">
-            <div class="page-header">
-                <h2>Billing
-                    <small class="text-muted">/ Checkout</small>
-                </h2>
-            </div>
-            <div class="container-fluid">
-                <div class="col-md-12">
-                    <div class="col-md-8">
-                        <table class="table">
-                            <thead>
-                            <th>S/N</th>
-                            <th>Transaction ID</th>
-                            <th>Description</th>
-                            <th>Amount</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                            <th>Date</th>
-                            </thead>
-                            <tbody>
-                            {% for transaction in transactions %}
-                                <tr>
-                                    <td>{{ loop.index }}</td>
-                                    <form class="form-control" method="post" action="">
-                                        <td>
-                                            <input type="checkbox" name="amount[]" value="{{ transaction.amount }}"
-                                                   {% if transaction.status == 'success' %}disabled="disabled" {% endif %}>
-                                        </td>
-                                    </form>
-                                    <td>{{ transaction.transaction_id }}</td>
-                                    <td>{{ transaction.description }}</td>
-                                    <td>#{{ transaction.amount }}</td>
-                                    <td>{{ transaction.status }}</td>
-                                    {% if(transaction.status) == 'success' %}
-                                        <td><a class="btn btn-success col-sm-12">Paid</a></td>
-                                    {% else %}
-                                        <td>
-                                            <a href="{{ app.url_generator.generate('billing.payment') }}"
-                                               class="btn btn-danger">
-                                                Click to pay
-                                            </a>
-                                        </td>
-                                    {% endif %}
-                                    <td>{{ transaction.created_at | date('d-M-Y') }}</td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <input type="hidden" name="type" value="debt">
-                                <button class="btn btn-primary">Pay</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        {% include 'billing/sidebar.twig' with {'transactions' : transactions, 'user' : user} %}
-                    </div>
+    <div id="user-dashboard">
+        <div class="page-header">
+            <h2>Billing
+                <small class="text-muted">/ Checkout</small>
+            </h2>
+        </div>
+        <div class="container-fluid">
+            <div class="col-md-12">
+                <div class="col-md-8">
+                    <table class="table">
+                        <thead>
+                        <th>S/N</th>
+                        <th>Transaction ID</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        </thead>
+                        <tbody>
+                        {% for transaction in transactions %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ transaction.transaction_id }}</td>
+                                <td>{{ transaction.description }}</td>
+                                <td>&#8358 {{ transaction.amount }}</td>
+                                <td>{{ transaction.status }}</td>
+                                <td>{{ transaction.created_at | date('d-M-Y') }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4">
+                    {% include 'billing/sidebar.twig' with {'transactions' : transactions, 'user' : user} %}
                 </div>
             </div>
         </div>
-    </form>
+    </div>
 {% endblock %}

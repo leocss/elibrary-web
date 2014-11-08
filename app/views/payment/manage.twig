@@ -1,0 +1,29 @@
+{% extends 'layout-main.twig' %}
+
+{% block title %}
+    Dashboard | {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div style="padding: 50px;">
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <a href="{{ app.url_generator.generate('payment.gateway') }}" class="btn btn-primary">
+                        Fund your account
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="#" class="btn btn-primary">
+                        Pay debt From Your Account
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ app.url_generator.generate('payment.gateway') }}" class="btn btn-primary">
+                        Pay Debt Online
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

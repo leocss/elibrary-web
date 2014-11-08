@@ -189,6 +189,8 @@ $app['app.controllers.Billing'] = $app->share(
     }
 );
 
+
+
 $app['app.controllers.Ajax'] = $app->share(
     function () use ($app) {
         return new Controllers\AjaxCtrl($app['app.GlobalCtrlDependencies']);
@@ -225,7 +227,8 @@ $app->get('/billing/checkout/fund', 'app.controllers.Billing:checkout')->bind('b
 $app->get('/billing/checkout/pay', 'app.controllers.Billing:checkout')->bind('billing.checkout');
 
 //payment
-$app->get('/payment/gateway', 'app.controllers.Billing:payment')->bind('billing.payment');
+$app->get('/payment/checkout', 'app.controllers.Billing:manage')->bind('billing.manage');
+$app->get('/payment/gateway', 'app.controllers.Billing:payment')->bind('payment.gateway');
 
 // Electronic Test
 $app->match('/etest', 'app.controllers.ElectronicTest:index')->bind('etest.index')->method('GET|POST');
