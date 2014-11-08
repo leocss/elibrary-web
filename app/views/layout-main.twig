@@ -27,6 +27,18 @@
                     <a href="{{ app.url_generator.generate('billing.index') }}">Billing</a>
                 </li>
             </ul>
+        <div class="col-md-4" style="float:right; margin-right: 5px;">
+            <div style="padding-top: 7px;">
+                <div class="input-group">
+                    <input type="text" placeholder="Looking for a book, what book? " class="form-control">
+                                      <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </button>
+                                      </span>
+                </div><!-- /input-group -->
+            </div>
+        </div><!-- /.col-lg-6 -->
         </div>
     </div>
     {% endblock %}

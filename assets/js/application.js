@@ -1,5 +1,4 @@
 $(function () {
-
   $('.lock-background').backstretch(app.base_url + 'assets/img/user/lock-header.jpg');
 
   /**
@@ -45,8 +44,6 @@ $(function () {
   })
 
 
-
-
   //########################################-book-unlike-like############################################################
   /**
    * Register a click event on the like
@@ -62,20 +59,20 @@ $(function () {
       id = $this.attr('id')
         .replace('book-like-', '')
         .replace('book-unlike-', '');
-    //console.log(action);
-      likecount=parseInt($this.find('span .like_view_count').text());
+
+    console.log(action);
+
     if (action == 'like') {
       $.ajax({
         url: app.base_url + 'ajax/books/' + id + '/like',
         type: 'post',
         dataType: 'json',
         success: function (res) {
-          $this.find('.fa')
-            .removeClass('fa-thumbs-up')
-            .addClass('fa-thumbs-down');
-            likecount+=1;
-            $this.find('.like_view_count').text(likecount + ' Likes');
-            $this.attr('id', 'book-unlike-' + id)
+          $this.find('.glyphicon')
+            .removeClass('glyphicon-thumbs-up')
+            .addClass('glyphicon-thumbs-down');
+
+          $this.attr('id', 'book-unlike-' + id)
             .attr('data-action', 'unlike');
 
         }
@@ -86,65 +83,18 @@ $(function () {
         type: 'post',
         dataType: 'json',
         success: function (res) {
-            //alert(JSON.stringify(res));
-          $this.find('.fa')
-            .removeClass('fa-thumbs-down')
-            .addClass('fa-thumbs-up');
-            likecount-=1;
-            $this.find('.like_view_count').text(likecount + ' Likes');
-            $this.attr('id', 'book-like-' + id)
+          $this.find('.glyphicon')
+            .removeClass('glyphicon-thumbs-down')
+            .addClass('glyphicon-thumbs-up');
+
+          $this.attr('id', 'book-like-' + id)
             .attr('data-action', 'like');
-        },
-          error:function(err){
-
-          }
-
+        }
       });
 
       return false;
     }
   });
-
-
-    //########################################-book-view ############################################################
-    /**
-     * Register a click event on the like
-     * and unlike buttons in article pages...
-     */
-    $('.book-view').on('click', function (e) {
-
-        e.preventDefault();
-
-        var $this = $(this),
-            action = $this.attr('data-action'),
-            json_data,
-            id = $this.attr('id')
-                .replace('book-view-', '')
-        //console.log(action);
-        //alert(likecount);
-        if (action == 'view') {
-            $.ajax({
-                url: app.base_url + 'ajax/books/' + id + '/view',
-                type: 'post',
-                dataType: 'json',
-                success: function (res) {
-                    likecount+=1;
-                    //alert(likecount);
-                    $this.find('.view_count').text(viewcount);
-                    $this.attr('id', 'book-unview-' + id)
-                        .attr('data-action', 'unviewed');
-
-                }
-            });
-        }
-        return false;
-    });
-
-
-
-
-
-
 
   $("#question-form").children('div').steps({
     headerTag: "h3",
@@ -153,6 +103,7 @@ $(function () {
     autoFocus: true
   });
 
-
-
+  $('.delete').on('hover', function(e) {
+    alert('DELETED');
+  });
 });

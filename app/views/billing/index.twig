@@ -23,7 +23,6 @@
                         <th>Description</th>
                         <th>Amount</th>
                         <th>Status</th>
-                        <th>Action</th>
                         <th>Date</th>
                         </thead>
                         <tbody>
@@ -32,22 +31,16 @@
                                 <td>{{ loop.index }}</td>
                                 <td>{{ transaction.transaction_id }}</td>
                                 <td>{{ transaction.description }}</td>
-                                <td>#{{ transaction.amount }}</td>
+                                <td>&#8358 {{ transaction.amount }}</td>
                                 <td>{{ transaction.status }}</td>
-                                {% if(transaction.status) == 'success' %}
-                                    <td class="btn btn-success">Paid</td>
-                                {% else %}
-                                    <td class="btn btn-danger">Click to pay</td>
-                                {% endif %}
-                                <td>{{ transaction.created_at }}</td>
+                                <td>{{ transaction.created_at | date('d-M-Y') }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
-                    </table>
                 </div>
                 <div class="col-md-4">
-                    {% include 'billing/sidebar.twig' %}
+                    {% include 'billing/sidebar.twig' with {'user' : user} %}
                 </div>
             </div>
         </div>

@@ -99,7 +99,8 @@ class BookCtrl extends BaseCtrl
             $localBookHash = md5($book['book_file_url']);
             $localBookExt = pathinfo($book['book_file_url'], PATHINFO_EXTENSION);
             $localBookFile = file_put_contents(
-                sprintf('%s/storage/books/%s.%s', $app['APP_DIR'], $localBookHash, $localBookExt)
+                sprintf('%s/storage/books/%s.%s', $app['APP_DIR'], $localBookHash, $localBookExt),
+                file_get_contents($book['book_file_url'])
             );
         }
 

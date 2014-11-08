@@ -1,0 +1,114 @@
+<html>
+<head>
+    <title>Payment Gateway</title>
+    <link rel="stylesheet" type="text/css" href="{{ app.base_url }}assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="{{ app.base_url }}assets/css/payment.css">
+</head>
+<body>
+<div id="main">
+    <div style="background: #f00; padding: 2px;"></div>
+    <div id="header">
+        <div class="col-md-2">
+            <img src="{{ app.base_url }}assets/img/payment/interswitch.jpg"/>
+        </div>
+        <div class="col-md-6">
+            This is InterSwitch Online Payment Gateway powered by InterSwitch Limited. Please verify your
+            payment
+            details
+            below before clicking 'pay'
+        </div>
+        <hr style="border-bottom: 2px solid #fff"/>
+    </div>
+    <br/>
+
+    <div style="background: #EEE; border: 1px solid #999; padding: 10px;">
+        <div class="col-md-12">Merchant Name: FUTMinna</div>
+        <div class="col-md-12">Amount: 1,200.00</div>
+        <br/>
+
+        <div class="clearfix"></div>
+    </div>
+    <br/>
+
+    <div class="col-md-12" style="border: 1px solid #999; padding: 9px;">
+        <div class="col-md-6">Please select type:</div>
+        <div class="col-md-2"><a href="#"><img src="{{ app.base_url }}assets/img/payment/interswitch-logo.jpg"/></a>
+        </div>
+        <div class="col-md-2">
+            <a href="#">
+                <img src="{{ app.base_url }}assets/img/payment/verve.jpg"/>
+            </a>
+        </div>
+        <div class="col-md-2"><a href="#"><img src="{{ app.base_url }}assets/img/payment/mastercard.jpg"/></a></div>
+    </div>
+    <div class="col-md-12" style="background: #333; padding: 7px; color: #fff;">Enter your Verve card details</div>
+    <div class="col-md-12" style="border: 1px solid #999; padding: 6px;">
+        <div class="col-md-2">
+            Card Number:
+        </div>
+        <div class="col-md-10">
+            <input type="text">
+        </div>
+        <br/>
+
+        <div style="margin-bottom: 15px;"></div>
+        <div class="col-md-6">
+            <div class="col-md-4">
+                Expiry Date:
+            </div>
+            <div class="col-md-2">
+                <select>
+                    <option>Jan</option>
+                    <option>Feb</option>
+                    <option>Mar</option>
+                    <option>Apr</option>
+                    <option>May</option>
+                    <option>Jun</option>
+                    <option>Jul</option>
+                    <option>Aug</option>
+                    <option>Sep</option>
+                    <option>Oct</option>
+                    <option>Nov</option>
+                    <option>Dec</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select>
+                    <option>2014</option>
+                    <option>2015</option>
+                    <option>2016</option>
+                    <option>2017</option>
+                </select>
+            </div>
+        </div>
+        <br/>
+        <div style="margin-bottom: 15px;"></div>
+        <div class="col-md-12">
+            <div class="col-md-2">
+                Card Pin
+            </div>
+            <div class="col-md-3">
+                <input type="text">
+            </div>
+        </div>
+        <div class="col-md-12" style="background: #333; padding: 7px; color: #fff;">Enter your Verve card details</div>
+        <div class="col-md-12" style="padding: 8px; background: #EEE;">
+            <div class="col-md-4">
+                Card Verification Value <span class="img img-circle" style="background: #00f; padding: 7px; color: #fff;">?</span>
+            </div>
+            <div class="col-md-5"><input type="text"></div>
+            <div class="col-md-3">Click on
+                <span class="img img-circle" style="background: #00f; padding: 5px; color: #fff;">
+                    ?
+                </span>
+                beside each feature to see an explanation
+            </div>
+            <div class="col-md-4">
+                One time Password <span class="img img-circle" style="background: #00f; padding: 7px; color: #fff;">?</span>
+            </div>
+            <div class="col-md-8"><input type="text"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
