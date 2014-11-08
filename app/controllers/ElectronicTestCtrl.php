@@ -88,7 +88,6 @@ class ElectronicTestCtrl extends BaseCtrl
                 // Send the results to the api server to process.
                 $response = $this->client->submitEtestSessionResult($session['id'], $answers);
 
-                exit();
                 if (isset($response['success'])) {
                     // Clear the session saving our etest session info
                     $this->session->remove($sessionName);

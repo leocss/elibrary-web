@@ -11,9 +11,13 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class PrintJobCtrl extends BaseCtrl
 {
+    /**
+     * @param Request $request
+     * @return string|\Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function index(Request $request)
     {
-        $printJobs = $this->client->getPrintJobs();
+        $printJobs = $this->client->getPrintJobs(['query' => ['include' => 'documents']]);
 
         if ($request->isMethod('post')) {
             switch (key($request->request->get('action'))) {
