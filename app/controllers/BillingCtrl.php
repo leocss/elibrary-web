@@ -12,41 +12,5 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class BillingCtrl extends BaseCtrl
 {
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return string
-     */
-    public function index(Request $request)
-    {
-        $transactions = $this->client->getPaymentTransactions();
-        $user = $this->client->getSessionUser();
-
-        return $this->view->render('billing/index.twig', [
-            'transactions' => $transactions,
-            'user' => $user,
-        ]);
-    }
-
-    /**
-     * @return string
-     */
-    public function checkout(Request $request)
-    {
-        $transactions = $this->client->getPaymentTransactions();
-        $user = $this->client->getSessionUser();
-
-        if ($request->isMethod("POST")) {
-            var_dump(array_sum($request->request->get('amount')));
-        }
-
-        return $this->view->render('billing/checkout.twig', [
-            'transactions' => $transactions,
-            'user' => $user,
-        ]);
-    }
-
-    public function payment(Request $request)
-    {
-        return $this->view->render('payment/index.twig');
-    }
+    
 }
