@@ -48,4 +48,15 @@ class UserCtrl extends BaseCtrl
             ]
         );
     }
+
+    /**
+     * @return string
+     */
+    public function logout()
+    {
+        if($this->app['session']->get('api.user')){
+            $this->client->logout();
+            return $this->app->redirect($this->app['url_generator']->generate('user.main'));
+        }
+    }
 }

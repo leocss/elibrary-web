@@ -113,6 +113,15 @@ class ElibraryApiClient extends Client
     }
 
     /**
+     *
+     */
+
+    public function logout()
+    {
+        return $this->session->remove('api.user');
+    }
+
+    /**
      * @param int $id The user id.
      *  Note: Passing 'me' as the ID will return the user that was
      *  authenticated during this session.

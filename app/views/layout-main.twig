@@ -1,53 +1,59 @@
 {% include 'layouts/header.twig' %}
 <div id="wrapper">
-    {% block before_header %}{% endblock %}
+  {% block before_header %}{% endblock %}
 
-    {% block header %}
+  {% block header %}
     <div id="header" class="navbar navbar-default navbar-fixed-top">
-        <div class="navbar-header">
-            <a href="{{ app.url_generator.generate('user.dashboard') }}" id="logo">
-                <h2>E</h2>
-            </a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="{% if is_module('books') %}active{% endif %}">
-                    <a href="{{ app.url_generator.generate('books.index') }}">Books</a>
-                </li>
-                <li class="{% if is_module('print-jobs') %}active{% endif %}">
-                    <a href="{{ app.url_generator.generate('printJobs.index') }}">Printing Service</a>
-                </li>
-                <li class="{% if is_module('electronic-test') %}active{% endif %}">
-                    <a href="{{ app.url_generator.generate('etest.index') }}">Electronic Test</a>
-                </li>
-                <li class="{% if is_module('articles') %}active{% endif %}">
-                    <a href="{{ app.url_generator.generate('articles.index') }}">Articles</a>
-                </li>
-                <li class="{% if is_module('billing') %}active{% endif %}">
-                    <a href="{{ app.url_generator.generate('billing.index') }}">Billing</a>
-                </li>
-            </ul>
-        <div class="col-md-4" style="float:right; margin-right: 5px;">
+      <div class="navbar-header">
+        <a href="{{ app.url_generator.generate('user.dashboard') }}" id="logo">
+          <h2>E</h2>
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="{% if is_module('books') %}active{% endif %}">
+            <a href="{{ app.url_generator.generate('books.index') }}">Books</a>
+          </li>
+          <li class="{% if is_module('print-jobs') %}active{% endif %}">
+            <a href="{{ app.url_generator.generate('printJobs.index') }}">Printing Service</a>
+          </li>
+          <li class="{% if is_module('electronic-test') %}active{% endif %}">
+            <a href="{{ app.url_generator.generate('etest.index') }}">Electronic Test</a>
+          </li>
+          <li class="{% if is_module('articles') %}active{% endif %}">
+            <a href="{{ app.url_generator.generate('articles.index') }}">Articles</a>
+          </li>
+          <li class="{% if is_module('billing') %}active{% endif %}">
+            <a href="{{ app.url_generator.generate('billing.index') }}">Billing</a>
+          </li>
+          <ul class="nav navbar-nav pull-right">
+            <li>
+              <a href="{{ app.url_generator.generate('user.logout') }}">Logout</a>
+            </li>
+          </ul>
+          <div class="col-md-4" style="float:right; margin-right: 5px;">
             <div style="padding-top: 7px;">
-                <div class="input-group">
-                    <input type="text" placeholder="Looking for a book, what book? " class="form-control">
+              <div class="input-group">
+                <input type="text" placeholder="Looking for a book, what book? " class="form-control">
                                       <span class="input-group-btn">
                                         <button class="btn btn-default" type="button">
-                                            <span class="glyphicon glyphicon-search"></span>
+                                          <span class="glyphicon glyphicon-search"></span>
                                         </button>
                                       </span>
-                </div><!-- /input-group -->
+              </div>
+              <!-- /input-group -->
             </div>
-        </div><!-- /.col-lg-6 -->
-        </div>
+          </div>
+          <!-- /.col-lg-6 -->
+      </div>
     </div>
-    {% endblock %}
+  {% endblock %}
 
-    {% block after_header %}{% endblock %}
-    {% block before_content %}{% endblock %}
-    <div id="main">
-        {% block content %} {% endblock %}
-    </div>
-    {% block after_content %}{% endblock %}
+  {% block after_header %}{% endblock %}
+  {% block before_content %}{% endblock %}
+  <div id="main">
+    {% block content %} {% endblock %}
+  </div>
+  {% block after_content %}{% endblock %}
 </div>
 {% include 'layouts/footer.twig' %}

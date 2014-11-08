@@ -200,6 +200,7 @@ $app['app.controllers.Ajax'] = $app->share(
 // General
 $app->match('/', 'app.controllers.User:main')->method('GET|POST')->bind('user.main');
 $app->get('/dashboard', 'app.controllers.User:dashboard')->bind('user.dashboard');
+$app->get('/logout', 'app.controllers.User:logout')->bind('user.logout');
 
 // Books
 $app->get('/books', 'app.controllers.Book:index')->bind('books.index');
