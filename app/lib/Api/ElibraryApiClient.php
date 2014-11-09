@@ -273,11 +273,11 @@ class ElibraryApiClient extends Client
      *
      * @return ResponseInterface
      */
-    public function getPrintJobs()
+    public function getPrintJobs($params = [])
     {
         $user = $this->getSessionUser();
 
-        return $this->send($this->buildRequest('GET', sprintf('/users/%s/print-jobs', $user['id'])));
+        return $this->send($this->buildRequest('GET', sprintf('/users/%s/print-jobs', $user['id']), $params));
     }
 
     /**

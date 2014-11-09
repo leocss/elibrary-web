@@ -1,5 +1,26 @@
 #print-job-index .print-job-item {
     color: #434343;
+    background-color: #FBFBFB;
+    border-bottom: 2px solid #E8E8E8;
+    display: block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    padding: 10px;
+}
+
+#print-job-index .print-job-item .doc-count {
+    background-color: #74AB24;
+    margin-top: -40px;
+    border-radius: 50%;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    width: 40px;
+    font-size: 12px;
+    color: #FFFFFF !important;
+    float: right;
+    font-weight: bold;
+    font-size: 15px;
 }
 
 .print-job-item .media-heading a {

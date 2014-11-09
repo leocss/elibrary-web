@@ -63,7 +63,7 @@
                                     <span style="font-weight: bold; font-size: 20px;">NOTE:  Any reserved book must be collected from
                                     the library within 7days or reservation will be canceled.</span>
                                 </p>
-                                {% if book.has_hard_copy == 1 %}
+                                {% if book.hard_copies_count > 0 %}
                                     {% set available_hardcopy = book.hard_copies_count - book.borrow_count %}
                                         {% if available_hardcopy > 2 %}
                                             <p>

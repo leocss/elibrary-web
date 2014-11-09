@@ -1,6 +1,6 @@
 <?php
 
-namespace Elibrary\controllers;
+namespace Elibrary\Controllers;
 
 use Elibrary\Lib\Api\ElibraryApiClient;
 use Silex\Application;
