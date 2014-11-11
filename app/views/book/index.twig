@@ -9,15 +9,7 @@
 
         <div id="header_search">
             <div class="col-md-4" style="padding-right: 15px;" id="header_check">
-                <div class="input-group">
-                    <input type="text" placeholder="Looking for a book, what book? " class="form-control">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
-                </div>
-                <!-- /input-group -->
+            {% include 'book/search-form.twig' %}
             </div>
             <div id="header_only"><h3>BOOKS CATEGORIES</h3></div>
         </div>

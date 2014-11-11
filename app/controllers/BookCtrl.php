@@ -3,6 +3,7 @@
 namespace Elibrary\Controllers;
 
 use Silex\Application;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @author Laju Morrison <morrelinko@gmail.com>
@@ -60,9 +61,12 @@ class BookCtrl extends BaseCtrl
     }
 
 
-    public function search()
+    public function search(Request $request)
     {
-        $books = $this->client->getBooks();
+        $filter = $request->get('filter');
+        $books = $this->client->getBooks([
+            'query' => ['filter' => $filter]
+        ]);
 
         return $this->view->render('book/search.twig', [
             'books' => $books,
