@@ -126,8 +126,8 @@ class ElectronicTestCtrl extends BaseCtrl
         $correctlyAnswered = 0;
         $totalQuestions = count($session['questions']);
         foreach ($session['questions'] as $key => $question) {
-            if ($question['_pivot_correctly_answered'] === true) {
-                $answered++;
+            if ($question['_pivot_correctly_answered'] == true) {
+                $correctlyAnswered++;
             }
         }
 
