@@ -11,19 +11,19 @@
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="{% if is_module('books') %}active{% endif %}">
+          <li class="{% if is_module('books')|default(false) %}active{% endif %}">
             <a href="{{ app.url_generator.generate('books.index') }}">Books</a>
           </li>
-          <li class="{% if is_module('print-jobs') %}active{% endif %}">
+          <li class="{% if is_module('print-jobs')|default(false) %}active{% endif %}">
             <a href="{{ app.url_generator.generate('printJobs.index') }}">Printing Service</a>
           </li>
-          <li class="{% if is_module('electronic-test') %}active{% endif %}">
+          <li class="{% if is_module('electronic-test')|default(false) %}active{% endif %}">
             <a href="{{ app.url_generator.generate('etest.index') }}">Electronic Test</a>
           </li>
-          <li class="{% if is_module('articles') %}active{% endif %}">
+          <li class="{% if is_module('articles')|default(false) %}active{% endif %}">
             <a href="{{ app.url_generator.generate('articles.index') }}">Articles</a>
           </li>
-          <li class="{% if is_module('billing') %}active{% endif %}">
+          <li class="{% if is_module('billing')|default(false) %}active{% endif %}">
             <a href="{{ app.url_generator.generate('billing.index') }}">Billing</a>
           </li>
           <ul class="nav navbar-nav pull-right">

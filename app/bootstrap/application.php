@@ -105,9 +105,7 @@ $app['app.GlobalCtrlDependencies'] = $app->share(
 $app->before(
     function (Request $request) use ($app) {
         $app['base_url'] = $request->getUriForPath('/');
-
         $app['url_segments'] = array_filter(explode('/', trim($request->getPathInfo(), '/ ')));
-
         $app['twig']->addFunction(
             new Twig_SimpleFunction(
                 'is_module', function ($name) use ($app) {
@@ -116,7 +114,7 @@ $app->before(
             )
         );
     },
-    Silex\Application::LATE_EVENT
+    Silex\Application::EARLY_EVENT
 );
 
 $app->before(
