@@ -185,7 +185,7 @@ $app['app.controllers.Article'] = $app->share(
 
 $app['app.controllers.Billing'] = $app->share(
     function () use ($app) {
-        return new Controllers\BillingCtrl($app['app.GlobalCtrlDependencies']);
+        return new Controllers\BillCtrl($app['app.GlobalCtrlDependencies']);
     }
 );
 
