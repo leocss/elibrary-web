@@ -31,7 +31,7 @@
                     <div id="random-book" class="media">
                         <div class="pull-left book-image">
                             <img class="media-object"
-                                 src="{{ app.default_book_image }}"
+                                 src="{{ book.preview_image_url | default(app.default_book_image) }}"
                                  alt=""
                                  width="205"
                                  height="305">
@@ -140,7 +140,7 @@
 
 
                               <span>
-                                <a href="{{ app.url_generator.generate('books.view', {id: book.id}) }}"
+                                <a href="{{ book.book_file_url }}"
                                    class="btn btn-library action-item no-rounded pull-right">Read Book &raquo;</a>
                                </span>
 

@@ -15,10 +15,10 @@
             <a href="{{ app.url_generator.generate('books.index') }}">Books</a>
           </li>
           <li class="{% if is_module('print-jobs')|default(false) %}active{% endif %}">
-            <a href="{{ app.url_generator.generate('printJobs.index') }}">Printing Service</a>
+            <a href="{{ app.url_generator.generate('printJobs.index') }}">Printing</a>
           </li>
           <li class="{% if is_module('electronic-test')|default(false) %}active{% endif %}">
-            <a href="{{ app.url_generator.generate('etest.index') }}">Electronic Test</a>
+            <a href="{{ app.url_generator.generate('etest.index') }}">E-Test</a>
           </li>
           <li class="{% if is_module('articles')|default(false) %}active{% endif %}">
             <a href="{{ app.url_generator.generate('articles.index') }}">Articles</a>
