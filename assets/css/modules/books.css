@@ -11,7 +11,7 @@
 
 }
 
-#book-index #book-hold .book-item .book-item-preview {
+#book-hold .book-item .book-item-preview {
     border-bottom: 1px solid #ddd !important;
     text-align: center !important;
     padding: 12px;
@@ -20,7 +20,7 @@
 
 }
 
-#book-index #book-hold .book-item .book-item-title {
+#book-hold .book-item .book-item-title {
     font-size: 16px;
     font-family: "RobotoBold", Arial, san-serif;
 
@@ -84,15 +84,18 @@ span.like_view_count{
 .favorite_div{
     margin-right: auto;
     margin-left: auto;
-    height: 300px;
+    height: auto;
     width: 280px;
-    background-color: #269abc;
 }
 .reserved_div{
     margin-right: auto;
     margin-left: auto;
     height: auto;
     width: 280px;
+}
+span .col{
+    color: #555555;
+    font-weight: bold;
 }
 .res_fav_div{
     display: none;

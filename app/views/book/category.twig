@@ -62,7 +62,7 @@
                         </span>
                         </a>
                         {% else %}
-                        <a href="javascript:void(0)"
+                        <a href="{{ app.url_generator.generate('books.view', {id: book.id}) }}"
                            id="book-viewed-{{ book.id }}"
                            class="book-view"
                            data-action="viewed">

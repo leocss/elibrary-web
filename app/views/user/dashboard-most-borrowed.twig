@@ -8,7 +8,7 @@
         {% for borrowedBook in mostBorrowedBooks %}
         <div class="col-md-3">
             <div class="preview-image">
-                <a href="#">
+                <a href="{{  app.url_generator.generate('books.view', {id: borrowedBook.id}) }}">
                     <img src="{{ borrowedBook.preview_image_url | default(app.default_book_image) }}" alt="" height="260" width="175">
                 </a>
             </div>

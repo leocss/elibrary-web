@@ -45,8 +45,7 @@
                 <div id="book-icon">
 
                     <span class="icon-att">
-                    {% if book.context_user_liked == 1 %}
-                        <a href="javascript:void(0)"
+                        <a href="{{"books/"~book.id }} "
                            id="book-view-{{ book.id }}"
                            class="book-view"
                            data-action="view">
@@ -63,28 +62,9 @@
                             </span>
                         </span>
                         </a>
-                        {% else %}
-                        <a href="javascript:void(0)"
-                           id="book-viewed-{{ book.id }}"
-                           class="book-view"
-                           data-action="viewed">
-                            <span data-toggle="tooltip" data-placement="top" title="View">
-                                <span class="design"><i class="fa fa-users"></i>
-                                    <span class="like_view_count">
-                                        {{ book.views_count }}
-                                        {% if book.views_count>1 %}
-                                            {{ " Views" }}
-                                           {% else %}
-                                            {{ " View" }}
-                                                {% endif %}
-                                    </span>
-                                </span>
-                            </span>
-                        </a>
-                    {% endif %}
                     </span>
 
-                    <span class="icon-att">
+                       <span class="icon-att">
                     {% if book.context_user_liked == 1 %}
                         <a href="javascript:void(0)"
                            id="book-unlike-{{ book.id }}"

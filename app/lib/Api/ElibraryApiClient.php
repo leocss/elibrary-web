@@ -144,6 +144,28 @@ class ElibraryApiClient extends Client
      * @param int $bookId
      * @return array
      */
+    public function getReservedbooks($params = [])
+    {
+        return $this->send($this->buildRequest('GET', '/books/reserved?include=book', $params));
+    }
+
+    /**
+     * @param int $bookId
+     * @return array
+     */
+    /**
+     * @param null
+     * @return array
+     */
+    public function getMostviewed($params = [])
+    {
+        return $this->send($this->buildRequest('GET', '/books?stat=4_most_viewed', $params));
+    }
+
+    /**
+     * @param null
+     * @return array
+     */
     public function getBook($bookId, $params = [])
     {
         return $this->send($this->buildRequest('GET', sprintf('/books/%d', $bookId, $params)));

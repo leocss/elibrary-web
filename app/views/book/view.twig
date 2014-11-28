@@ -8,9 +8,10 @@
     <div id="header_search">
         <div class="col-md-4" style=" margin-right: 5px;" id="header_check">
             <div class="input-group">
-                <input type="text" placeholder="Looking for a book, what book? " class="form-control">
+                <input type="text" name="txt_search" id="txt_search" placeholder="Looking for a book, what book?"
+                       class="form-control" />
                     <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
+                        <button class="btn btn-default" type="button" name="btn_search" id="btn_search">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </span>
@@ -31,7 +32,7 @@
                     <div id="random-book" class="media">
                         <div class="pull-left book-image">
                             <img class="media-object"
-                                 src="{{ book.preview_image_url | default(app.default_book_image) }}"
+                                 src="{{ app.default_book_image }}"
                                  alt=""
                                  width="205"
                                  height="305">
@@ -41,56 +42,78 @@
 
                             <div class="book-title media-heading" >
                                 <h2>
-                                    <a href="{{ book.title }}">
-                                        {{ book.title }}
-                                    </a>
+
+                                    {{ book.title }}
+
                                 </h2>
                                 By
                                 <span class="book-author">{{ book.author }}</span>
                             </div>
 
 
-                        <div  class="reserve_div reserve_hide ">
+                            <div  class="reserve_div reserve_hide ">
 
-                            <div class="reserve-title media-heading">
-                                <h2>
-                                    BOOK RESERVATION
-                                </h2>
-                            </div>
+                                <div class="reserve-title media-heading">
+                                    <h2>
+                                        BOOK RESERVATION
+                                    </h2>
+                                </div>
 
-                            <div class="book-reservation ">
-                                <p>
+                                <div class="book-reservation ">
+                                    <p>
                                     <span style="font-weight: bold; font-size: 20px;">NOTE:  Any reserved book must be collected from
-                                    the library within 7days or reservation will be canceled.</span>
-                                </p>
-                                {% if book.hard_copies_count > 0 %}
-                                    {% set available_hardcopy = book.hard_copies_count - book.borrow_count %}
-                                        {% if available_hardcopy > 2 %}
-                                            <p>
-                                                Click proceed to finalise reservation.
-                                             <span>
-                                                <a href="{{ app.url_generator.generate('books.view', {id: book.id}) }}"
-                                               class="btn btn-library action-item no-rounded pull-right">Procced &raquo;</a>
-                                           </span>
-                                            </p>
+                                    the library within 7days or reservation will be canceled.</span>{{ book.hard_copies_count }}
+                                    </p>
+                                    {% if book.hard_copies_count > 0 %}
+                                        {% set available_hardcopy = book.hard_copies_count - book.borrow_count %}
+                                        {% set reservedbookscount=0  %}
+                                        {% set thisbookcount=0  %}
+                                        {% for reservedbook in reservedbooks %}
+                                            {% set  reservedbookscount = reservedbookscount + 1 %}
+                                            {% if  reservedbook.book_id == book.id  %}
+                                                {% set  thisbookcount = thisbookcount + 1 %}
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if(reservedbookscount >= 3)  %}
+                                            {{ "YOU CAN ONLY RESERVE A MAXIMUM OF THREE (3) DIFFERENT BOOKS." }}
                                         {% else %}
-                                            <p>
-                                                SORRY: Hardcopy of {{ book.title }} is  presently not available, Try again later.
-                                            </p>
-                                        {% endif %}
-                                    {% else %}
-                                       <p>
-                                         SORRY: We do not have hardcopy for {{ book.title }}.
-                                       </p>
-                                {% endif %}
-                            </div>
+                                            {% if(thisbookcount >= 1)  %}
+                                                {{ "RESERVATION FAIL: YOU HAVE ALREADY RESERVED A COPY OF THIS BOOK." }}
+                                            {% else %}
+                                                {% if available_hardcopy > 2 %}
+                                                    <p>
+                                                        {{ "Click proceed to finalise reservation." }}
+                                                        <span>
+                                                    <a href="javascript:void(0)"
+                                                       id="serve-{{ book.id }}"
+                                                       class="btn btn-library action-item no-rounded pull-right this_reserve">Procced &raquo;</a>
+                                                    </span>
+                                                    </p>
+                                                {% else %}
+                                                    <p>
+                                                        SORRY: Hardcopy of {{ book.title }} is  presently not available, Try again later.
+                                                    </p>
+                                                {% endif %}
 
-                        </div>
+                                            {% endif %}
+                                        {% endif %}
+
+                                    {% else %}
+                                        <p>
+                                            SORRY: We do not have hardcopy for {{ book.title }}.
+                                        </p>
+                                    {% endif %}
+                                </div>
+
+                            </div>
 
                             <div class="book-description">
                                 <h3>Description</h3>
                                 <p>
                                     {{ book.overview }}
+                                </p>
+                                <p class="reserve_msg">
+
                                 </p>
                             </div>
 
@@ -101,12 +124,19 @@
                             <span class="stat-item">
                                 {% if book.context_user_liked == 1 %}
                                     <a  style="text-decoration: none; color: #424242;"  href="javascript:void(0)"
-                                       id="book-unlike-{{ book.id }}"
-                                       class="book-unlike-like"
-                                       data-action="unlike">
+                                        id="book-unlike-{{ book.id }}"
+                                        class="book-unlike-like"
+                                        data-action="unlike">
                         <span data-toggle="tooltip" data-placement="top" title="Unlike"  >
                             <span><i class="fa fa-thumbs-down"></i>
-                                <span class="like_view_count">{{ book.likes_count }}Likes</span>
+                                <span class="like_view_count">
+                                    {{ book.likes_count }}
+                                    {% if book.likes_count>1 %}
+                                        {{ " Likes" }}
+                                    {% else %}
+                                        {{ " Like" }}
+                                    {% endif %}
+                                </span>
                             </span>
                         </span>
                                     </a>
@@ -117,7 +147,14 @@
                                        data-action="like">
                             <span data-toggle="tooltip" data-placement="top" title="Like">
                                 <span><i class="fa fa-thumbs-up"></i>
-                                    <span class="like_view_count">{{ book.likes_count }}Likes</span>
+                                    <span class="like_view_count">
+                                        {{ book.likes_count }}
+                                        {% if book.likes_count>1 %}
+                                            {{ " Likes" }}
+                                        {% else %}
+                                            {{ " Like" }}
+                                        {% endif %}
+                                    </span>
                                 </span>
                             </span>
                                     </a>
@@ -126,13 +163,15 @@
 
 
                             <span class="stat-item">
-                                <span class="fa fa-users"></span> <small>{{ book.views_count }} Views</small>
+
+                                    <span class="fa fa-users"></span> <small>{{ book.views_count }} Views</small>
+
                             </span>
 
 
                             <span class="stat-item btn_book_reserve">
                                     <a style="text-decoration: none; color: #424242;"
-                                            href="javascript:void(0)"
+                                       href="javascript:void(0)"
                                        class="text_dec "><span class="fa fa-book"></span> <small> Reserve Book
                                     </a>
                                 </small>
@@ -140,7 +179,7 @@
 
 
                               <span>
-                                <a href="{{ book.book_file_url }}"
+                                <a href="{  book.book_file_url }  "
                                    class="btn btn-library action-item no-rounded pull-right">Read Book &raquo;</a>
                                </span>
 

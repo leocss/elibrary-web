@@ -25,9 +25,13 @@ class BookCtrl extends BaseCtrl
         ]);
 
         //print_r($categories);exit;
-
+        $reservedbooks = $this->client->getReservedbooks();
+        $mostviewed = $this->client->getMostviewed();
+        //print_r($reservedbooks);exit;
         return $this->view->render('book/index.twig', [
-            'categories' => $categories
+            'categories' => $categories,
+            'reservedbooks' => $reservedbooks,
+            'mostviewed' => $mostviewed
         ]);
     }
 
@@ -51,9 +55,12 @@ class BookCtrl extends BaseCtrl
                 'include' => 'category'
             ]
         ]);
-
+        $reservedbooks = $this->client->getReservedbooks();
+        $mostviewed = $this->client->getMostviewed();
         return $this->view->render('book/category.twig', [
             'books' => $books,
+            'reservedbooks' => $reservedbooks,
+            'mostviewed' => $mostviewed
         ]);
         /*        return $this->view->render('book/sidebar.twig', [
                     'books' => $books,
@@ -67,9 +74,12 @@ class BookCtrl extends BaseCtrl
         $books = $this->client->getBooks([
             'query' => ['filter' => $filter]
         ]);
-
+        $reservedbooks = $this->client->getReservedbooks();
+        $mostviewed = $this->client->getMostviewed();
         return $this->view->render('book/search.twig', [
             'books' => $books,
+            'reservedbooks' => $reservedbooks,
+            'mostviewed' => $mostviewed,
         ]);
     }
 
@@ -82,9 +92,12 @@ class BookCtrl extends BaseCtrl
     public function view($id)
     {
         $book = $this->client->getBook($id);
-
+        $reservedbooks = $this->client->getReservedbooks();
+        $mostviewed = $this->client->getMostviewed();
         return $this->view->render('book/view.twig', [
-            'book' => $book
+            'book' => $book,
+            'reservedbooks' => $reservedbooks,
+            'mostviewed' => $mostviewed
         ]);
     }
 
@@ -107,12 +120,15 @@ class BookCtrl extends BaseCtrl
                 file_get_contents($book['book_file_url'])
             );
         }
-
+        $reservedbooks = $this->client->getReservedbooks();
+        $mostviewed = $this->client->getMostviewed();
         return $this->view->render('book/viewer.twig', [
             'book' => $book,
             'localBookFile' => $localBookFile,
             'localBookHash' => $localBookHash,
-            'localBookExt' => $localBookExt
+            'localBookExt' => $localBookExt,
+            'reservedbooks' => $reservedbooks,
+            'mostviewed' => $mostviewed,
         ]);
     }
 }
