@@ -8,7 +8,7 @@
                     <div class="centralize">
                         {% block error_content %}{% endblock %}
                         <h4>
-                            Go back to <a href="/dashboard">Dashboard</a>
+                            Go back to <a href="{{ app.url_generator.generate('user.dashboard') }}">Dashboard</a>
                         </h4>
                     </div>
                 </div>
