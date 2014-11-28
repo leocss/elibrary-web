@@ -37,18 +37,14 @@
                             </p>
                         </div>
                         <div class="book-actions clearfix">
-
                             <span class="stat-item">
                                 <span class="fa fa-thumbs-up"></span> <small>{{ randomBook.likes_count }} Likes</small>
                             </span>
-
                             <span class="stat-item">
                                 <span class="fa fa-users"></span> <small>{{ randomBook.views_count }} Views</small>
                             </span>
-                            {#
-                             <a href="{{ app.url_generator.generate('books.view', {id: randomBook.id}) }}"
-                               class="btn btn-library action-item no-rounded pull-right">Read Book &raquo;</a>
-                             #}
+                            <a href="{{ app.url_generator.generate('books.view', {id: randomBook.id}) }}"
+                               class="btn btn-library action-item no-rounded pull-right">View Details &raquo;</a>
                         </div>
                     </div>
                 </div>
@@ -57,31 +53,33 @@
 
                 {% include 'user/dashboard-most-borrowed.twig' %}
             </div>
-            <div class="col-md-4">
-                <div class="panel panel-default panel-recent-articles box no-rounded">
-                    <div class="panel-heading no-rounded">
-                        <h3 class="panel-title">
-                            <span class="fa fa-plus"></span>
-                            Recent Articles
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                        {% for article in recentArticles %}
-                            <a href="{{ app.url_generator.generate('articles.view', {id: article.id}) }}" class="media recent-article-item sidebar-list-item">
-                                <img src="{{ article.image_url | default(app.default_article_image) }}" class="media-object pull-left">
-                                <span class="display-block media-body">
-                                    <h5>{{ article.title }}</h5>
-                                    <div class="clearfix"></div>
-                                    <small class="text-center text-inverse muted">
-                                        <i class="fa fa-fw fa-clock-o"></i> {{ article.created_at }}
-                                    </small>
-                                </span>
-                            </a>
-                        {% endfor %}
-                    </div>
-                </div>
+       <div class="col-md-4">
+           {##   
+               <div class="panel panel-default panel-recent-articles box no-rounded">
+                   <div class="panel-heading no-rounded">
+                       <h3 class="panel-title">
+                           <span class="fa fa-plus"></span>
+                           Recent Articles
+                       </h3>
+                   </div>
+                   <div class="panel-body">
+                       {% for article in recentArticles %}
+                           <a href="{{ app.url_generator.generate('articles.view', {id: article.id}) }}" class="media recent-article-item sidebar-list-item">
+                               <img src="{{ article.image_url | default(app.default_article_image) }}" class="media-object pull-left">
+                               <span class="display-block media-body">
+                                   <h5>{{ article.title }}</h5>
+                                   <div class="clearfix"></div>
+                                   <small class="text-center text-inverse muted">
+                                       <i class="fa fa-fw fa-clock-o"></i> {{ article.created_at }}
+                                   </small>
+                               </span>
+                           </a>
+                       {% endfor %}
+                   </div>
+               </div>
+               #}
 
-                <div class="panel panel-default panel-recent-articles box no-rounded">
+            <div class="panel panel-default panel-recent-articles box no-rounded">
                     <div class="panel-heading no-rounded">
                         <h3 class="panel-title">
                             <span class="fa fa-plus"></span>
