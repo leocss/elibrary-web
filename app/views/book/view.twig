@@ -140,7 +140,7 @@
 
 
                               <span>
-                                <a href="{{ book.book_file_url }}"
+                                <a href="{{ book.book_file_url | default(app.default_book_image) }}"
                                    class="btn btn-library action-item no-rounded pull-right">Read Book &raquo;</a>
                                </span>
 
