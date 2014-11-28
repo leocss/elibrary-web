@@ -20,9 +20,11 @@
           <li class="{% if is_module('electronic-test')|default(false) %}active{% endif %}">
             <a href="{{ app.url_generator.generate('etest.index') }}">E-Test</a>
           </li>
+          {#
           <li class="{% if is_module('articles')|default(false) %}active{% endif %}">
             <a href="{{ app.url_generator.generate('articles.index') }}">Articles</a>
           </li>
+          #}
           <li class="{% if is_module('billing')|default(false) %}active{% endif %}">
             <a href="{{ app.url_generator.generate('billing.index') }}">Billing</a>
           </li>
