@@ -11,11 +11,12 @@
         </div>
         <div class="container-fluid margin-top-lg">
             <div class="col-md-8">
+                {% if randomBook %}
                 {# Start -> Display Random Book #}
                 <div id="random-book" class="media">
                     <div class="pull-left book-image">
                         <img class="media-object"
-                             src="{{ randomBook.preview_image | default(app.default_book_image) }}"
+                             src="{{ randomBook.preview_image_url | default(app.default_book_image) }}"
                              alt=""
                              width="205"
                              height="305">
@@ -48,6 +49,7 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
                 {# End -> Display Random Book #}
 
                 {% include 'user/dashboard-most-borrowed.twig' %}

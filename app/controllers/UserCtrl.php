@@ -41,6 +41,11 @@ class UserCtrl extends BaseCtrl
     {
         return $this->view->render('user/dashboard.twig', [
             'randomBook' => $this->client->getRandomBook(),
+            'mostBorrowedBooks' => $this->client->send(
+                $this->client->buildRequest('GET', '/books', [
+                    'query' => ['stat' => '4_most_borrowed']
+                ])
+            ),
             'recentArticles' => $this->client->getPosts(['query' => ['limit' => 5]]),
             'likedBooks' => $this->client->getBooks(['query' => ['stat' => '5_most_liked']])
         ]);

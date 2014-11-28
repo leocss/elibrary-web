@@ -5,11 +5,11 @@
     <!-- page title -->
 
     <div class="row">
-        {% for i in [1, 2, 3, 4] %}
+        {% for borrowedBook in mostBorrowedBooks %}
         <div class="col-md-3">
             <div class="preview-image">
                 <a href="#">
-                    <img src="{{ app.base_url }}assets/img/book/sample{{ i }}.jpg" alt="" height="260" width="175">
+                    <img src="{{ borrowedBook.preview_image_url | default(app.default_book_image) }}" alt="" height="260" width="175">
                 </a>
             </div>
             {# Picture #}
