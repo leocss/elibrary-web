@@ -27,7 +27,7 @@
 }
 
 #book-hold #book-att-icons{
-    padding: 6px;
+    padding: 3px;
     min-width: 219px;
     min-height: 20px;
     background-color: #fafafa;
@@ -54,7 +54,7 @@ h3{
    margin-top: 0px !important;
 }
 #book-icon{
-    padding-top: 5px;
+    padding-top: 2px;
     padding-left: 5px;
 }
 span .design{
@@ -66,6 +66,21 @@ span.like_view_count{
 }
 .icon-att a{
     text-decoration: none;
+}
+
+.books_title{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    margin-right: auto;
+    margin-left: auto;
+    outline: none;
+    width: 178px;
+}
+
+.books_title a{
+    color: #080808;
 }
 
 .reserved a,

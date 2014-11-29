@@ -8,9 +8,9 @@
     <div id="book-index">
 
         <div id="header_search">
-            <div class="col-md-4" style="padding-right: 15px;" id="header_check">
+
             {% include 'book/search-form.twig' %}
-            </div>
+
             <div id="header_only"><h3>BOOKS CATEGORIES</h3></div>
         </div>
 
@@ -25,6 +25,7 @@
                             <div class="body-subcontainer">
                                 {% set catArray=[] %}
                                 {% for category in categories %}
+                                {% if category.books|length > 1 %}
                                     <div id="cat_head">
                                         {{ category.title }} &raquo; <a
                                                 href="{{ app.url_generator.generate('books.category', {id: category.id}) }}"
@@ -43,7 +44,10 @@
                                                             </a>
 
                 <div id="book-icon">
-
+                    <p class="books_title">
+                                <a href="{{ app.url_generator.generate('books.view', {id: book.id}) }}" >{{ book.title }}  </a>
+                                </p>
+                    <p>
                     <span class="icon-att">
                         <a href="{{"books/"~book.id }} "
                            id="book-view-{{ book.id }}"
@@ -103,6 +107,7 @@
                         </a>
                     {% endif %}
                     </span>
+                    </p>
                 </div>
                                                         </li>
                                                     {% endfor %}
@@ -113,7 +118,11 @@
                                         <!-- example -->
 
                                     </div><!-- demo -->
+                                {% else %}
+
+                                {% endif %}
                                 {% endfor %}
+
                             </div>
                             <!-- .body-subcontainer -->
 

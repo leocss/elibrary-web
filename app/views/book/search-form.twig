@@ -1,11 +1,14 @@
 <form action="{{ app.url_generator.generate('books.search') }}" method="get">
-    <div class="input-group">
-        <input type="text" placeholder="Looking for a book, what book? " class="form-control" name="filter">
-        <span class="input-group-btn">
-            <button class="btn btn-default" type="button">
-                <span class="glyphicon glyphicon-search"></span>
-            </button>
-        </span>
+    <div class="col-md-4" style=" margin-right: 5px;" id="header_check">
+        <div class="input-group">
+            <input type="text" name="txt_search" id="txt_search" placeholder="Looking for a book, what book?"
+                   class="form-control" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" name="btn_search" id="btn_search">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+        </div>
     </div>
     <!-- /input-group -->
 </form>

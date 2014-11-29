@@ -71,7 +71,13 @@ $(function () {
                         .removeClass('fa-thumbs-up')
                         .addClass('fa-thumbs-down');
                     likecount+=1;
-                    $this.find('.like_view_count').text(likecount + ' Likes');
+                    if(likecount>1){
+                        $this.find('.like_view_count').text(likecount + ' Likes');
+                    }
+                    else{
+                        $this.find('.like_view_count').text(likecount + ' Like');
+                    }
+
                     $this.attr('id', 'book-unlike-' + id)
                         .attr('data-action', 'unlike');
 
@@ -88,7 +94,12 @@ $(function () {
                         .removeClass('fa-thumbs-down')
                         .addClass('fa-thumbs-up');
                     likecount-=1;
-                    $this.find('.like_view_count').text(likecount + ' Likes');
+                    if(likecount>1){
+                        $this.find('.like_view_count').text(likecount + ' Likes');
+                    }
+                    else{
+                        $this.find('.like_view_count').text(likecount + ' Like');
+                    }
                     $this.attr('id', 'book-like-' + id)
                         .attr('data-action', 'like');
                 },

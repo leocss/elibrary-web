@@ -217,6 +217,14 @@ class ElibraryApiClient extends Client
     {
         return $this->send($this->buildRequest('GET', '/books/categories', $params));
     }
+    /**
+     * @param array $params
+     * @return ResponseInterface
+     */
+    public function getSearch($params = [])
+    {
+        return $this->send($this->buildRequest('GET', '/books?%s',  $params));
+    }
 
     /**
      * @param array $params

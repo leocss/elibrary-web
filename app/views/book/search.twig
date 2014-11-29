@@ -6,20 +6,22 @@
 
 {% block content %}
     <div id="book-index">
-    <div class="page-header">
-      <h2>Search <small> / results for "{{ app.request.query.get('filter') }}"</small></h2>
-    </div>
         <div id="header_search">
-            <div class="col-md-4" style=" margin-right: 5px;" id="header_check">
-                {% include 'book/search-form.twig' %}
-            </div>
+
+            {% include 'book/search-form.twig' %}
+
         </div>
+    <div class="page-header">
+      <h2>Search <small> / results for "{{ filter }}"</small></h2>
+    </div>
+
         <div class="container-fluid margin-top-lg">
             <div class="row">
                 <div class="col-md-9">
                     <div class="container-fluid margin-top-lg">
                         <div class="row">
-                            {% for book in books %}
+                {% if results|length >1 %}
+                            {% for result in results %}
                                 <div class="col-md-3">
                                     <div id="book-hold">
                                         <div class="box book-item">
@@ -27,18 +29,21 @@
                                                 <img src="{{ app.base_url }}assets/img/sample-book-preview.png"
                                                      width="180" height="200"/>
                                             </div>
-                                            <div id="book-att-icons">
+                   <div id="book-att-icons">
+                       <p class="books_title"><a href="{{ app.url_generator.generate('books.view', {id: result.id}) }}" >
+                               {{ result.title }}
+                           </a></p>
+                       <p class="books_title">
                     <span class="icon-att">
-                    {% if book.context_user_liked == 1 %}
-                        <a href="javascript:void(0)"
-                           id="book-view-{{ book.id }}"
+                        <a href="{{result.id }} "
+                           id="book-view-{{result.id }}"
                            class="book-view"
                            data-action="view">
                         <span data-toggle="tooltip" data-placement="top" title="View"  >
                             <span class="design"><i class="fa fa-users"></i>
                                 <span class="like_view_count">
-                                    {{ book.views_count }}
-                                    {% if book.views_count>1 %}
+                                    {{ result.views_count}}
+                                    {% if result.views_count>1 %}
                                         {{ " Views" }}
                                     {% else %}
                                         {{ " View" }}
@@ -47,38 +52,18 @@
                             </span>
                         </span>
                         </a>
-                        {% else %}
-                        <a href="javascript:void(0)"
-                           id="book-viewed-{{ book.id }}"
-                           class="book-view"
-                           data-action="viewed">
-                            <span data-toggle="tooltip" data-placement="top" title="View">
-                                <span class="design"><i class="fa fa-users"></i>
-                                    <span class="like_view_count">
-                                        {{ book.views_count}}
-                                        {% if book.views_count>1 %}
-                                            {{ " Views" }}
-                                        {% else %}
-                                            {{ " View" }}
-                                        {% endif %}
-                                    </span>
-                                </span>
-                            </span>
-                        </a>
-                    {% endif %}
                     </span>
-
                     <span class="icon-att">
-                    {% if book.context_user_liked == 1 %}
+                    {% if result.context_user_liked == 1 %}
                         <a href="javascript:void(0)"
-                           id="book-unlike-{{ book.id }}"
+                           id="book-unlike-{{ result.id }}"
                            class="book-unlike-like"
                            data-action="unlike">
                         <span data-toggle="tooltip" data-placement="top" title="Unlike"  >
                             <span class="design"><i class="fa fa-thumbs-down"></i>
                                 <span class="like_view_count">
-                                    {{ book.likes_count }}
-                                    {% if book.likes_count>1 %}
+                                    {{ result.likes_count }}
+                                    {% if result.likes_count>1 %}
                                         {{ " Likes" }}
                                     {% else %}
                                         {{ " Like" }}
@@ -89,14 +74,14 @@
                         </a>
                         {% else %}
                         <a href="javascript:void(0)"
-                           id="book-like-{{ book.id }}"
+                           id="book-like-{{ result.id }}"
                            class="book-unlike-like"
                            data-action="like">
                             <span data-toggle="tooltip" data-placement="top" title="Like">
                                 <span class="design"><i class="fa fa-thumbs-up"></i>
                                     <span class="like_view_count">
-                                        {{ book.likes_count  }}
-                                        {% if book.likes_count>1 %}
+                                        {{ result.likes_count  }}
+                                        {% if result.likes_count>1 %}
                                             {{ " Likes" }}
                                         {% else %}
                                             {{ " Like" }}
@@ -107,15 +92,17 @@
                         </a>
                     {% endif %}
                     </span>
-
-                                            </div>
+                       </p>
+                   </div>
                                             <div class="clearfix"></div>
                                         </div>
 
                                     </div>
                                 </div>
                             {% endfor %}
-
+                    {% else %}
+                        <h2>{{ "NO RESULT FOUND" }}</h2>
+                        {% endif %}
                         </div>
                     </div>
                 </div>
