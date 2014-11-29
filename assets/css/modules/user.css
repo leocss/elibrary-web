@@ -3,6 +3,14 @@
  *  Home Page Styles
  * -------------------------------------------------------------------
  */
+@font-face {
+    font-family: KaushanScript;
+    src: url(../../fonts/KaushanScript-Regular.otf) format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-size: 1em;
+}
+
 #home {
     height: 100%;
     background-color: #454354;
@@ -17,30 +25,44 @@
 }
 
 #home .lock-background {
-    width: 100%;
+    /*width: 100%;
     height: 400px;
     overflow: hidden;
     position: relative;
-    background: url(../../img/user/lock-header.jpg)
+    background: url(../../img/user/lock-header.jpg);  */
+    background:url(../../img/user/lock-header.jpg) transparent scroll !important;
+    background-repeat:no-repeat !important;
+    background-position:50% 50% !important;
+   /* background-attachment: scroll  !important;*/
+    background-size:cover !important;
+    padding: 0;
+    margin:0;
+    width: 100%;
+    min-height: 100%;
+
+
 }
 
 .login-form {
-    position: absolute;
-    left: 50%;
-    z-index: 1000;
+    margin-right: auto;
     width: 480px;
-    top: 186px;
-    margin-left: -240px;
+   margin-bottom:0;
+    margin-left: auto;
 }
 
 .login-form-title {
-    padding: 20px 10px;
-    background: rgba(0, 0, 0, 0.6);
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.85);
     text-align: center;
     color: #FFF;
     text-shadow: 1px 1px 2px #000;
+    border-radius:10px 10px 0 0;
+    font-size: 16px !important;
 }
-
+.form-horizontal{
+    background: rgba(0, 0, 0, 0.85) !important;
+    border-radius:0 0 10px 10px;
+}
 .login-form-title h2 {
     font-size: 40px;
     margin: 0;
@@ -52,6 +74,51 @@
     padding: 20px 30px;
     padding-top: 30px;
 }
+.ui-input-text {
+    background: rgba(0, 0, 0, 0) !important;
+    padding-left:37px;;
+    border: none !important;
+    border-bottom:1px solid #fff !important;
+    text-shadow: none !important;
+    color: #fff;
+    border-radius:0 0 5px 5px !important;
+
+}
+
+.form-control.ui-input-text:focus {
+    border-color:rgba(0,0,0,0);
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.user-a{
+    background: rgba(0, 0, 0, 0) url(../../img/user/icons/user-white.png) no-repeat scroll 16px 8px !important;
+}
+
+.password-b{
+    background: rgba(0, 0, 0, 0)url(../../img/user/icons/lock-white.png) no-repeat scroll 16px 8px !important;
+}
+
+/* style placeholders */
+::-webkit-input-placeholder {
+    color: #fff !important;
+}
+
+:-moz-placeholder{
+    color: #fff !important;
+}
+
+::-moz-placeholder {
+    color: #fff !important;
+}
+
+:-ms-input-placeholder {
+    color: #fff !important;
+}
+
+
+
 
 /**
  * --------------------------------------------------------------------
