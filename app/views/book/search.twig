@@ -26,7 +26,7 @@
                                     <div id="book-hold">
                                         <div class="box book-item">
                                             <div class="book-item-preview">
-                                                <img src="{{ app.base_url }}assets/img/sample-book-preview.png"
+                                                <img src="{{ result.preview_image | default(app.default_book_image) }}"
                                                      width="180" height="200"/>
                                             </div>
                    <div id="book-att-icons">
