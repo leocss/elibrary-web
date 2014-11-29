@@ -8,14 +8,18 @@
   <div id="user-dashboard">
     <div class="page-header">
       <h2>Electronic Test Practice:
-        <small>/ Result</small>
+        <small>/ Result Page</small>
       </h2>
-    </div>
+
+    </div> <blockquote>
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <p>Total Attempted: {{ totalQuestions }} </p>
-          <p>Score: {{ correctlyAnswered }} / {{ totalQuestions }} </p>
+          <h3><p class="alert-success">Total Questions Attempted : {{ totalQuestions }} </p></h3>
+          <p class="alert-success">Correctly Answered : {{ correctlyAnswered }} <br> <span class="alert-danger"> Wrongly Answered : {{ totalQuestions - correctlyAnswered }}</span>
+          <br>
+              <b><h3 class="alert-success">Total Score : {{ correctlyAnswered }}</h3></b>
+          </p>
         </div>
       </div>
 
@@ -31,7 +35,13 @@
           {% endfor %}
         </div>
       </div>
+        <div>
+            <p>
+                <b class="alert-success">Thank you your time. Please take another test or use other services.</b> <span class="alert-danger"> Best of luck in your real Examination</span>
+            </p>
 
-    </div>
+        </div>
+
+    </div></blockquote>
   </div>
 {% endblock %}
