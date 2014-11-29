@@ -32,7 +32,7 @@
                     <div id="random-book" class="media">
                         <div class="pull-left book-image">
                             <img class="media-object"
-                                 src="{{ app.default_book_image }}"
+                                 src="{{ book.preview_image_url | default(app.default_book_image)}}"
                                  alt=""
                                  width="205"
                                  height="305">
