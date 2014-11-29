@@ -22,11 +22,12 @@
                         <div class="row">
                 {% if results|length >0 %}
                             {% for result in results %}
+                                {{ "go"~result.preview_image_url }}
                                 <div class="col-md-3">
                                     <div id="book-hold">
                                         <div class="box book-item">
                                             <div class="book-item-preview">
-                                                <img src="{{ result.preview_image | default(app.default_book_image) }}"
+                                                <img src="{{ result.preview_image_url | default(app.default_book_image) }}"
                                                      width="180" height="200"/>
                                             </div>
                    <div id="book-att-icons">
