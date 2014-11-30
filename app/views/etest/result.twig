@@ -27,8 +27,8 @@
         <div class="col-md-12">
           {% for question in session.questions %}
             <h4>
-              {{ question.question }} - <br />
-              <b>Selected Option: </b> {{ question.options[question._pivot_selected_answer - 1] }} ---
+              {{ question.question }}  <br />
+              <b>Selected Option: </b> {{ question.options[question._pivot_selected_answer - 1] }} <span class="alert-success"> Is</span>
               {% if question._pivot_correctly_answered %} Correct {% else %} Incorrect {% endif %}
             </h4>
             <hr />

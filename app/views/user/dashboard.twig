@@ -21,7 +21,7 @@
                 <div id="random-book" class="media">
                     <div class="pull-left book-image">
                         <a href="{{ app.url_generator.generate('books.view', {id: randomBook.id}) }}">
-                        <img class="media-object"
+                        <img style="border: 3px solid #ccc;" class="media-object"
                              src="{{ randomBook.preview_image_url | default(app.default_book_image) }}"
                              alt=""
                              width="205"
