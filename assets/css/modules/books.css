@@ -11,6 +11,7 @@
 
 }
 
+
 #book-hold .book-item .book-item-preview {
     border-bottom: 1px solid #ddd !important;
     text-align: center !important;
@@ -28,7 +29,7 @@
 
 #book-hold #book-att-icons{
     padding: 3px;
-    min-width: 219px;
+    min-width: 214px;
     min-height: 20px;
     background-color: #fafafa;
 }
@@ -75,6 +76,7 @@ span.like_view_count{
     overflow: hidden;
     margin-right: auto;
     margin-left: auto;
+    color: #080808;
     outline: none;
     width: 178px;
 }
@@ -100,13 +102,13 @@ span.like_view_count{
     margin-right: auto;
     margin-left: auto;
     height: auto;
-    width: 280px;
+    width: 260px;
 }
 .reserved_div{
     margin-right: auto;
     margin-left: auto;
     height: auto;
-    width: 280px;
+    width: 260px;
 }
 span .col{
     color: #555555;

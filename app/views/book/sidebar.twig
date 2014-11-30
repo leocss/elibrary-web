@@ -1,7 +1,7 @@
 <div id="side_nav_cont"  style="background-color: #fefefe; min-height: 1500px; border:1px solid #ddd;">
     <ul class="nav nav-tabs nav-justified">
         <li class="favor  active"><a href="#">Most View Books</a></li>
-        <li  class="reserved"><a href="#">Reserved books</a></li>
+        {# <li  class="reserved"><a href="#">Reserved books</a></li> #}
     </ul>
     <div id="reserved_favorite_div" >
 
@@ -27,13 +27,17 @@
                 {% for mvbook in mostviewed %}
                     <div id="book-hold">
                         <div class="box book-item">
-                            <div class="book-item-preview">
+                            <div class="book-item-preview" style="border: 2px solid #ccc;" >
+                                <div style="">
+
                                 <a href="{{ app.url_generator.generate('books.view', {id: mvbook.id}) }}">
                                     <img src="{{ mvbook.preview_image_url | default(app.default_book_image) }}"
                                          width="180" height="200"/></a>
                                 <p class="books_title"><a href="{{ app.url_generator.generate('books.view', {id: mvbook.id}) }}" >
                                     {{ mvbook.title }}</a>
                                     </p>
+
+                                </div>
                             </div>
                         </div>
                     </div>
