@@ -16,7 +16,7 @@
           Select a preffered course below to take your practice test
         </h3>
             <h4 class="alert-danger">
-               <b>NOTE: Make sure you do not press the submit button without answering a question!!!</b><br>
+               <b>NOTE: Ensure that you do not Click the Submit button without completing the Test!!!</b><br>
                 Answer all question. This is just a practise test and you will not be penalized for wrong answers.
 
             </h4>
@@ -29,7 +29,7 @@
         {% for course in courses %}
           <div class="media course-item">
             <a class="course-icon pull-left bg-success innerAll text-center text-white"
-               href="course.html?lang=en">
+               href="{{ app.url_generator.generate('etest.session', {course_id: course.id}) }}">
               <i class="fa fa-fw fa-globe fa-5x"></i>
             </a>
 
@@ -61,7 +61,7 @@
           </div>
           <div class="panel-body">
             {% for course in recentlyAddedCourses %}
-              <a href="{{ app.url_generator.generate('etest.view-course', {course_id: course.id}) }}"
+              <a href="{{ app.url_generator.generate('etest.session', {course_id: course.id}) }}"
                  class="media recent-article-item sidebar-list-item">
                 <img src="{{ book.preview_image_url | default(app.default_book_image) }}"
                      class="media-object pull-left">
