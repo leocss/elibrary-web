@@ -16,13 +16,8 @@
           Select a preferred course below to take your practice test
         </h3>
             <h4 class="alert-danger">
-<<<<<<< HEAD
                <b>Note: ensure that you do not click the submit button without attempting all questions!!!</b><br>
                 Answer all question. This is just a practise test and you will not be penalized for wrong answers.
-=======
-               <b>NOTE: Ensure that you do not Click the Submit button without completing the Test!!!</b><br>
-                Answer all questions. This is just a practise test and you will not be penalized for wrong answers.
->>>>>>> 88dd6283e03c9d9985ee409163ed326b937de88f
 
             </h4>
       </blockquote>
@@ -55,12 +50,7 @@
           </div>
         {% endfor %}
       </div>
-<<<<<<< HEAD
-
-    <div class="col-md-4">
-=======
   <div class="col-md-4">
->>>>>>> 88dd6283e03c9d9985ee409163ed326b937de88f
         <div class="panel panel-default panel-recent-articles box no-rounded">
           <div class="panel-heading no-rounded">
             <h3 class="panel-title">
@@ -69,14 +59,8 @@
             </h3>
           </div>
           <div class="panel-body">
-<<<<<<< HEAD
              {% for course in recentlyAddedCourses %}
               <a href="{{ app.url_generator.generate('etest.session', {course_id: course.id}) }}"
-=======
-
-             {% for course in recentlyAddedCourses %}
-              <a href=" {{ app.url_generator.generate('etest.view-course', {course_id: course.id}) }} "
->>>>>>> 88dd6283e03c9d9985ee409163ed326b937de88f
                  class="media recent-article-item sidebar-list-item">
                 <img src="{{ book.preview_image_url | default(app.default_book_image) }} "
                      class="media-object pull-left">
@@ -85,12 +69,8 @@
                     <div class="clearfix"></div>
                 </span>
               </a>
-<<<<<<< HEAD
              {% endfor %}
-=======
-              {% endfor %}
 
->>>>>>> 88dd6283e03c9d9985ee409163ed326b937de88f
           </div>
         </div>
 
