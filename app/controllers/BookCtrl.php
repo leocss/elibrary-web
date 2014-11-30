@@ -70,17 +70,21 @@ class BookCtrl extends BaseCtrl
 
     public function search(Request $request)
     {
-        $filter = $request->get('filter');
-        $books = $this->client->getBooks([
+        $filter = $request->get('txt_search');
+
+        $results = $this->client->getSearch([
             'query' => ['filter' => $filter]
         ]);
-        $reservedbooks = $this->client->getReservedbooks();
+        //print_r($results);exit;
         $mostviewed = $this->client->getMostviewed();
+        $reservedbooks = $this->client->getReservedbooks();
         return $this->view->render('book/search.twig', [
-            'books' => $books,
+            'filter'=>$filter,
+            'results' => $results,
             'reservedbooks' => $reservedbooks,
             'mostviewed' => $mostviewed,
         ]);
+
     }
 
     /**

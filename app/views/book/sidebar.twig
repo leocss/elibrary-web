@@ -31,10 +31,8 @@
                                 <a href="{{ app.url_generator.generate('books.view', {id: mvbook.id}) }}">
                                     <img src="{{ mvbook.preview_image_url | default(app.default_book_image) }}"
                                          width="180" height="200"/></a>
-                                <p style="
-                                white-space: nowrap; text-overflow: ellipsis; display: block; overflow: hidden; padding-top: 5px;
-                                margin-right: auto; margin-left: auto; color: #080808;   outline: none; width: 180px;">
-                                    {{ mvbook.title }}
+                                <p class="books_title"><a href="{{ app.url_generator.generate('books.view', {id: mvbook.id}) }}" >
+                                    {{ mvbook.title }}</a>
                                     </p>
                             </div>
                         </div>

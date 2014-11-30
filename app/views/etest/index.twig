@@ -13,7 +13,7 @@
       <p>
       <blockquote>
         <h3>
-          Select a preffered course below to take your practice test
+          Select a preferred course below to take your practice test
         </h3>
             <h4 class="alert-danger">
                <b>NOTE: Ensure that you do not Click the Submit button without completing the Test!!!</b><br>
@@ -51,7 +51,7 @@
         {% endfor %}
       </div>
 
-      <div class="col-md-4">
+     <!--  <div class="col-md-4">
         <div class="panel panel-default panel-recent-articles box no-rounded">
           <div class="panel-heading no-rounded">
             <h3 class="panel-title">
@@ -60,21 +60,26 @@
             </h3>
           </div>
           <div class="panel-body">
+<<<<<<< HEAD
             {% for course in recentlyAddedCourses %}
               <a href="{{ app.url_generator.generate('etest.session', {course_id: course.id}) }}"
+=======
+            {# {% for course in recentlyAddedCourses %} #}
+              <a href=" {## {{ app.url_generator.generate('etest.view-course', {course_id: course.id}) }} #}"
+>>>>>>> 42b158c266b1b722158dff09a10d1cdb65a46e14
                  class="media recent-article-item sidebar-list-item">
-                <img src="{{ book.preview_image_url | default(app.default_book_image) }}"
+                <img src="{# {{ book.preview_image_url | default(app.default_book_image) }} #}"
                      class="media-object pull-left">
                 <span class="display-block media-body">
-                    <h5>{{ course.name }}</h5>
+                    <h5> {## {{ course.name }} #}</h5>
                     <div class="clearfix"></div>
                 </span>
               </a>
-            {% endfor %}
+             {## {% endfor %} #}
           </div>
         </div>
 
-      </div>
+      </div> -->
     </div>
   </div>
 {% endblock %}

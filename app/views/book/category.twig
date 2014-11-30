@@ -9,17 +9,9 @@
 
 
         <div id="header_search">
-            <div class="col-md-4" style=" margin-right: 5px;" id="header_check">
-                <div class="input-group">
-                    <input type="text" placeholder="Looking for a book, what book? " class="form-control">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
-                </div>
-                <!-- /input-group -->
-            </div>
+
+            {% include 'book/search-form.twig' %}
+
             <div id="header_only"><h3>Books&raquo;{{ books[0].category.title }}</h3></div>
         </div>
 
@@ -42,6 +34,10 @@
                                                      width="180" height="200"/></a>
                                             </div>
          <div id="book-att-icons">
+             <p class="books_title"><a href="{{ app.url_generator.generate('books.view', {id: book.id}) }}" >
+                 {{ book.title }}
+             </a></p>
+             <p class="books_title">
                     <span class="icon-att">
                     {% if book.context_user_liked == 1 %}
                         <a href="javascript:void(0)"
@@ -121,7 +117,7 @@
                         </a>
                     {% endif %}
                     </span>
-
+             </p>
          </div>
          <div class="clearfix"></div>
 
