@@ -125,4 +125,5 @@ $(function () {
   $('.delete').on('hover', function(e) {
     alert('DELETED');
   });
+
 });

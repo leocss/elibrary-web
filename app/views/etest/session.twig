@@ -49,9 +49,93 @@
 
             <div class="col-md-4">
                 <div class="col-md-3" style="padding-bottom: 20px;">
-                    <a href="{{ app.url_generator.generate('etest.index')}}">
 
-                        <h4> Tests</h4></a>
+                        <form name="counter">
+                            <b class="alert-danger">Time left:</b>
+                            <input type="text" size="8"
+
+                                                    name="d2"></form>
+                        <script>
+
+                            /*
+
+                             Author: Elijah Abolaji
+                             mail: cloudnigeria@gmail.com
+
+                             */
+
+                            // Script to manage the test
+                            var milisec=0
+
+                            var seconds=60
+                            var minutes =10
+
+                            document.counter.d2.value='30'
+                            function display(){ if (milisec<=0){
+
+                                milisec=59
+
+                                seconds-=1
+
+
+
+                            }
+                                if (seconds<=-1){
+
+
+
+                                    seconds=59
+
+                                    minutes-=1
+
+
+                                }
+                                if (minutes<=-1){
+                                    milisec=0
+                                    seconds = 0
+                                    minutes+=1
+
+                                }
+
+
+                                else{
+
+                                    milisec-=1
+                                    //seconds-=1
+                                    //minutes-=1
+
+
+
+                                }
+                                document.counter.d2.value= minutes+":"+seconds ;
+
+                                if(minutes==4 && seconds==0 && milisec==0){
+
+                                    alert("Please review your work and click on submit"+" "+ "Do not allow the system to submit your work automatically");
+                                }
+                                if(seconds==0 && milisec==0 && minutes==0)
+
+                                {
+                                    alert("Time Out. No assesment for you!!!" +" "+"Please take test again");
+                                    window.location ="{{ app.url_generator.generate('etest.result', {session_id: session.id}) }}";
+                                }
+
+                                else
+
+                                {
+                                    setTimeout("display()",1);
+
+                                }
+
+                            }
+
+                            display()
+
+
+
+                        </script>
+
+
 
                 </div>
 
