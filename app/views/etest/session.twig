@@ -111,13 +111,13 @@
 
                                 if(minutes==4 && seconds==0 && milisec==0){
 
-                                    alert("Please review your work and click on submit"+" "+ "Do not allow the system to submit your work automatically");
+                                    alert("4 minutes more, submit your work"+" "+ "Do not allow the system to submit your work automatically");
                                 }
                                 if(seconds==0 && milisec==0 && minutes==0)
 
                                 {
                                     alert("Time Out. No assesment for you!!!" +" "+"Please take test again");
-                                    window.location ="{{ app.url_generator.generate('etest.result', {session_id: session.id}) }}";
+                                    window.location ="{{ app.url_generator.generate('etest.index', {session_id: session.id}) }}";
                                 }
 
                                 else
