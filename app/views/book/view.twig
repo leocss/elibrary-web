@@ -21,8 +21,8 @@
             <div class="row book_main">
                 <div class="col-md-9">
                     <div id="random-book" class="media">
-                        <div class="pull-left book-image">
-                            <img class="media-object"
+                        <div class="pull-left book-image" >
+                            <img style="border: 1px solid #ccc;" class="media-object"
                                  src="{{ book.preview_image_url | default(app.default_book_image)}}"
                                  alt=""
                                  width="205"
@@ -53,7 +53,7 @@
                                 <div class="book-reservation ">
                                     <p>
                                     <span style="font-weight: bold; font-size: 20px;">NOTE:  Any reserved book must be collected from
-                                    the library within 7days or reservation will be canceled.</span>{{ book.hard_copies_count }}
+                                    the library within 7days or reservation will be canceled.</span>{# { book.hard_copies_count }} #}
                                     </p>
                                     {% if book.hard_copies_count > 0 %}
                                         {% set available_hardcopy = book.hard_copies_count - book.borrow_count %}

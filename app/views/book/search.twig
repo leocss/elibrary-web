@@ -24,7 +24,7 @@
                             {% for result in results %}
                                 <div class="col-md-3">
                                     <div id="book-hold">
-                                        <div class="box book-item">
+                                        <div class="box book-item" style="border: 1px solid #ccc;">
                                             <div class="book-item-preview">
                                                 <a href="{{ app.url_generator.generate('books.view', {id: result.id}) }}">
                                                 <img src="{{ result.preview_image_url | default(app.default_book_image) }}"

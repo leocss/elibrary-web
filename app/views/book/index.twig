@@ -37,7 +37,7 @@
                                             <div>
                                                 <ul>
                                                     {% for book in category.books %}
-                                                        <li>
+                                                        <li style="border: 1px solid #ccc;">
                                                             <a href="{{ app.url_generator.generate('books.view', {id: book.id}) }}">
                                                                 <img src="{{ book.preview_image_url | default(app.default_book_image) }}"
                                                                      width="183" height="190">
